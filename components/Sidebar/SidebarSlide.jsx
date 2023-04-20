@@ -193,8 +193,7 @@ const SidebarSlide = (
           {subtitle}
         </Typography>
         {!!text && (
-          <Typography variant="body2" color="textPrimary" component="p">
-            {text}
+          <Typography variant="body2" color="textPrimary" component="p" dangerouslySetInnerHTML={{ __html: text }}>
           </Typography>
         )}
         {!!children && (
