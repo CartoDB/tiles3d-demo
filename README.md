@@ -27,6 +27,12 @@ Specify your Google Maps API Key to use. You can get a Google Maps API Key on th
 
 will start the server on localhost:8080
 
+## How to build it
+
+```yarn build```
+
+Then deploy the files in the `dist` folder to a web server of your choice.
+
 ## 💬 issues/comments/whatever?
 
 You can contact CARTO always at contact@carto.com, but we also hangout on the CARTO Users community Slack server:
