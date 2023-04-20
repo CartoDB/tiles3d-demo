@@ -219,6 +219,16 @@
     "@babel/helper-validator-identifier" "^7.19.1"
     to-fast-properties "^2.0.0"
 
+"@deck.gl/aggregation-layers@^8.9.7":
+  version "8.9.7"
+  resolved "https://registry.yarnpkg.com/@deck.gl/aggregation-layers/-/aggregation-layers-8.9.7.tgz#9f627158511a4651c630dccb39eacac9ae1f72dd"
+  integrity sha512-lq5UY/BI0K/dLpFdlFVBdh4uHJ4OUgm2ZUk1l6giOaFfoDLhdhIU6OcvhiaitNyvIKBK4nmbWXB7cl+UKru2vQ==
+  dependencies:
+    "@luma.gl/constants" "^8.5.16"
+    "@luma.gl/shadertools" "^8.5.16"
+    "@math.gl/web-mercator" "^3.6.2"
+    d3-hexbin "^0.2.1"
+
 "@deck.gl/carto@^8.9.7":
   version "8.9.7"
   resolved "https://registry.yarnpkg.com/@deck.gl/carto/-/carto-8.9.7.tgz#0c87f1f234d72fc436757bee25450b9733620760"
@@ -1257,6 +1267,11 @@ d3-color@^2.0.0:
   version "3.1.0"
   resolved "https://registry.yarnpkg.com/d3-format/-/d3-format-3.1.0.tgz#9260e23a28ea5cb109e93b21a06e24e2ebd55641"
   integrity sha512-YyUI6AEuY/Wpt8KWLgZHsIU86atmikuoOmCfommt0LYHiQSPjvX2AcFc38PX0CBpr2RCyZhjex+NS/LPOv6YqA==
+
+d3-hexbin@^0.2.1:
+  version "0.2.2"
+  resolved "https://registry.yarnpkg.com/d3-hexbin/-/d3-hexbin-0.2.2.tgz#9c5837dacfd471ab05337a9e91ef10bfc4f98831"
+  integrity sha512-KS3fUT2ReD4RlGCjvCEm1RgMtp2NFZumdMu4DBzQK8AZv3fXRM6Xm8I4fSU07UXvH4xxg03NwWKWdvxfS/yc4w==
 
 "d3-interpolate@1.2.0 - 3":
   version "3.0.1"
