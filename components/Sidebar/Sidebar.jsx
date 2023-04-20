@@ -17,11 +17,11 @@ import {ReactComponent as IconExpandDown} from '../../assets/icons/icon-navigati
 import SidebarSlide from './SidebarSlide';
 import SidebarClose from './SidebarClose';
 import Header, {HEADER_HEIGHT} from '../Header/Header';
-import slide1Image from '../../assets/images/slide1.jpg';
-import slide2Image from '../../assets/images/slide2.jpg';
-import slide3Image from '../../assets/images/slide3.jpg';
-import slide4Image from '../../assets/images/slide4.jpg';
-import slide5Image from '../../assets/images/slide5.jpg';
+import slide1Image from '../../assets/images/slides/slide1.jpg';
+import slide2Image from '../../assets/images/slides/slide2.jpg';
+import slide3Image from '../../assets/images/slides/slide3.jpg';
+import slide4Image from '../../assets/images/slides/slide4.jpg';
+import slide5Image from '../../assets/images/slides/slide5.jpg';
 import slide6Image from '../../assets/images/slide6.jpg';
 import slide7Image from '../../assets/images/slide7.jpg';
 import slide8Image from '../../assets/images/slide8.jpg';
@@ -296,51 +296,47 @@ const Sidebar = () => {
           slide={1}
           shrinked={slideShrinked}
           {...(currentSlide === 1 && {ref: currentCardRef})}
-          title="Trees"
-          subtitle="Trees help to regulate temperature"
-          text="Trees provide shade and help to regulate the temperature in cities, reducing the urban heat island effect. This can help to mitigate the impact of climate change in urban areas."
+          title="How important are trees for cities?"
+          text="<p><b>Environmental benefits:</b> Help to purify the air, provide shade, reduce the urban heat island effect, and help to regulate temperature and humidity levels</p><p><b>Economic benefits:</b> Reduce energy costs for cooling and heating, decrease stormwater management costs, and increase tourism revenues</p><p><b>Social benefits:</b> Reduce stress by enhancing the beauty of urban areas
+ provide shade and help to regulate the temperature in cities, reducing the urban heat island effect.</p>"
           image={slide1Image}
-          imageAttribution={`Photo by <a target="_blank" href="https://unsplash.com/@juvx?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Vlad Busuioc</a> on <a target="_blank" href="https://unsplash.com/?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>`}
+          imageAttribution={`Photo by <a target="_blank" href="https://unsplash.com/@robertbye?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Robert Bye</a> on <a target="_blank" href="https://unsplash.com/?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>`}
         />
         <SidebarSlide
           slide={2}
           shrinked={slideShrinked}
           {...(currentSlide === 2 && {ref: currentCardRef})}
-          title="Temperature in Cities"
-          subtitle="Trees have a major impact in controlling the temperature in cities"
-          text="This map show areas with high temperature"
+          title="Trees help regulate temperature"
+          text="<p>Trees provide shade and help regulate the temperature in cities, reducing the urban heat island effect. This can help mitigate the impact of climate change in built-up areas.</p><p>This map visualizes how trees contribute to land surface temperature reduction, in the areas they are planted.</p>"
           image={slide2Image}
-          imageAttribution={`Photo by <a target="_blank" href="https://unsplash.com/@matthewhenry?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Matthew Henry</a> on <a target="_blank" href="https://unsplash.com/?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>`}
+          imageAttribution={`Photo by <a target="_blank" href="https://unsplash.com/@cici9265?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Cici Hung</a> on <a target="_blank" href="https://unsplash.com/?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>`}
         />
         <SidebarSlide
           slide={3}
           shrinked={slideShrinked}
           {...(currentSlide === 3 && {ref: currentCardRef})}
-          title="Cooling the environment"
-          subtitle="Trees have a major impact in controlling the temperature in cities"
-          text="While this map show areas with low temperature"
-          image={slide2Image}
-          imageAttribution={`Photo by <a target="_blank" href="https://unsplash.com/@matthewhenry?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Matthew Henry</a> on <a target="_blank" href="https://unsplash.com/?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>`}
+          title="Which buildings are in great spots"
+          text="<p>Trees can improve the look and feel of urban areas, making them more pleasant places to live and work. Research has also shown that spending time around trees can have a <a href='https://www.weforum.org/agenda/2021/04/city-trees-reduce-stress-and-anxiety/' target='_blank'>positive impact on mental health and well-being.</a></p>"
+          image={slide3Image}
+          imageAttribution={`Photo by <a target="_blank" href="https://unsplash.com/@cbarbalis?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Chris Barbalis</a> on <a target="_blank" href="https://unsplash.com/?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>`}
         />
         <SidebarSlide
           slide={4}
           shrinked={slideShrinked}
           {...(currentSlide === 4 && {ref: currentCardRef})}
-          title="Trees contribute to quality of life"
-          subtitle="A green neighbourhood is much more pleasant to live in"
-          text="This map shows the distance to the nearest tree for each building"
+          title="A score to measure Trees Planting Priority"
+          text="<p>As the world continues to warm and become even more urbanized, cities need to prioritize where to plant trees.</p><p>A Tree Planting Priority score can be derived by multiplying the Mitigation Potential (air temperature, NO2 concentration) by the Exposure (urbanity, points of interest) and Vulnerability (population, population < 15 & > 65).</p>"
           image={slide4Image}
-          imageAttribution={`Photo by <a target="_blank" href="https://unsplash.com/@charlfolscher?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Charl Folscher</a> on <a target="_blank" href="https://unsplash.com/?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>`}
+          imageAttribution={`Photo by <a target="_blank" href="https://unsplash.com/@thevantagepoint718?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Lerone Pieters</a> on <a target="_blank" href="https://unsplash.com/?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>`}
         />
         <SidebarSlide
           slide={5}
           shrinked={slideShrinked}
           {...(currentSlide === 5 && {ref: currentCardRef})}
-          title="Plant more trees"
-          subtitle="Planting trees is one of the most cost effective ways to make a city more liveable"
-          text="This map show a calculation of Tree Planting Priority, an index which highlights areas in which trees should be planted in order to maximize their benefit"
+          title="Map 5: Smart urban planning"
+          text="<p>For greener cities of the future, it is essential for urban planners to understand how to maximize the benefits of urban forestry to create healthier, sustainable, and more livable cities.</p><p>A hotspot analysis of the Tree Planting Priority score can be used to identify statistically significant clusters where there is a greater need to plant trees.</p>"
           image={slide5Image}
-          imageAttribution={`Photo by <a target="_blank" href="https://unsplash.com/@chuttersnap?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">CHUTTERSNAP</a> on <a target="_blank" href="https://unsplash.com/?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>`}
+          imageAttribution={`Photo by <a target="_blank" href="https://unsplash.com/@chrsndrsn?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Chris Anderson</a> on <a target="_blank" href="https://unsplash.com/?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>`}
         />
         <SidebarSlide
           slide={6}
