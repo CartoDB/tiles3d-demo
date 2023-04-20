@@ -7,7 +7,7 @@ on:
 
 env:
   GCP_PROJECT: carto-dw-tiles3d-demo
-  NODE_VERSION: "16"
+  NODE_VERSION: "16.14.2"
 
 jobs:
   build:
