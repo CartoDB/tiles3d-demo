@@ -4,7 +4,7 @@ import zlib from 'zlib';
 export default {
   plugins: [svgr()],
   server: {
-    port: 8085,
+    port: 8080,
     proxy: {
       '/cartoapi': {
         target: 'https://gcp-us-east1.api.carto.com',
