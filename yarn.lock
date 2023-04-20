@@ -270,13 +270,17 @@
     math.gl "^3.6.2"
     mjolnir.js "^2.7.0"
 
-"@deck.gl/extensions@file:./localdeck/extensions":
-  version "8.9.0-beta.6"
+"@deck.gl/extensions@^8.9.8":
+  version "8.9.8"
+  resolved "https://registry.yarnpkg.com/@deck.gl/extensions/-/extensions-8.9.8.tgz#9729c9609f69bbeca10e74ef3a8c61ad4b7096c4"
+  integrity sha512-3ml1JYP3pxxWtA2AsGXUm8OmpWnVFu/DlBQ/5CULMvh6miK7zWjDIvmA5SGAj1rj8zUXeX0JVUgHNrJ908qjTg==
   dependencies:
     "@luma.gl/shadertools" "^8.5.16"
 
-"@deck.gl/geo-layers@file:./localdeck/geo-layers":
-  version "8.9.0-beta.6"
+"@deck.gl/geo-layers@^8.9.8":
+  version "8.9.8"
+  resolved "https://registry.yarnpkg.com/@deck.gl/geo-layers/-/geo-layers-8.9.8.tgz#d1b73a06021950229c724f230b905c59d6c3e5ac"
+  integrity sha512-Ij7HqIJRMaxdkeokWaB/16YhonFRGaOjzMkc81Q9Lg0lSD4bjDTitJQS3B2mkBdiU4u84AerzhrSalNDcXr9Sw==
   dependencies:
     "@loaders.gl/3d-tiles" "^3.3.1"
     "@loaders.gl/gis" "^3.3.1"
