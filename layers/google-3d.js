@@ -1,7 +1,7 @@
 import {Tile3DLayer} from '@deck.gl/geo-layers';
 import DeferredLoadLayer from './deferredLoadLayer';
 
-import API_KEY from '../API_KEY';
+const API_KEY = import.meta.env.VITE_GOOGLE_API_KEY;
 
 const TILES3D_SERVER = 'https://www.googleapis.com';
 
