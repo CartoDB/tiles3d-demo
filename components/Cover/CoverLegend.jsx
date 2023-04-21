@@ -61,7 +61,7 @@ const CoverLegend = () => {
   const classes = useStyles();
 
   return (
-    <CoverBase slidesToShow={[2, 3]} className={classes.root}>
+    <CoverBase slidesToShow={[2]} className={classes.root}>
       <Paper classes={{root: classes.paper}} elevation={1}>
         <Typography color="inherit" variant="caption">
           Temperature
