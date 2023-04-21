@@ -10,6 +10,7 @@ export async function fetchRemoteLayers() {
   return layers.map(l => {
     return l.clone({
       extensions: [new TerrainExtension()],
+      stroked: false
     });
   });
 }
