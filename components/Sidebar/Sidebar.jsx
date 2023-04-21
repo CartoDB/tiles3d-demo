@@ -338,36 +338,6 @@ const Sidebar = () => {
           image={slide5Image}
           imageAttribution={`Photo by <a target="_blank" href="https://unsplash.com/@chrsndrsn?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Chris Anderson</a> on <a target="_blank" href="https://unsplash.com/?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>`}
         />
-        <SidebarSlide
-          slide={6}
-          shrinked={slideShrinked}
-          {...(currentSlide === 6 && {ref: currentCardRef})}
-          title="Commercial truck electrification is well within reach"
-          subtitle="Fully electric trucks are reaching wider-scale consideration as truck, engine, and other component manufacturers are developing the systems required to support this new breed of commercial vehicles."
-          text="These electrified trucks will bring many benefits (cleaner, renewable  energy consumption and simpler designs), but come with some additional challenges, such as the need for an updated  infrastructure and R&D investments."
-          image={slide6Image}
-          imageAttribution={`Photo by <a target="_blank" href="https://unsplash.com/@gerandeklerk?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Geran de Klerk</a> on <a target="_blank" href="https://unsplash.com/?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>`}
-        />
-        <SidebarSlide
-          slide={7}
-          shrinked={slideShrinked}
-          {...(currentSlide === 7 && {ref: currentCardRef})}
-          title="Focusing on long-haul trucks will require a charging infrastructure at scale."
-          subtitle="Utilizing aggregated data from existing truck fleets, and considering the most common  routes, it is possible to determine optimal locations to install the required charging infrastructure."
-          text="In this map, 4,780 of the most popular stops are analyzed. Using spatial analytics, different models can be created based on the phased roll out of electric truck fleets."
-          image={slide7Image}
-          imageAttribution={`Photo by <a target="_blank" href="https://unsplash.com/@sophiejonas?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Sophie Jonas</a> on <a target="_blank" href="https://unsplash.com/?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>`}
-        />
-        <SidebarSlide
-          slide={8}
-          shrinked={slideShrinked}
-          {...(currentSlide === 8 && {ref: currentCardRef})}
-          title="Rising temperatures in Texas could have devastating impacts across sectors"
-          subtitle="Depleted water resources, increasing wildfires, and expanding deserts are expected to cause significant damage to agriculture, human health, and infrastructure."
-          text="Using data and spatial analysis to evaluate the impacts of change on critical sectors will be key to prioritizing investments in climate resilience. The time to act is now."
-          image={slide8Image}
-          imageAttribution={`Photo by <a target="_blank" href="https://unsplash.com/@alecimages?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Chenyu Guan</a> on <a target="_blank" href="https://unsplash.com/?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>`}
-        />
       </div>
 
       <div className={classes.footer}>
