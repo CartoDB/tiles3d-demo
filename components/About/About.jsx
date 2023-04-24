@@ -148,7 +148,7 @@ const About = ({}, forwardedRef) => {
       <DialogContent classes={{root: classes.content}}>
         <DialogContentText component="div" id="about-description" tabIndex={-1}>
           <AboutText
-            title="BigQuery + CARTO + Deck.GL + Google Maps WebGL = Great rich map visualizations"
+            title="Google Maps, deck.gl and CARTO have worked together to bring 3D tiles to web maps"
             imageBlocks={[
               {
                 title: 'With data stored in',
@@ -173,7 +173,7 @@ const About = ({}, forwardedRef) => {
                 ]
               },
               {
-                title: 'Displayed on top of',
+                title: 'Using ',
                 textClassName: classes.logosText,
                 mobileHorizontal: true,
                 images: [
@@ -189,13 +189,19 @@ const About = ({}, forwardedRef) => {
               With the new{' '}
               <Link
                 underline="always"
-                href="https://developers.google.com/maps/documentation/javascript/webgl"
+                href="https://developers.google.com/maps/documentation/tile"
                 target="_blank"
               >
-                Google Maps WebGL
+                The Google Maps Platform Tile API
               </Link>{' '}
-              release, CARTO is been working on integrating a rich set of visualization
-              capabilities. The data behind it is stored on{' '}
+              release, Google provides 3D Tiles world wide. CARTO and deck.gl have been working on integrating 3D tiles in 
+              <Link underline="always" href="https://deck.gl/" target="_blank">
+                deck.GL
+              </Link> to bring more realism and context to your visualizations. 
+  
+            </p>
+            <p>
+              The data behind it is stored on{' '}
               <Link underline="always" href="https://cloud.google.com/bigquery/" target="_blank">
                 BigQuery
               </Link>{' '}
@@ -205,10 +211,9 @@ const About = ({}, forwardedRef) => {
               </Link>{' '}
               and{' '}
               <Link underline="always" href="https://deck.gl/" target="_blank">
-                Deck.GL
+                deck.GL
               </Link>{' '}
-              libraries. Some maps are made of very large datasets and others come directly from
-              SQL.
+              libraries.
             </p>
           </AboutText>
 
