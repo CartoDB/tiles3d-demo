@@ -1,11 +1,7 @@
-import {CartoLayer, colorBins, MAP_TYPES, setDefaultCredentials} from '@deck.gl/carto';
+import {CartoLayer, colorBins, MAP_TYPES} from '@deck.gl/carto';
 import DeferredLoadLayer from './deferredLoadLayer';
 import {_TerrainExtension as TerrainExtension} from '@deck.gl/extensions';
 import {colorToRGBArray} from '../utils';
-
-const credentials = {
-  accessToken: 'eyJhbGciOiJIUzI1NiJ9.eyJhIjoiYWNfN3hoZnd5bWwiLCJqdGkiOiIwNjhlYzgyMCJ9.2SAyHDttt4s-m2i6HgQuMqxdZIr_bdkIzBHM2zbYwOU'
-};
 
 const colors = ['#0d0887', '#41049d', '#6a00a8', '#8f0da4', '#b12a90', '#cc4778', '#e16462', '#f2844b', '#fca636', '#fcce25', '#f0f921'];
 const colorScale = {}
@@ -19,7 +15,6 @@ const _TemperatureLayer = DeferredLoadLayer(() => {
     connection: 'bigquery',
     type: MAP_TYPES.RASTER,
     data: 'cartobq.public_account.temperature_raster',
-    credentials,
     formatTiles: 'binary',
     tileSize: 256,
     getFillColor: colorBins({

@@ -9,7 +9,7 @@ const TILES3D_SERVER = 'https://www.googleapis.com';
 const ROOT_TILE = 'CggzMDYwNDE2MxIFZWFydGgYsQciBmdyb3VuZDoFZ2VvaWRABg'; // Prague
 
 // For development use local endpoint via vite proxy (see vite.config.js)
-const useLocalCache = location.host.includes('localhost');
+const useLocalCache = location.host.includes('127.0.0.1');
 
 const TILESET= `${useLocalCache ? '' : TILES3D_SERVER}/tile/v1/tiles3d/tilesets/${ROOT_TILE}.json?key=${API_KEY}`;
 
