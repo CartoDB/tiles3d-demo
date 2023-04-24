@@ -53,8 +53,7 @@ const CoverHero = () => {
       <Box mb={4}>
         <Typography color="inherit" variant={isDesktop ? 'body1' : 'body2'}>
           Google Maps, CARTO and deck.gl have worked together to bring 3D tiles to web maps.
-          To showcase these new capabilities we would like to present you with a map story
-          about the importance of vegetation for cities
+          To showcase these new capabilities we have developed a story map visualizing the importance of vegetation for cities.
         </Typography>
       </Box>
       <Button

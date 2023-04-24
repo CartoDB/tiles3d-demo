@@ -21,6 +21,12 @@ const TILESET= `${useLocalCache ? '' : TILES3D_SERVER}/tile/v1/tiles3d/tilesets/
 // }
 // window.tileIds = new Set();
 
+let maximumScreenSpaceError = parseFloat((new URL(location.href)).searchParams.get('sse'));
+if(isNaN(maximumScreenSpaceError)) {
+  // Lower than default (8) for better performance
+  maximumScreenSpaceError = 40;
+}
+
 const _Google3DLayer = DeferredLoadLayer(() => {
   return new Tile3DLayer({
     id: 'tile-3d-layer',
@@ -35,7 +41,7 @@ const _Google3DLayer = DeferredLoadLayer(() => {
       tileset3d._queryParams = {key: API_KEY};
       
       const traverser = tileset3d._traverser;
-      tileset3d.options.maximumScreenSpaceError = 40; // Lower for perf
+      tileset3d.options.maximumScreenSpaceError = maximumScreenSpaceError;
 
       // Do not show tiles which are many layers too low in resolution (avoids artifacts)
       tileset3d.options.onTraversalComplete = selectedTiles => {

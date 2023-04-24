@@ -60,7 +60,7 @@ export const AppStateStore = ({children}) => {
 
   useEffect(
     () => {
-      if (currentSlide !== null) {
+      if (currentSlide !== null && !isNaN(currentSlide)) {
         const {layers: visibleLayers, view, orbit: shouldOrbit} = slides[currentSlide];
         setLayers(allLayers.map(l => {
           const visible = visibleLayers.indexOf(l.id) !== -1;
