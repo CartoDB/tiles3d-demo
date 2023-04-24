@@ -60,7 +60,7 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-const useDevicePixelsOverride = (new URL(location.href)).searchParams.get('useDevicePixels');
+const useDevicePixelsOverride = parseFloat((new URL(location.href)).searchParams.get('useDevicePixels'));
 
 const Map = () => {
   const classes = useStyles();
@@ -68,7 +68,7 @@ const Map = () => {
   const isDesktop = useMediaQuery((theme) => theme.breakpoints.up('md'));
 
   // Retina rendering very expensive on mobile, so limit to standard resolution
-  const useDevicePixels = useDevicePixelsOverride || (isDesktop ? true : 1);
+  const useDevicePixels = isNaN(useDevicePixelsOverride) ? (isDesktop ? true : 1) : useDevicePixelsOverride;
 
   return (
     <>
