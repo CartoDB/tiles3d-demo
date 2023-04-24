@@ -4,7 +4,8 @@
   "license": "MIT",
   "scripts": {
     "start": "vite --open",
-    "build": "vite build",
+    "build": "vite build ",
+    "build-preview": "vite build --mode preview",
     "link-deck": "rm -rf node_modules/.vite && yarn link @deck.gl/core @deck.gl/layers @deck.gl/geo-layers @deck.gl/carto @deck.gl/extensions",
     "unlink-deck": "yarn unlink @deck.gl/core @deck.gl/layers @deck.gl/geo-layers @deck.gl/carto @deck.gl/extensions"
   },
