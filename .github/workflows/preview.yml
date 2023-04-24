@@ -18,7 +18,7 @@ jobs:
 
       # Update yarn /npm commands based on your needs
       - run: yarn install
-      - run: yarn build
+      - run: yarn build-preview
 
       - name: Setup Firebase for deploying
         run: |
