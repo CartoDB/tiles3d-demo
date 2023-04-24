@@ -22,12 +22,12 @@ setDefaultCredentials(credentials);
 
 const App = () => {
   return (
-    <AppStateStore>
-      <ThemeProvider theme={theme}>
+    <ThemeProvider theme={theme}>
+      <AppStateStore>
         <CssBaseline />
         <Main />
-      </ThemeProvider>
-    </AppStateStore>
+      </AppStateStore>
+    </ThemeProvider>
   );
 };
 const container = document.getElementById('app');
