@@ -34,11 +34,13 @@ const AboutText = ({title, children, imageBlocks}) => {
       <Typography className={classes.text} component="div" variant="body2" color="textPrimary">
         {children}
       </Typography>
-      <div className={classes.logos}>
-        {imageBlocks.map((ib, i) => (
-          <CoverLogoBlock key={`logoblock-${i}`} {...ib} />
-        ))}
-      </div>
+      {imageBlocks?.length && (
+        <div className={classes.logos}>
+          {imageBlocks.map((ib, i) => (
+            <CoverLogoBlock key={`logoblock-${i}`} {...ib} />
+          ))}
+        </div>
+      )}
     </>
   );
 };
