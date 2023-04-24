@@ -68,7 +68,7 @@ const Map = () => {
   const isDesktop = useMediaQuery((theme) => theme.breakpoints.up('md'));
 
   // Retina rendering very expensive on mobile, so limit resolution
-  const useDevicePixels = isNaN(useDevicePixelsOverride) ? (isDesktop ? true : 0.5) : useDevicePixelsOverride;
+  const useDevicePixels = isNaN(useDevicePixelsOverride) ? (isDesktop ? true : 0.75) : useDevicePixelsOverride;
 
   return (
     <>
@@ -81,7 +81,7 @@ const Map = () => {
         <div className={classes.mapWrapper} id="mapWrapper">
           <DeckGL 
             initialViewState={viewState}
-            controller={true}
+            controller={{touchRotate: true, minZoom: 12, maxZoom: 17, inertia: 250}}
             layers={layers}
             useDevicePixels={useDevicePixels}
           >
