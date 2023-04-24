@@ -221,7 +221,7 @@ const About = ({}, forwardedRef) => {
                 How has this been made
               </Typography>
               <Typography variant="body2" color="textSecondary" component="p">
-                CARTO offers a simple way to add Tables or direct SQL from BigQuery. We've imported some datasets in BigQuery (land temperature, buildings, scores, etc...) and they are visualized on top of Gogole 3D maps to bring more realism and context to your visualizations.
+                CARTO offers a simple way to add Tables or direct SQL from BigQuery. We've imported some datasets in BigQuery (land temperature, buildings, scores, etc...) and they are visualized on top of Google 3D maps to bring more realism and context to your visualizations.
               </Typography>
               <div className={classes.cardTextButtons}>
                 {/* <Button
