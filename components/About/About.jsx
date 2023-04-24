@@ -99,7 +99,6 @@ const useStyles = makeStyles((theme) => ({
 const About = ({}, forwardedRef) => {
   const [open, setOpen] = useState(false);
   const classes = useStyles();
-
   useEffect(() => {
     const hashChangeListener = () => {
       setOpen(window.location.hash === `#${ABOUT_HASH}`);
@@ -257,102 +256,58 @@ const About = ({}, forwardedRef) => {
 
           <Divider className={classes.divider} />
 
-          <AboutText
-            title="Data sources"
-            imageBlocks={[
-              {
-                title: 'Special thanks to:',
-                textClassName: classes.logosText,
-                images: [
-                  {
-                    src: geotabLogo,
-                    alt: 'GEOTAB'
-                  },
-                  {
-                    src: climateEngineLogo,
-                    alt: 'Climate Engine',
-                    className: classes.climateEngineLogo
-                  }
-                ]
-              }
-            ]}
-          >
+          <AboutText title="Data sources">
             <p>
               All the data used for this visualization is available as public data in BigQuery (
-              <strong>cartobq.nexus_demo</strong>). The original sources for the data are:
+              <strong>cartobq.public_account</strong>). The original sources for the data are:
             </p>
             <ul>
               <li>
-                <Link href="https://ignition.geotab.com/" target="_blank">
-                  Truck parking locations sample from Geotab
+                <Link href="https://land.copernicus.eu/pan-european/high-resolution-layers/forests/tree-cover-density" target="_blank">
+                  Tree Cover Density from Copernicus
                 </Link>{' '}
               </li>
               <li>
                 <Link
-                  href="https://www.naturalearthdata.com/downloads/10m-cultural-vectors/roads/"
+                  href="https://developers.google.com/earth-engine/datasets/catalog/LANDSAT_LC09_C02_T1_TOA"
                   target="_blank"
                 >
-                  Natural Earth for roads
+                  Landsat Surface Temperature
                 </Link>
               </li>
               <li>
                 <Link
-                  href="https://en.wikipedia.org/wiki/List_of_power_stations_in_Texas"
+                  href="https://www.eea.europa.eu/data-and-maps/data/interpolated-air-quality-data-2"
                   target="_blank"
                 >
-                  Power stations in Texas
+                  NO2 concentration from the European Environment Agency
                 </Link>
               </li>
               <li>
                 <Link
-                  href="https://hifld-geoplatform.opendata.arcgis.com/datasets/electric-power-transmission-lines/explore"
+                  href="https://www.worldpop.org/"
                   target="_blank"
                 >
-                  Electric Power Transmission Lines
+                  Population by age class from WorldPop
                 </Link>
               </li>
               <li>
-                <Link href="https://www.gits.igg.unam.mx/idea/descarga" target="_blank">
-                  Transmission lines in Mexico
+                <Link href="https://wiki.openstreetmap.org/wiki/BigQuery_dataset" target="_blank">
+                Points of interests and Building footprints from OpenStreetMap
                 </Link>
               </li>
               <li>
                 <Link
-                  href="https://data.humdata.org/dataset/kontur-population-dataset"
+                  href="https://carto.com/spatial-data-catalog/browser/dataset/cdb_spatial_fea_91e200cf/"
                   target="_blank"
                 >
-                  Global Population Density for 400m H3 Hexagons
-                </Link>
-              </li>
-              <li>
-                <Link href="https://carto.com/data" target="_blank">
-                  Demographics, boundaries and other extra layer from CARTO Data Observatory
+                  Urbanity level from CARTO
                 </Link>
               </li>
             </ul>
           </AboutText>
 
           <Divider className={classes.divider} />
-
-          <AboutText title="Credits" imageBlocks={[]}>
-            <ul>
-              <li>
-                <Link
-                  href="https://sketchfab.com/3d-models/low-poly-truck-98826ebd44e2492298ac925461509216"
-                  target="_blank"
-                >
-                  Low Poly Truck
-                </Link>
-                {' model by '}
-                <Link href="https://sketchfab.com/Arifido._" target="_blank">
-                  Arifido
-                </Link>{' '}
-                <Link href="http://creativecommons.org/licenses/by/4.0/" target="_blank">
-                  CC-BY-4.0
-                </Link>
-              </li>
-            </ul>
-          </AboutText>
         </DialogContentText>
       </DialogContent>
     </Dialog>
