@@ -68,7 +68,7 @@ const Map = () => {
   const isDesktop = useMediaQuery((theme) => theme.breakpoints.up('md'));
 
   // Retina rendering very expensive on mobile, so limit to standard resolution
-  const useDevicePixels = useDevicePixelsOverride || (isDesktop ? true : 1);
+  const useDevicePixels = useDevicePixelsOverride || (isDesktop ? true : 0.5);
 
   return (
     <>

@@ -35,7 +35,7 @@ const _Google3DLayer = DeferredLoadLayer(() => {
       tileset3d._queryParams = {key: API_KEY};
       
       const traverser = tileset3d._traverser;
-      tileset3d.options.maximumScreenSpaceError = 20; // Slightly lower for perf
+      tileset3d.options.maximumScreenSpaceError = 40; // Lower for perf
 
       // Do not show tiles which are many layers too low in resolution (avoids artifacts)
       tileset3d.options.onTraversalComplete = selectedTiles => {
