@@ -1,5 +1,5 @@
 import React from 'react';
-import {makeStyles} from '@material-ui/core';
+import {makeStyles, useMediaQuery} from '@material-ui/core';
 import {DeckGL} from '@deck.gl/react';
 
 import {useAppState} from '../../state';
@@ -60,10 +60,15 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
+const useDevicePixelsOverride = (new URL(location.href)).searchParams.get('useDevicePixels');
 
 const Map = () => {
   const classes = useStyles();
   const {currentSlide, layers, viewState} = useAppState();
+  const isDesktop = useMediaQuery((theme) => theme.breakpoints.up('md'));
+
+  // Retina rendering very expensive on mobile, so limit to standard resolution
+  const useDevicePixels = useDevicePixelsOverride || (isDesktop ? true : 1);
 
   return (
     <>
@@ -78,6 +83,7 @@ const Map = () => {
             initialViewState={viewState}
             controller={true}
             layers={layers}
+            useDevicePixels={useDevicePixels}
           >
           </DeckGL>
         </div>
