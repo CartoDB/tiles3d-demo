@@ -1,7 +1,8 @@
 #  🗺️ The Importance of Vegetation for Cities Story Map
+
 This repository contains the source code for the [The Importance of Vegetation for Cities story map](https://3dtiles.carto.com).
 
-[<img src="https://user-images.githubusercontent.com/127803/132099270-217beec8-8076-4377-9dc6-4187b480eaef.png">](http://carto.com/gmaps-demo)
+<img width="1093" alt="Captura de Pantalla 2023-04-24 a las 16 47 58" src="https://user-images.githubusercontent.com/1161870/234032881-6da79cd7-7b87-4259-84af-11761a319d97.png">
 
 Checkout also the overall technical blog post we published if you want to get more context.
 
@@ -21,7 +22,7 @@ Install all dependencies with:
 
 ```yarn```
 
-Specify your Google Maps API Key to use. You can get a Google Maps API Key on the GCP console. Remember to authorize localhost to it. You will need to update `API_KEY.js` with your API key.
+Specify your Google Maps API Key to use. You can get a Google Maps API Key on the GCP console. Remember to authorize localhost to it. You will need to update .env file with your API key.
 
 ```yarn start```
 
