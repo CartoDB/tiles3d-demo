@@ -253,7 +253,7 @@ const About = ({}, forwardedRef) => {
 
           <Divider className={classes.divider} />
 
-          {/* <AboutText title="Data sources">
+          {<AboutText title="Data sources">
             <p>
               All the data used for this visualization is available as public data in BigQuery (
               <strong>cartobq.public_account</strong>). The original sources for the data are:
@@ -302,7 +302,7 @@ const About = ({}, forwardedRef) => {
                 </Link>
               </li>
             </ul>
-          </AboutText> */}
+          </AboutText> }
 
           <Divider className={classes.divider} />
         </DialogContentText>
