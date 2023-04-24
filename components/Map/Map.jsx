@@ -67,8 +67,8 @@ const Map = () => {
   const {currentSlide, layers, viewState} = useAppState();
   const isDesktop = useMediaQuery((theme) => theme.breakpoints.up('md'));
 
-  // Retina rendering very expensive on mobile, so limit to standard resolution
-  const useDevicePixels = isNaN(useDevicePixelsOverride) ? (isDesktop ? true : 1) : useDevicePixelsOverride;
+  // Retina rendering very expensive on mobile, so limit resolution
+  const useDevicePixels = isNaN(useDevicePixelsOverride) ? (isDesktop ? true : 0.5) : useDevicePixelsOverride;
 
   return (
     <>
