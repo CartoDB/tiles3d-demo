@@ -17,8 +17,6 @@ import {ReactComponent as IconNavigationClose} from '../../assets/icons/icon-nav
 import {ReactComponent as IconGithub} from '../../assets/icons/icon-github.svg';
 import cartoLogo from '../../assets/images/carto-components-logo.svg';
 import googleMapsLogo from '../../assets/images/google-maps-platform-logo.png';
-import geotabLogo from '../../assets/images/geotap-primary.svg';
-import climateEngineLogo from '../../assets/images/climate-engine-logo@2x-primary.png';
 import codeImage from '../../assets/images/code.svg';
 import AboutText from './AboutText';
 import bigqueryImage from '../../assets/images/bigquery.svg';
@@ -172,7 +170,7 @@ const About = ({}, forwardedRef) => {
                 ]
               },
               {
-                title: 'Using ',
+                title: 'Tiles 3D provided by ',
                 textClassName: classes.logosText,
                 mobileHorizontal: true,
                 images: [
@@ -191,15 +189,16 @@ const About = ({}, forwardedRef) => {
                 href="https://developers.google.com/maps/documentation/tile"
                 target="_blank"
               >
-                The Google Maps Platform Tile API
+                Tile API
               </Link>{' '}
-              release, Google provides 3D Tiles world wide. CARTO and deck.gl have been working on integrating 3D tiles in 
+              release, Google Maps provides 3D Tiles world wide. CARTO and deck.gl have been working on integrating 3D tiles into {' '} 
               <Link underline="always" href="https://deck.gl/" target="_blank">
-                deck.GL
+                deck.gl
               </Link> to bring more realism and context to your visualizations. 
   
             </p>
-            <p>
+            
+            <p><br/>
               The data behind it is stored on{' '}
               <Link underline="always" href="https://cloud.google.com/bigquery/" target="_blank">
                 BigQuery
@@ -210,7 +209,7 @@ const About = ({}, forwardedRef) => {
               </Link>{' '}
               and{' '}
               <Link underline="always" href="https://deck.gl/" target="_blank">
-                deck.GL
+                deck.gl
               </Link>{' '}
               libraries.
             </p>
@@ -222,12 +221,10 @@ const About = ({}, forwardedRef) => {
                 How has this been made
               </Typography>
               <Typography variant="body2" color="textSecondary" component="p">
-                CARTO offers a simple way to add Tables or direct SQL from BigQuery into Google
-                Maps. Now with Google Maps WebGL support a much more rich set of visualizations are
-                possible.
+                CARTO offers a simple way to add Tables or direct SQL from BigQuery. We've imported some datasets in BigQuery (land temperature, buildings, scores, etc...) and they are visualized on top of Gogole 3D maps to bring more realism and context to your visualizations.
               </Typography>
               <div className={classes.cardTextButtons}>
-                <Button
+                {/* <Button
                   href="https://cloud.google.com/blog/products/maps-platform/richer-data-visualization-google-maps-platform-using-deckgl"
                   component="a"
                   target="_blank"
@@ -236,9 +233,9 @@ const About = ({}, forwardedRef) => {
                   color="primary"
                 >
                   Read the technical blog
-                </Button>
+                </Button> */}
                 <Button
-                  href="https://github.com/CartoDB/cloud-next"
+                  href="https://github.com/CartoDB/tiles3d-demo"
                   component="a"
                   target="_blank"
                   size="small"
@@ -256,7 +253,7 @@ const About = ({}, forwardedRef) => {
 
           <Divider className={classes.divider} />
 
-          <AboutText title="Data sources">
+          {/* <AboutText title="Data sources">
             <p>
               All the data used for this visualization is available as public data in BigQuery (
               <strong>cartobq.public_account</strong>). The original sources for the data are:
@@ -305,7 +302,7 @@ const About = ({}, forwardedRef) => {
                 </Link>
               </li>
             </ul>
-          </AboutText>
+          </AboutText> */}
 
           <Divider className={classes.divider} />
         </DialogContentText>
