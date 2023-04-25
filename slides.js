@@ -14,8 +14,8 @@ export default [
     view: {latitude: 50.094310100945165, longitude: 14.428403524611161, bearing: 7.919687982872942, pitch: 27.029786864591166, zoom: 12.113912734993061, height: 221.10726674564285}
   },
   /* 3 */ {
-    layers: ['google-3d', '9apejhk'], // Building-tree distances
-    view: {latitude: 50.087468608099215, longitude: 14.420789576681585, bearing: 120, pitch: 40, zoom: 16, height: 250},
+    layers: ['google-3d', 'mijq2d'], // Top priority Buildings
+    view: {latitude: 50.098638970057976, longitude: 14.430949347805848, bearing: -58.668795330078694, pitch: 58.268384344242605, zoom: 15.751310628564266, height: 210},
     orbit: true
   },
   /* 4 */ {
