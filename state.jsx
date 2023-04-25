@@ -29,7 +29,6 @@ export const AppStateStore = ({children}) => {
   const [layers, setLayers] = useState(localLayers);
   const [viewState, setViewState] = useState(initAppState.viewState);
 
-  const isDesktop = useMediaQuery((theme) => theme.breakpoints.up('md'));
   const orbit = useCallback(previousTransition => {
     setViewState((viewState) => ({
       ...viewState,
@@ -46,7 +45,7 @@ export const AppStateStore = ({children}) => {
       transitionDuration: 5000,
       ...viewState,
       transitionEasing: Easing.Quadratic.InOut,
-      transitionInterpolator: isDesktop && new FlyToInterpolator({curve: 1.3}),
+      transitionInterpolator: new FlyToInterpolator({curve: 1.3}),
       onTransitionEnd: () => {
         if (shouldOrbit) {
           orbit();
