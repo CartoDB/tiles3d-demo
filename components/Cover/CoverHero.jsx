@@ -47,13 +47,12 @@ const CoverHero = () => {
       </Typography>
       <Box className={classes.title}>
         <Typography color="inherit" variant={isDesktop ? 'h3' : 'h4'}>
-          The Importance of Vegetation for Cities
+          The Importance of Vegetation for Cities. 
         </Typography>
       </Box>
       <Box mb={4}>
         <Typography color="inherit" variant={isDesktop ? 'body1' : 'body2'}>
-          Google Maps, CARTO and deck.gl have worked together to bring 3D tiles to web maps.
-          To showcase these new capabilities we have developed a story map visualizing the importance of vegetation for cities.
+          This CARTO story map is brought to you in collaboration with Google Maps Platform and deck.gl.
         </Typography>
       </Box>
       <Button
