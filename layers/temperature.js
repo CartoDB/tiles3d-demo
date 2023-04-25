@@ -3,10 +3,11 @@ import DeferredLoadLayer from './deferredLoadLayer';
 import {_TerrainExtension as TerrainExtension} from '@deck.gl/extensions';
 import {colorToRGBArray} from '../utils';
 
-const colors = ['#0d0887', '#41049d', '#6a00a8', '#8f0da4', '#b12a90', '#cc4778', '#e16462', '#f2844b', '#fca636', '#fcce25', '#f0f921'];
+const colors = ['#0d0887', '#6a00a8', '#b12a90', '#e16462', '#fca636', '#f0f921'];
+const labels = [26, 28, 30, 32, 34, 36];
 const colorScale = {}
 colors.forEach((c, i) => {
-  colorScale[17 + 2 * i] = colorToRGBArray(c) // Range 17-34
+  colorScale[labels[i]] = colorToRGBArray(c);
 });
 
 const _TemperatureLayer = DeferredLoadLayer(() => {
@@ -14,7 +15,7 @@ const _TemperatureLayer = DeferredLoadLayer(() => {
     id: 'temperature',
     connection: 'bigquery',
     type: MAP_TYPES.RASTER,
-    data: 'cartobq.public_account.temperature_raster_int16',
+    data: 'cartobq.public_account.temperature_raster_int8',
     formatTiles: 'binary',
     tileSize: 256,
     getFillColor: colorBins({
