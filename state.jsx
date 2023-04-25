@@ -112,13 +112,3 @@ export const AppStateContextConsumer = AppStateContext.Consumer;
 export function useAppState() {
   return useContext(AppStateContext);
 }
-window.print = () => {
-  const center = map.getCenter();
-  const lat = center.lat();
-  const lng = center.lng();
-  const heading = map.getHeading();
-  const tilt = map.getTilt();
-  const zoom = map.getZoom();
-  const config = {lat, lng, heading, tilt, zoom};
-  console.log(JSON.stringify(config));
-};
