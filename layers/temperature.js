@@ -14,7 +14,7 @@ const _TemperatureLayer = DeferredLoadLayer(() => {
     id: 'temperature',
     connection: 'bigquery',
     type: MAP_TYPES.RASTER,
-    data: 'cartobq.public_account.temperature_raster_int16',
+    data: 'cartobq.public_account.temperature_raster_int8',
     formatTiles: 'binary',
     tileSize: 256,
     getFillColor: colorBins({
