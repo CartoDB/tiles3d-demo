@@ -29,7 +29,6 @@ export const AppStateStore = ({children}) => {
   const [layers, setLayers] = useState(localLayers);
   const [viewState, setViewState] = useState(initAppState.viewState);
 
-  const isDesktop = useMediaQuery((theme) => theme.breakpoints.up('md'));
   const orbit = useCallback(previousTransition => {
     setViewState((viewState) => ({
       ...viewState,
@@ -46,7 +45,7 @@ export const AppStateStore = ({children}) => {
       transitionDuration: 5000,
       ...viewState,
       transitionEasing: Easing.Quadratic.InOut,
-      transitionInterpolator: isDesktop && new FlyToInterpolator({curve: 1.3}),
+      transitionInterpolator: new FlyToInterpolator({curve: 1.3}),
       onTransitionEnd: () => {
         if (shouldOrbit) {
           orbit();
@@ -67,7 +66,7 @@ export const AppStateStore = ({children}) => {
         const {layers: visibleLayers, view, orbit: shouldOrbit} = slides[currentSlide];
         setLayers(allLayers.map(l => {
           const visible = visibleLayers.indexOf(l.id) !== -1;
-          return l.clone({visible});
+          return visible ? l.clone({visible}) : null;
         }));
         if (view && view.longitude !== undefined) {
           updateViewState({latitude: 0, longitude: 0, zoom: 0, bearing: 0, pitch: 0, position: [0, 0, view.height || 200], ...view}, shouldOrbit);
