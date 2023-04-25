@@ -1,5 +1,4 @@
 import {Tile3DLayer} from '@deck.gl/geo-layers';
-import DeferredLoadLayer from './deferredLoadLayer';
 
 const API_KEY = import.meta.env.VITE_GOOGLE_API_KEY;
 
@@ -27,36 +26,31 @@ if(isNaN(maximumScreenSpaceError)) {
   maximumScreenSpaceError = 40;
 }
 
-const _Google3DLayer = DeferredLoadLayer(() => {
-  return new Tile3DLayer({
-    id: 'tile-3d-layer',
-    data: TILESET,
-    // Uncomment to collect ids of tiles to preload
-    // onTileLoad: tile => {
-    //   const tileId = tile.contentUrl.split('/')[7].split('.')[0];
-    //   tileIds.add(tileId);
-    // },
-    onTilesetLoad: tileset3d => {
-      // Required until https://github.com/visgl/loaders.gl/pull/2252 resolved
-      tileset3d._queryParams = {key: API_KEY};
-      
-      const traverser = tileset3d._traverser;
-      tileset3d.options.maximumScreenSpaceError = maximumScreenSpaceError;
+export const Google3DLayer = new Tile3DLayer({
+  id: 'google-3d',
+  data: TILESET,
+  // Uncomment to collect ids of tiles to preload
+  // onTileLoad: tile => {
+  //   const tileId = tile.contentUrl.split('/')[7].split('.')[0];
+  //   tileIds.add(tileId);
+  // },
+  onTilesetLoad: tileset3d => {
+    // Required until https://github.com/visgl/loaders.gl/pull/2252 resolved
+    tileset3d._queryParams = {key: API_KEY};
 
-      // Do not show tiles which are many layers too low in resolution (avoids artifacts)
-      tileset3d.options.onTraversalComplete = selectedTiles => {
-        let maxDepth = 0;
-        for (const {depth} of selectedTiles) {
-          if(depth > maxDepth) maxDepth = depth;
-        }
-        const filtered = selectedTiles.filter(t => t.depth > maxDepth - 5);
-        return filtered;
+    const traverser = tileset3d._traverser;
+    tileset3d.options.maximumScreenSpaceError = maximumScreenSpaceError;
+    Google3DLayer.options = tileset3d.options;
+
+    // Do not show tiles which are many layers too low in resolution (avoids artifacts)
+    tileset3d.options.onTraversalComplete = selectedTiles => {
+      let maxDepth = 0;
+      for (const {depth} of selectedTiles) {
+        if(depth > maxDepth) maxDepth = depth;
       }
-    },
-    operation: 'terrain+draw'
-  });
-});
-
-export const Google3DLayer = new _Google3DLayer({
-  id: 'google-3d'
+      const filtered = selectedTiles.filter(t => t.depth > maxDepth - 5);
+      return filtered;
+    }
+  },
+  operation: 'terrain+draw'
 });
