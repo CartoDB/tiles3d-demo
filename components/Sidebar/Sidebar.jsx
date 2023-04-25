@@ -311,8 +311,8 @@ const Sidebar = () => {
           slide={3}
           shrinked={slideShrinked}
           {...(currentSlide === 3 && {ref: currentCardRef})}
-          title="Which buildings are in great spots"
-          subtitle="This map visualize the buildings of the city which have vegetation nearby. "
+          title="Which buildings are far from vegetation"
+          subtitle="This map visualizes the buildings of the city which lack vegetation nearby. "
           text="<p>Vegetation can improve the look and feel of urban areas, making them more pleasant places to live and work. Research has also shown that spending time around trees can have a <a href='https://www.weforum.org/agenda/2021/04/city-trees-reduce-stress-and-anxiety/' target='_blank'>positive impact on mental health and well-being.</a></p>Thanks to 3D capabilities of deck.gl, we can visualize the buildings on top of the Google 3D data to bring better realism.<p>"
           image={slide3Image}
           imageAttribution={`Photo by <a target="_blank" href="https://unsplash.com/@cbarbalis?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Chris Barbalis</a> on <a target="_blank" href="https://unsplash.com/?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>`}
