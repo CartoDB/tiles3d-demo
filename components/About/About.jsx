@@ -145,7 +145,7 @@ const About = ({}, forwardedRef) => {
       <DialogContent classes={{root: classes.content}}>
         <DialogContentText component="div" id="about-description" tabIndex={-1}>
           <AboutText
-            title="Google Maps, deck.gl and CARTO have worked together to bring 3D tiles to web maps"
+            title="This CARTO story map is brought to you in collaboration with Google Maps Platform and deck.gl"
             imageBlocks={[
               {
                 title: 'With data stored in',
@@ -170,7 +170,7 @@ const About = ({}, forwardedRef) => {
                 ]
               },
               {
-                title: 'Tiles 3D provided by ',
+                title: 'Photorealistic 3D Tiles Provided by ',
                 textClassName: classes.logosText,
                 mobileHorizontal: true,
                 images: [

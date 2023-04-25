@@ -21,10 +21,6 @@ import slide1Image from '../../assets/images/slides/slide1.jpg';
 import slide2Image from '../../assets/images/slides/slide2.jpg';
 import slide3Image from '../../assets/images/slides/slide3.jpg';
 import slide4Image from '../../assets/images/slides/slide4.jpg';
-import slide5Image from '../../assets/images/slides/slide5.jpg';
-import slide6Image from '../../assets/images/slide6.jpg';
-import slide7Image from '../../assets/images/slide7.jpg';
-import slide8Image from '../../assets/images/slide8.jpg';
 
 export const SIDEBAR_WIDTH = {
   xs: '400px',
@@ -296,8 +292,8 @@ const Sidebar = () => {
           slide={1}
           shrinked={slideShrinked}
           {...(currentSlide === 1 && {ref: currentCardRef})}
-          title="How important are trees for cities?"
-          text="<p>Trees are incredibly important for cities, both from an environmental and a social perspective. Here are some reasons why:</p><p><b>Environmental benefits:</b> Help to purify the air, provide shade, reduce the urban heat island effect, and help to regulate temperature and humidity levels</p><p><b>Economic benefits:</b> Reduce energy costs for cooling and heating, decrease stormwater management costs, and increase tourism revenues</p><p><b>Social benefits:</b> Reduce stress by enhancing the beauty of urban areas
+          title="How important is vegetation for cities?"
+          text="<p>Vegetation is incredibly important for cities, both from an environmental and a social perspective. Here are some reasons why:</p><p><b>Environmental benefits:</b> Help to purify the air, provide shade, reduce the urban heat island effect, and help to regulate temperature and humidity levels</p><p><b>Economic benefits:</b> Reduce energy costs for cooling and heating, decrease stormwater management costs, and increase tourism revenues</p><p><b>Social benefits:</b> Reduce stress by enhancing the beauty of urban areas
  provide shade and help to regulate the temperature in cities, reducing the urban heat island effect.</p>"
           image={slide1Image}
           imageAttribution={`Photo by <a target="_blank" href="https://unsplash.com/@robertbye?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Robert Bye</a> on <a target="_blank" href="https://unsplash.com/?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>`}
@@ -306,8 +302,8 @@ const Sidebar = () => {
           slide={2}
           shrinked={slideShrinked}
           {...(currentSlide === 2 && {ref: currentCardRef})}
-          title="Trees help regulate temperature"
-          text="<p>Trees provide shade and help regulate the temperature in cities, reducing the urban heat island effect. This can help mitigate the impact of climate change in built-up areas.</p><p>This map visualizes how trees contribute to land surface temperature reduction, in the areas they are planted.</p>"
+          title="Vegetation helps regulate temperature"
+          text="<p>Vegetation provides shade and help regulate the temperature in cities, reducing the urban heat island effect. This can help mitigate the impact of climate change in built-up areas.</p><p>This map visualizes how vegetation contributes to land surface temperature reduction, in the areas they are planted.</p>"
           image={slide2Image}
           imageAttribution={`Photo by <a target="_blank" href="https://unsplash.com/@cici9265?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Cici Hung</a> on <a target="_blank" href="https://unsplash.com/?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>`}
         />
@@ -316,8 +312,8 @@ const Sidebar = () => {
           shrinked={slideShrinked}
           {...(currentSlide === 3 && {ref: currentCardRef})}
           title="Which buildings are in great spots"
-          subtitle="This map visualize the buildings of the city which have a trees nearby. "
-          text="<p>Trees can improve the look and feel of urban areas, making them more pleasant places to live and work. Research has also shown that spending time around trees can have a <a href='https://www.weforum.org/agenda/2021/04/city-trees-reduce-stress-and-anxiety/' target='_blank'>positive impact on mental health and well-being.</a></p>Thanks to 3D capabilities of deck.gl, we can visualize the buildings on top of the Google 3D data to bring better realism.<p>"
+          subtitle="This map visualize the buildings of the city which have vegetation nearby. "
+          text="<p>Vegetation can improve the look and feel of urban areas, making them more pleasant places to live and work. Research has also shown that spending time around trees can have a <a href='https://www.weforum.org/agenda/2021/04/city-trees-reduce-stress-and-anxiety/' target='_blank'>positive impact on mental health and well-being.</a></p>Thanks to 3D capabilities of deck.gl, we can visualize the buildings on top of the Google 3D data to bring better realism.<p>"
           image={slide3Image}
           imageAttribution={`Photo by <a target="_blank" href="https://unsplash.com/@cbarbalis?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Chris Barbalis</a> on <a target="_blank" href="https://unsplash.com/?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>`}
         />
@@ -327,20 +323,20 @@ const Sidebar = () => {
           {...(currentSlide === 4 && {ref: currentCardRef})}
           title="A score to measure Trees Planting Priority"
           subtitle="The areas in white are the ones with higher priority to plant trees"
-          text="<p>As the world continues to warm and become even more urbanized, cities need to prioritize where to plant trees.</p><p>We've calculated Tree Planting Priority score to determine which are the best places to plant trees in the city. Multiple datasets of the city of Prague have been used: air temperature, NO2 concentration, point of insterets, polulation, etc.</p><p>In more detail, this tree planting score has been derived by multiplying the Mitigation Potential (air temperature, NO2 concentration) by the Exposure (urbanity, points of interest) and Vulnerable population (population younger than 15 and older than 65).</p>"
+          text="<p>As the world continues to warm and become even more urbanized, cities need to prioritize where to plant trees.It's essential for urban planners to understand how to maximize the benefits of urban forestry to create healthier, sustainable, and more livable cities.</p><p>Tree Planting Priority score has been calculated using multiple datasets to determine which are the best places to plant trees in Prague.</p><p>The score has been derived by multiplying the Mitigation Potential (air temperature, NO2 concentration) by the Exposure (urbanity, points of interest) and Vulnerable population (population younger than 15 and older than 65).</p>"
           image={slide4Image}
           imageAttribution={`Photo by <a target="_blank" href="https://unsplash.com/@thevantagepoint718?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Lerone Pieters</a> on <a target="_blank" href="https://unsplash.com/?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>`}
         />
-        <SidebarSlide
+        {/* <SidebarSlide
           slide={5}
           shrinked={slideShrinked}
           {...(currentSlide === 5 && {ref: currentCardRef})}
           title="Map 5: Smart urban planning"
-          subtitle="The areas in red in the map represents the best places to plant trees."
+          subtitle="The areas in red in the map represents the best places to increase vegetation."
           text="<p>For greener cities of the future, it is essential for urban planners to understand how to maximize the benefits of urban forestry to create healthier, sustainable, and more livable cities.</p><p>A hotspot analysis of the Tree Planting Priority score has been calculted to identify the areas where there is a greater need to plant trees.</p>"
           image={slide5Image}
           imageAttribution={`Photo by <a target="_blank" href="https://unsplash.com/@chrsndrsn?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Chris Anderson</a> on <a target="_blank" href="https://unsplash.com/?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>`}
-        />
+        /> */}
       </div>
 
       <div className={classes.footer}>
