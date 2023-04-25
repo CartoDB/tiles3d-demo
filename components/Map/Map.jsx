@@ -61,6 +61,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const useDevicePixelsOverride = parseFloat((new URL(location.href)).searchParams.get('useDevicePixels'));
+let currentViewState;
 
 const Map = () => {
   const classes = useStyles();
@@ -83,6 +84,10 @@ const Map = () => {
             initialViewState={viewState}
             controller={{touchRotate: true, minZoom: 12, maxZoom: 17, inertia: 250}}
             layers={layers}
+            onViewStateChange={({viewState}) => {
+              currentViewState = viewState;
+              return viewState;
+            }}
             useDevicePixels={useDevicePixels}
           >
           </DeckGL>
@@ -97,3 +102,10 @@ const Map = () => {
 };
 
 export default Map;
+
+// Helper to extract view states for slides.js
+window.print = () => {
+  const {latitude, longitude, bearing, pitch, zoom, position} = currentViewState;
+  const height = position[2];
+  console.log(JSON.stringify({latitude, longitude, bearing, pitch, zoom, height}).replaceAll('"', '').replaceAll(',', ', ').replaceAll(':', ': '));
+};

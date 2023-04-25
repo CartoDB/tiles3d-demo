@@ -327,16 +327,16 @@ const Sidebar = () => {
           image={slide4Image}
           imageAttribution={`Photo by <a target="_blank" href="https://unsplash.com/@thevantagepoint718?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Lerone Pieters</a> on <a target="_blank" href="https://unsplash.com/?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>`}
         />
-        {/* <SidebarSlide
+        <SidebarSlide
           slide={5}
           shrinked={slideShrinked}
-          {...(currentSlide === 5 && {ref: currentCardRef})}
-          title="Map 5: Smart urban planning"
-          subtitle="The areas in red in the map represents the best places to increase vegetation."
-          text="<p>For greener cities of the future, it is essential for urban planners to understand how to maximize the benefits of urban forestry to create healthier, sustainable, and more livable cities.</p><p>A hotspot analysis of the Tree Planting Priority score has been calculted to identify the areas where there is a greater need to plant trees.</p>"
-          image={slide5Image}
-          imageAttribution={`Photo by <a target="_blank" href="https://unsplash.com/@chrsndrsn?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Chris Anderson</a> on <a target="_blank" href="https://unsplash.com/?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>`}
-        /> */}
+          {...(currentSlide === 1 && {ref: currentCardRef})}
+          title="How important are trees for cities?"
+          text="<p>Trees are incredibly important for cities, both from an environmental and a social perspective. Here are some reasons why:</p><p><b>Environmental benefits:</b> Help to purify the air, provide shade, reduce the urban heat island effect, and help to regulate temperature and humidity levels</p><p><b>Economic benefits:</b> Reduce energy costs for cooling and heating, decrease stormwater management costs, and increase tourism revenues</p><p><b>Social benefits:</b> Reduce stress by enhancing the beauty of urban areas
+ provide shade and help to regulate the temperature in cities, reducing the urban heat island effect.</p>"
+          image={slide1Image}
+          imageAttribution={`Photo by <a target="_blank" href="https://unsplash.com/@robertbye?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Robert Bye</a> on <a target="_blank" href="https://unsplash.com/?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>`}
+        />
       </div>
 
       <div className={classes.footer}>
