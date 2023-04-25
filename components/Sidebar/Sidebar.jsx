@@ -316,7 +316,8 @@ const Sidebar = () => {
           shrinked={slideShrinked}
           {...(currentSlide === 3 && {ref: currentCardRef})}
           title="Which buildings are in great spots"
-          text="<p>Trees can improve the look and feel of urban areas, making them more pleasant places to live and work. Research has also shown that spending time around trees can have a <a href='https://www.weforum.org/agenda/2021/04/city-trees-reduce-stress-and-anxiety/' target='_blank'>positive impact on mental health and well-being.</a></p>"
+          subtitle="This map visualize the buildings of the city which have a trees nearby. "
+          text="<p>Trees can improve the look and feel of urban areas, making them more pleasant places to live and work. Research has also shown that spending time around trees can have a <a href='https://www.weforum.org/agenda/2021/04/city-trees-reduce-stress-and-anxiety/' target='_blank'>positive impact on mental health and well-being.</a></p>Thanks to 3D capabilities of deck.gl, we can visualize the buildings on top of the Google 3D data to bring better realism.<p>"
           image={slide3Image}
           imageAttribution={`Photo by <a target="_blank" href="https://unsplash.com/@cbarbalis?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Chris Barbalis</a> on <a target="_blank" href="https://unsplash.com/?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>`}
         />
@@ -325,7 +326,8 @@ const Sidebar = () => {
           shrinked={slideShrinked}
           {...(currentSlide === 4 && {ref: currentCardRef})}
           title="A score to measure Trees Planting Priority"
-          text="<p>As the world continues to warm and become even more urbanized, cities need to prioritize where to plant trees.</p><p>A Tree Planting Priority score can be derived by multiplying the Mitigation Potential (air temperature, NO2 concentration) by the Exposure (urbanity, points of interest) and Vulnerability (population, population < 15 & > 65).</p>"
+          subtitle="The areas in white are the ones with higher priority to plant trees"
+          text="<p>As the world continues to warm and become even more urbanized, cities need to prioritize where to plant trees.</p><p>We've calculated Tree Planting Priority score to determine which are the best places to plant trees in the city. Multiple datasets of the city of Prague have been used: air temperature, NO2 concentration, point of insterets, polulation, etc.</p><p>In more detail, this tree planting score has been derived by multiplying the Mitigation Potential (air temperature, NO2 concentration) by the Exposure (urbanity, points of interest) and Vulnerable population (population younger than 15 and older than 65).</p>"
           image={slide4Image}
           imageAttribution={`Photo by <a target="_blank" href="https://unsplash.com/@thevantagepoint718?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Lerone Pieters</a> on <a target="_blank" href="https://unsplash.com/?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>`}
         />
@@ -334,7 +336,8 @@ const Sidebar = () => {
           shrinked={slideShrinked}
           {...(currentSlide === 5 && {ref: currentCardRef})}
           title="Map 5: Smart urban planning"
-          text="<p>For greener cities of the future, it is essential for urban planners to understand how to maximize the benefits of urban forestry to create healthier, sustainable, and more livable cities.</p><p>A hotspot analysis of the Tree Planting Priority score can be used to identify statistically significant clusters where there is a greater need to plant trees.</p>"
+          subtitle="The areas in red in the map represents the best places to plant trees."
+          text="<p>For greener cities of the future, it is essential for urban planners to understand how to maximize the benefits of urban forestry to create healthier, sustainable, and more livable cities.</p><p>A hotspot analysis of the Tree Planting Priority score has been calculted to identify the areas where there is a greater need to plant trees.</p>"
           image={slide5Image}
           imageAttribution={`Photo by <a target="_blank" href="https://unsplash.com/@chrsndrsn?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Chris Anderson</a> on <a target="_blank" href="https://unsplash.com/?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>`}
         />
