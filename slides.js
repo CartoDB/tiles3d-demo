@@ -21,10 +21,5 @@ export default [
   /* 4 */ {
     layers: ['google-3d', 'mtcqiik'], // Tree Planting Priority
     view: {latitude: 50.08982364563372, longitude: 14.476247593416911, bearing: -53.76372618207482, pitch: 43.14705882352941, zoom: 12.601748373210508, height: 250}
-  },
-  /* 5 */ {
-    layers: ['google-3d'], 
-    view: {latitude: 50.091102480598394, longitude: 14.401406749754987, bearing: -163.82543289012642, pitch: 60, zoom: 16.265625845799548, height: 220},
-    orbit: true
   }
 ];

@@ -321,21 +321,11 @@ const Sidebar = () => {
           slide={4}
           shrinked={slideShrinked}
           {...(currentSlide === 4 && {ref: currentCardRef})}
-          title="A score to measure Trees Planting Priority"
-          subtitle="The areas in white are the ones with higher priority to plant trees"
-          text="<p>As the world continues to warm and become even more urbanized, cities need to prioritize where to plant trees.It's essential for urban planners to understand how to maximize the benefits of urban forestry to create healthier, sustainable, and more livable cities.</p><p>Tree Planting Priority score has been calculated using multiple datasets to determine which are the best places to plant trees in Prague.</p><p>The score has been derived by multiplying the Mitigation Potential (air temperature, NO2 concentration) by the Exposure (urbanity, points of interest) and Vulnerable population (population younger than 15 and older than 65).</p>"
+          title="Tree Planting Priority Areas"
+          subtitle="The buildings are colored by the value of the score. Closer to white represents the higher priority."
+          text="<p>As the world continues to warm and become even more urbanized, cities need to prioritize where to plant trees.<p>Tree Planting Priority score has been calculated using multiple datasets to determine which are the best places to plant trees in Prague.</p><p>Each building in the map is associated with a value of the score that represents the priority to plant trees on that area.</p><p>The score has been derived by multiplying the Mitigation Potential (air temperature, NO2 concentration) by the Exposure (urbanity, points of interest) and Vulnerable population (population younger than 15 and older than 65).</p>"
           image={slide4Image}
           imageAttribution={`Photo by <a target="_blank" href="https://unsplash.com/@thevantagepoint718?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Lerone Pieters</a> on <a target="_blank" href="https://unsplash.com/?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>`}
-        />
-        <SidebarSlide
-          slide={5}
-          shrinked={slideShrinked}
-          {...(currentSlide === 1 && {ref: currentCardRef})}
-          title="How important are trees for cities?"
-          text="<p>Trees are incredibly important for cities, both from an environmental and a social perspective. Here are some reasons why:</p><p><b>Environmental benefits:</b> Help to purify the air, provide shade, reduce the urban heat island effect, and help to regulate temperature and humidity levels</p><p><b>Economic benefits:</b> Reduce energy costs for cooling and heating, decrease stormwater management costs, and increase tourism revenues</p><p><b>Social benefits:</b> Reduce stress by enhancing the beauty of urban areas
- provide shade and help to regulate the temperature in cities, reducing the urban heat island effect.</p>"
-          image={slide1Image}
-          imageAttribution={`Photo by <a target="_blank" href="https://unsplash.com/@robertbye?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Robert Bye</a> on <a target="_blank" href="https://unsplash.com/?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>`}
         />
       </div>
 
