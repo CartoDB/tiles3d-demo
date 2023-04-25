@@ -1,6 +1,7 @@
 import {useMediaQuery} from '@material-ui/core';
 import React, {useState, createContext, useCallback, useContext, useEffect} from 'react';
-import {LinearInterpolator, FlyToInterpolator} from '@deck.gl/core';
+import {LinearInterpolator} from '@deck.gl/core';
+import FlyToInterpolator from './layers/fly-to-interpolator.js';
 import {Easing} from '@tweenjs/tween.js';
 
 import slides from './slides';
