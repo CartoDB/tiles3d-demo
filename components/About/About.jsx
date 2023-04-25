@@ -255,7 +255,7 @@ const About = ({}, forwardedRef) => {
 
           {<AboutText title="Data sources">
             <p>
-              All the data used for this visualization is available as public data in BigQuery (
+            All the data, except for Photorealistic 3D Tiles, used for this visualization is available as public data in BigQuery (
               <strong>cartobq.public_account</strong>). The original sources for the data are:
             </p>
             <ul>
