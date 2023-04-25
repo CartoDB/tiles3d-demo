@@ -2,7 +2,7 @@ import React from 'react';
 import {makeStyles} from '@material-ui/core';
 import CoverBase from './CoverBase';
 import cartoLogo from '../../assets/images/carto-components-logo-negative-logo.svg';
-import googleCloudLogo from '../../assets/images/google-cloud.png';
+import deckGlLogo from '../../assets/images/deckgl-logo.png';
 import googleMapsPlatformLogo from '../../assets/images/google-maps-platform.png';
 import CoverLogoBlock from './CoverLogoBlock';
 
@@ -67,8 +67,8 @@ const CoverFooter = () => {
               alt: 'Google Maps Platform'
             },
             {
-              src: googleCloudLogo,
-              alt: 'Google Cloud'
+              src: deckGlLogo,
+              alt: 'Deck.gl'
             }
           ]}
         />
