@@ -28,6 +28,13 @@ export const AppStateStore = ({children}) => {
   const [allLayers, setAllLayers] = useState(localLayers);
   const [layers, setLayers] = useState(localLayers);
   const [viewState, setViewState] = useState(initAppState.viewState);
+  const isDesktop = useMediaQuery((theme) => theme.breakpoints.up('md'));
+
+  // Adapt the geometry resolution on mobile
+  const google3DLayer = layers.find(l => l.id === 'google-3d');
+  if(google3DLayer && google3DLayer.state) {
+    google3DLayer.state.tileset3d.options.maximumScreenSpaceError = isDesktop ? 16 : 40;
+  }
 
   const orbit = useCallback(previousTransition => {
     setViewState((viewState) => ({
