@@ -4,10 +4,10 @@ import {ReactComponent as IconFacebook} from '../../assets/icons/icon-facebook.s
 import {ReactComponent as IconTwitter} from '../../assets/icons/icon-twitter.svg';
 import {ReactComponent as IconLinkedin} from '../../assets/icons/icon-linkedin.svg';
 
-const SHARING_URL = 'https://next.carto.com';
+const SHARING_URL = 'https://3dtiles.carto.com';
 const SHARING_TEXT =
-  'Check out the new visualization capabilities on Google Maps WebGL on this story about electrification in Texas.';
-const SHARING_HASHTAGS = 'googlemaps,carto,bigquery';
+  'An interactive story map using Google 3D tiles and CARTO to showcase the importance of vegetation for urban areas';
+const SHARING_HASHTAGS = 'googlemaps,tiles3d,deck.gl,carto,3d-visualizations';
 
 const useStyles = makeStyles((theme) => ({
   menu: {
