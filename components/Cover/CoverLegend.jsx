@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import {
   makeStyles,
   Paper,
@@ -65,9 +65,16 @@ const getColor = (color, alpha = 1) => {
 const CoverLegend = () => {
   const classes = useStyles();
   const {currentSlide} = useAppState();
-  const {legend} = slides[currentSlide];
   const slidesToShow = slides.map((s, i) => s.legend && i).filter(i => i);
 
+  // For fade animation, retain legend in state
+  const [legend, setLegend] = useState(null);
+  useEffect(() => {
+    const {legend} = slides[currentSlide];
+    if (legend) setLegend(legend);
+  }, [currentSlide]);
+
+  if (!legend) return null;
   return (
     <CoverBase slidesToShow={slidesToShow} className={classes.root}>
       <Paper classes={{root: classes.paper}} elevation={1}>
