@@ -95,7 +95,7 @@ const CoverLegend = () => {
                 </ListItemIcon>
                 <ListItemText
                   classes={{root: classes.ListItemText}}
-                  primaryTypographyProps={{color: 'inherit', variant: 'overline'}}
+                  primaryTypographyProps={{color: 'inherit', variant: 'caption'}}
                   primary={src}
                 ></ListItemText>
               </ListItem>
