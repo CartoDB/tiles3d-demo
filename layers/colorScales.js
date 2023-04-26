@@ -7,3 +7,8 @@ export const DISTANCE_COLOR_SCALE = {
   labels: [10, 50, 100, 250, 500].map(n => `${n}m`),
   colors: ['#f16d7a', '#fa8a76', '#ffa679', '#ffc285', '#ffdd9a']
 }
+
+export const PRIORITY_COLOR_SCALE = {
+  labels: ['medium', '', 'high'],
+  colors: ['#ffffb2', '#fecc5c', '#fd8d3c']
+}
