@@ -311,9 +311,9 @@ const Sidebar = () => {
           slide={3}
           shrinked={slideShrinked}
           {...(currentSlide === 3 && {ref: currentCardRef})}
-          title="Which buildings are far from vegetation"
-          subtitle="This map visualizes the buildings of the city which lack vegetation nearby. "
-          text="<p>Vegetation can improve the look and feel of urban areas, making them more pleasant places to live and work. Research has also shown that spending time around trees can have a <a href='https://www.weforum.org/agenda/2021/04/city-trees-reduce-stress-and-anxiety/' target='_blank'>positive impact on mental health and well-being.</a></p>Thanks to 3D capabilities of deck.gl, we can visualize the buildings on top of the Google 3D data to bring better realism.<p>"
+          title="Where are the trees in the city?"
+          subtitle="This map highlights areas with many trees."
+          text="<p>Compare how the regions of low temperature coincide with regions where there is a high density of trees. Trees cool their surrounding not just by providing shade, but alsoby retaining more moisture compared to concrete and buildings.<p>"
           image={slide3Image}
           imageAttribution={`Photo by <a target="_blank" href="https://unsplash.com/@cbarbalis?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Chris Barbalis</a> on <a target="_blank" href="https://unsplash.com/?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>`}
         />
@@ -321,6 +321,16 @@ const Sidebar = () => {
           slide={4}
           shrinked={slideShrinked}
           {...(currentSlide === 4 && {ref: currentCardRef})}
+          title="Which buildings are far from vegetation"
+          subtitle="This map visualizes the buildings of the city which lack vegetation nearby. "
+          text="<p>Vegetation can improve the look and feel of urban areas, making them more pleasant places to live and work. Research has also shown that spending time around trees can have a <a href='https://www.weforum.org/agenda/2021/04/city-trees-reduce-stress-and-anxiety/' target='_blank'>positive impact on mental health and well-being.</a></p>Thanks to 3D capabilities of deck.gl, we can visualize the buildings on top of the Google 3D data to bring better realism.<p>"
+          image={slide3Image}
+          imageAttribution={`Photo by <a target="_blank" href="https://unsplash.com/@cbarbalis?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Chris Barbalis</a> on <a target="_blank" href="https://unsplash.com/?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>`}
+        />
+        <SidebarSlide
+          slide={5}
+          shrinked={slideShrinked}
+          {...(currentSlide === 5 && {ref: currentCardRef})}
           title="Tree Planting Priority Areas"
           subtitle="The buildings are colored by the value of the score. Closer to white represents the higher priority."
           text="<p>As the world continues to warm and become even more urbanized, cities need to prioritize where to plant trees.<p>Tree Planting Priority score has been calculated using multiple datasets to determine which are the best places to plant trees in Prague.</p><p>Each building in the map is associated with a value of the score that represents the priority to plant trees on that area.</p><p>The score has been derived by multiplying the Mitigation Potential (air temperature, NO2 concentration) by the Exposure (urbanity, points of interest) and Vulnerable population (population younger than 15 and older than 65).</p>"
