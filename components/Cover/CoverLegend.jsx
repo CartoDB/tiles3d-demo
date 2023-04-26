@@ -11,7 +11,6 @@ import {
 import CoverBase from './CoverBase';
 import slides from '../../slides';
 import {useAppState} from '../../state';
-import {COLOR_SCALE} from '../../layers/temperature';
 import {colorToRGBArray} from '../../utils';
 
 const useStyles = makeStyles((theme) => ({
@@ -79,18 +78,18 @@ const CoverLegend = () => {
     <CoverBase slidesToShow={slidesToShow} className={classes.root}>
       <Paper classes={{root: classes.paper}} elevation={1}>
         <Typography color="inherit" variant="caption">
-          Temperature
+          {legend.title}
         </Typography>
         <List classes={{root: classes.list}} dense={true}>
-          {COLOR_SCALE.labels
+          {legend.labels
             .map((src, i) => (
               <ListItem classes={{root: classes.listItem}} key={`source-${i}`}>
                 <ListItemIcon
-                  style={{backgroundColor: getColor(COLOR_SCALE.colors[i], 0.4)}}
+                  style={{backgroundColor: getColor(legend.colors[i], 0.4)}}
                   classes={{root: classes.listItemIcon}}
                 >
                   <div
-                    style={{backgroundColor: COLOR_SCALE.colors[i]}}
+                    style={{backgroundColor: legend.colors[i]}}
                     className={classes.dot}
                   ></div>
                 </ListItemIcon>

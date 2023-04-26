@@ -2,13 +2,9 @@ import {CartoLayer, colorBins, MAP_TYPES} from '@deck.gl/carto';
 import DeferredLoadLayer from './deferredLoadLayer';
 import {_TerrainExtension as TerrainExtension} from '@deck.gl/extensions';
 import {colorToRGBArray} from '../utils';
+import {TEMPERATURE_COLOR_SCALE} from './colorScales';
 
-const colors = ['#0d0887', '#6a00a8', '#b12a90', '#e16462', '#fca636', '#f0f921'];
-const labels = [26, 28, 30, 32, 34, 36];
-const colorScale = {}
-colors.forEach((c, i) => {
-  colorScale[labels[i]] = colorToRGBArray(c);
-});
+const {colors, labels} = TEMPERATURE_COLOR_SCALE;
 
 const _TemperatureLayer = DeferredLoadLayer(() => {
   return new CartoLayer({
@@ -32,4 +28,3 @@ const _TemperatureLayer = DeferredLoadLayer(() => {
 export const TemperatureLayer = new _TemperatureLayer({
   id: 'temperature',
 });
-export const COLOR_SCALE = {colors, labels};
