@@ -16,10 +16,10 @@ const useStyles = makeStyles((theme) => ({
     bottom: theme.spacing(3),
     left: theme.spacing(3),
     transform: 'none',
-    width: 'auto',
-    display: 'none',
-    [theme.breakpoints.up('md')]: {
-      display: 'block'
+    width: '110px',
+    display: 'block',
+    [theme.breakpoints.down('sm')]: {
+      bottom: '170px'
     }
   },
   paper: {
