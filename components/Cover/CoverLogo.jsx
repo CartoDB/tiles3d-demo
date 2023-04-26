@@ -1,18 +1,23 @@
 import React from 'react';
 import {makeStyles} from '@material-ui/core';
-import cartoLogo from '../../assets/images/carto-components-logo-watermark.svg';
-import {alpha} from '@material-ui/core/styles/colorManipulator';
+import googleLogo from '../../assets/icons/google_on_white_hdpi.png';
+import { useAppState } from '../../state';
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    bottom: theme.spacing(0),
-    left: theme.spacing(10.25),
-    borderLeft: `1px solid ${alpha(theme.palette.common.white, 0.25)}`,
+    bottom: theme.spacing(1),
+    left: theme.spacing(1),
     paddingLeft: theme.spacing(1.5),
     paddingBottom: theme.spacing(0.25),
     position: 'absolute',
     display: 'flex',
     alignItems: 'flex-end',
+    '&:not(.startPage)': { 
+      [theme.breakpoints.down('sm')]: {
+        left: theme.spacing(1),
+        bottom: theme.spacing(19.5)
+      },
+    },
     '& a, & img': {
       height: theme.spacing(3),
       width: 'auto',
@@ -23,11 +28,12 @@ const useStyles = makeStyles((theme) => ({
 
 const CoverLogo = () => {
   const classes = useStyles();
+  const { currentSlide } = useAppState();
 
   return (
-    <div className={classes.root}>
-      <a href="https://carto.com" target="_blank" alt="CARTO">
-        <img alt="CARTO" src={cartoLogo} />
+    <div className={[classes.root, currentSlide === 0 ? 'startPage' : ''].join(' ')}>
+      <a href="https://google.com" target="_blank" alt="Google">
+        <img alt="Google" src={googleLogo} />
       </a>
     </div>
   );
