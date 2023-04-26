@@ -18,7 +18,7 @@ const useStyles = makeStyles((theme) => ({
     transform: 'none',
     width: '110px',
     display: 'block',
-    [theme.breakpoints.down('md')]: {
+    [theme.breakpoints.down('sm')]: {
       bottom: '170px'
     }
   },
