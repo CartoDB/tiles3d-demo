@@ -48,7 +48,7 @@ export const Google3DLayer = new Tile3DLayer({
       for (const {depth} of selectedTiles) {
         if(depth > maxDepth) maxDepth = depth;
       }
-      const filtered = selectedTiles.filter(t => t.depth > maxDepth - 5);
+      const filtered = selectedTiles.filter(t => t.depth > maxDepth - 4);
       return filtered;
     }
   },

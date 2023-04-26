@@ -12,9 +12,10 @@ import {fetchRemoteLayers} from './layers/remote';
 
 const hash = window.location.hash;
 
+const {view} = slides[0];
 const initAppState = {
   currentSlide: hash !== '' ? parseInt(hash.slice(1)) : 0,
-  viewState: {latitude: 50.08, longitude: 14.45, zoom: 11}
+  viewState: {...view, position: [0, 0, view.height], zoom: view.zoom - 1}
 };
 
 const LIMITED_EXTENT = [14.405979516991408, 50.10852124677322, 14.434648995339757, 50.09474325626903];
@@ -53,7 +54,7 @@ export const AppStateStore = ({children}) => {
       transitionDuration: 5000,
       ...viewState,
       transitionEasing: Easing.Quadratic.InOut,
-      transitionInterpolator: new FlyToInterpolator({curve: 1.3}),
+      transitionInterpolator: new FlyToInterpolator({curve: 1.1}),
       onTransitionEnd: () => {
         if (shouldOrbit) {
           orbit();
@@ -76,7 +77,10 @@ export const AppStateStore = ({children}) => {
           const visible = visibleLayers.indexOf(l.id) !== -1;
           const props = {visible};
           if(!isDesktop) {
+            // Limit data area on mobile - doesn't seem to work for MVT :(
             props.extent = LIMITED_EXTENT;
+            props.minZoom = 11;
+            props.maxZoom = 11;
           }
 
           return visible ? l.clone(props) : null;
