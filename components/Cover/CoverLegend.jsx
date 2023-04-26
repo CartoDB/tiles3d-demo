@@ -9,6 +9,7 @@ import {
   ListItemText
 } from '@material-ui/core';
 import CoverBase from './CoverBase';
+import slides from '../../slides';
 import {useAppState} from '../../state';
 import {COLOR_SCALE} from '../../layers/temperature';
 import {colorToRGBArray} from '../../utils';
@@ -64,9 +65,11 @@ const getColor = (color, alpha = 1) => {
 const CoverLegend = () => {
   const classes = useStyles();
   const {currentSlide} = useAppState();
+  const {legend} = slides[currentSlide];
+  const slidesToShow = slides.map((s, i) => s.legend && i).filter(i => i);
 
   return (
-    <CoverBase slidesToShow={[2]} className={classes.root}>
+    <CoverBase slidesToShow={slidesToShow} className={classes.root}>
       <Paper classes={{root: classes.paper}} elevation={1}>
         <Typography color="inherit" variant="caption">
           Temperature

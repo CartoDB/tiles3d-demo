@@ -1,3 +1,5 @@
+import {COLOR_SCALE as TEMPERATURE_COLOR_SCALE} from './layers/temperature';
+
 export default [
   /* 0 */ {
     layers: ['google-3d'],
@@ -11,7 +13,8 @@ export default [
   },
   /* 2 */ {
     layers: ['google-3d', 'temperature'],
-    view: {latitude: 50.10367638816013, longitude: 14.433798010872685, bearing: -43.50888344569848, pitch: 47.70381729182906, zoom: 14.066421513772516, height: 221.10726674564285}
+    view: {latitude: 50.10367638816013, longitude: 14.433798010872685, bearing: -43.50888344569848, pitch: 47.70381729182906, zoom: 14.066421513772516, height: 221.10726674564285},
+    legend: TEMPERATURE_COLOR_SCALE
   },
   /* 3 */ {
     layers: ['google-3d', 'parks'],
@@ -20,6 +23,7 @@ export default [
   /* 4 */ {
     layers: ['google-3d', '6ohyvu4'], // Top priority Buildings
     view: {latitude: 50.098638970057976, longitude: 14.430949347805848, bearing: -58.668795330078694, pitch: 58.268384344242605, zoom: 15.751310628564266, height: 210},
+    legend: TEMPERATURE_COLOR_SCALE,
     orbit: true
   },
   /* 5 */ {
