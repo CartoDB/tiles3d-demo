@@ -17,7 +17,7 @@ export default [
     legend: {title: 'Temperature', ...TEMPERATURE_COLOR_SCALE},
   },
   /* 3 */ {
-    layers: ['google-3d', 'parks'],
+    layers: ['google-3d', 'iyd8wi'],
     view: {latitude: 50.106134139314676, longitude: 14.418551788315758, bearing: -1.5982979378544293, pitch: 46.98403655241639, zoom: 16.157034959911423, height: 221.02488150953326}
   },
   /* 4 */ {
