@@ -37,7 +37,7 @@ const useStyles = makeStyles((theme) => ({
     },
     '& span': {
       color: theme.palette.common.white,
-      fontSize: theme.spacing(1.5)
+      fontSize: theme.spacing(1.25)
     }
   }
 }));
