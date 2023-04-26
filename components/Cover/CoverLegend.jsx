@@ -16,11 +16,8 @@ const useStyles = makeStyles((theme) => ({
     bottom: theme.spacing(3),
     left: theme.spacing(3),
     transform: 'none',
-    width: 'auto',
-    display: 'none',
-    [theme.breakpoints.up('md')]: {
-      display: 'block'
-    }
+    width: '110px',
+    display: 'block'
   },
   paper: {
     padding: theme.spacing(2),
