@@ -9,7 +9,9 @@ import {
   ListItemText
 } from '@material-ui/core';
 import CoverBase from './CoverBase';
+import {useAppState} from '../../state';
 import {COLOR_SCALE} from '../../layers/temperature';
+import {colorToRGBArray} from '../../utils';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -54,11 +56,14 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-const getColor = (colorArray, alpha = 1) =>
-  `rgba(${colorArray[0]},${colorArray[1]},${colorArray[2]},${alpha})`;
+const getColor = (color, alpha = 1) => {
+  const colorArray = colorToRGBArray(color);
+  return `rgba(${colorArray[0]},${colorArray[1]},${colorArray[2]},${alpha})`;
+}
 
 const CoverLegend = () => {
   const classes = useStyles();
+  const {currentSlide} = useAppState();
 
   return (
     <CoverBase slidesToShow={[2]} className={classes.root}>
@@ -67,16 +72,15 @@ const CoverLegend = () => {
           Temperature
         </Typography>
         <List classes={{root: classes.list}} dense={true}>
-          {Object.keys(COLOR_SCALE)
-            .filter((v) => v !== 'Other')
+          {COLOR_SCALE.labels
             .map((src, i) => (
               <ListItem classes={{root: classes.listItem}} key={`source-${i}`}>
                 <ListItemIcon
-                  style={{backgroundColor: getColor(COLOR_SCALE[src], 0.4)}}
+                  style={{backgroundColor: getColor(COLOR_SCALE.colors[i], 0.4)}}
                   classes={{root: classes.listItemIcon}}
                 >
                   <div
-                    style={{backgroundColor: getColor(COLOR_SCALE[src])}}
+                    style={{backgroundColor: COLOR_SCALE.colors[i]}}
                     className={classes.dot}
                   ></div>
                 </ListItemIcon>

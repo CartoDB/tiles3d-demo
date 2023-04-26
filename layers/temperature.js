@@ -20,8 +20,8 @@ const _TemperatureLayer = DeferredLoadLayer(() => {
     tileSize: 256,
     getFillColor: colorBins({
       attr: 'band_1',
-      domain: Object.keys(colorScale),
-      colors: Object.values(colorScale)
+      domain: labels,
+      colors: colors.map(colorToRGBArray)
     }),
     opacity: 0.5,
 
@@ -32,4 +32,4 @@ const _TemperatureLayer = DeferredLoadLayer(() => {
 export const TemperatureLayer = new _TemperatureLayer({
   id: 'temperature',
 });
-export const COLOR_SCALE = colorScale;
+export const COLOR_SCALE = {colors, labels};
