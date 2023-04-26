@@ -1,3 +1,5 @@
+import {TEMPERATURE_COLOR_SCALE, DISTANCE_COLOR_SCALE, PRIORITY_COLOR_SCALE} from './layers/colorScales';
+
 export default [
   /* 0 */ {
     layers: ['google-3d'],
@@ -11,7 +13,8 @@ export default [
   },
   /* 2 */ {
     layers: ['google-3d', 'temperature'],
-    view: {latitude: 50.10367638816013, longitude: 14.433798010872685, bearing: -43.50888344569848, pitch: 47.70381729182906, zoom: 14.066421513772516, height: 221.10726674564285}
+    view: {latitude: 50.10367638816013, longitude: 14.433798010872685, bearing: -43.50888344569848, pitch: 47.70381729182906, zoom: 14.066421513772516, height: 221.10726674564285},
+    legend: {title: 'Temperature', ...TEMPERATURE_COLOR_SCALE},
   },
   /* 3 */ {
     layers: ['google-3d', 'parks'],
@@ -20,10 +23,12 @@ export default [
   /* 4 */ {
     layers: ['google-3d', '6ohyvu4'], // Top priority Buildings
     view: {latitude: 50.098638970057976, longitude: 14.430949347805848, bearing: -58.668795330078694, pitch: 58.268384344242605, zoom: 15.751310628564266, height: 210},
+    legend: {title: 'Distance', ...DISTANCE_COLOR_SCALE},
     orbit: true
   },
   /* 5 */ {
     layers: ['google-3d', 'mijq2d'], // Tree Planting Priority
-    view: {latitude: 50.08982364563372, longitude: 14.476247593416911, bearing: -53.76372618207482, pitch: 43.14705882352941, zoom: 12.601748373210508, height: 250}
+    view: {latitude: 50.08982364563372, longitude: 14.476247593416911, bearing: -53.76372618207482, pitch: 43.14705882352941, zoom: 12.601748373210508, height: 250},
+    legend: {title: 'Priority', ...PRIORITY_COLOR_SCALE},
   }
 ];

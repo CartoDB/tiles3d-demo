@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import {
   makeStyles,
   Paper,
@@ -9,7 +9,9 @@ import {
   ListItemText
 } from '@material-ui/core';
 import CoverBase from './CoverBase';
-import {COLOR_SCALE} from '../../layers/temperature';
+import slides from '../../slides';
+import {useAppState} from '../../state';
+import {colorToRGBArray} from '../../utils';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -54,35 +56,46 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-const getColor = (colorArray, alpha = 1) =>
-  `rgba(${colorArray[0]},${colorArray[1]},${colorArray[2]},${alpha})`;
+const getColor = (color, alpha = 1) => {
+  const colorArray = colorToRGBArray(color);
+  return `rgba(${colorArray[0]},${colorArray[1]},${colorArray[2]},${alpha})`;
+}
 
 const CoverLegend = () => {
   const classes = useStyles();
+  const {currentSlide} = useAppState();
+  const slidesToShow = slides.map((s, i) => s.legend && i).filter(i => i);
 
+  // For fade animation, retain legend in state
+  const [legend, setLegend] = useState(null);
+  useEffect(() => {
+    const {legend} = slides[currentSlide];
+    if (legend) setLegend(legend);
+  }, [currentSlide]);
+
+  if (!legend) return null;
   return (
-    <CoverBase slidesToShow={[2]} className={classes.root}>
+    <CoverBase slidesToShow={slidesToShow} className={classes.root}>
       <Paper classes={{root: classes.paper}} elevation={1}>
         <Typography color="inherit" variant="caption">
-          Temperature
+          {legend.title}
         </Typography>
         <List classes={{root: classes.list}} dense={true}>
-          {Object.keys(COLOR_SCALE)
-            .filter((v) => v !== 'Other')
+          {legend.labels
             .map((src, i) => (
               <ListItem classes={{root: classes.listItem}} key={`source-${i}`}>
                 <ListItemIcon
-                  style={{backgroundColor: getColor(COLOR_SCALE[src], 0.4)}}
+                  style={{backgroundColor: getColor(legend.colors[i], 0.4)}}
                   classes={{root: classes.listItemIcon}}
                 >
                   <div
-                    style={{backgroundColor: getColor(COLOR_SCALE[src])}}
+                    style={{backgroundColor: legend.colors[i]}}
                     className={classes.dot}
                   ></div>
                 </ListItemIcon>
                 <ListItemText
                   classes={{root: classes.ListItemText}}
-                  primaryTypographyProps={{color: 'inherit', variant: 'overline'}}
+                  primaryTypographyProps={{color: 'inherit', variant: 'caption'}}
                   primary={src}
                 ></ListItemText>
               </ListItem>

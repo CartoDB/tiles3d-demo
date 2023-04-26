@@ -17,8 +17,8 @@ const initAppState = {
   viewState: {latitude: 50.08, longitude: 14.45, zoom: 11}
 };
 
+const LIMITED_EXTENT = [14.405979516991408, 50.10852124677322, 14.434648995339757, 50.09474325626903];
 const transitionInterpolator = new LinearInterpolator(['bearing', 'longitude', 'latitude']);
-
 export const AppStateContext = createContext(initAppState);
 
 let map;
@@ -74,7 +74,12 @@ export const AppStateStore = ({children}) => {
         const {layers: visibleLayers, view, orbit: shouldOrbit} = slides[currentSlide];
         setLayers(allLayers.map(l => {
           const visible = visibleLayers.indexOf(l.id) !== -1;
-          return visible ? l.clone({visible}) : null;
+          const props = {visible};
+          if(!isDesktop) {
+            props.extent = LIMITED_EXTENT;
+          }
+
+          return visible ? l.clone(props) : null;
         }));
         if (view && view.longitude !== undefined) {
           updateViewState({latitude: 0, longitude: 0, zoom: 0, bearing: 0, pitch: 0, position: [0, 0, view.height || 200], ...view}, shouldOrbit);
