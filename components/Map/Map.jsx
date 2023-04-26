@@ -5,6 +5,7 @@ import {DeckGL} from '@deck.gl/react';
 import {useAppState} from '../../state';
 import {SIDEBAR_WIDTH} from '../Sidebar/Sidebar';
 import CoverLogo from '../Cover/CoverLogo';
+import CoverAttribution from '../Cover/CoverAttribution';
 
 const useStyles = makeStyles((theme) => ({
   mapWrapper: {
@@ -97,6 +98,7 @@ const Map = () => {
       <div
         className={[classes.mapBlock, currentSlide > 0 ? classes.mapBlockHidden : ''].join(' ')}
       />
+      <CoverAttribution />
     </>
   );
 };
