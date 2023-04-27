@@ -293,8 +293,7 @@ const Sidebar = () => {
           shrinked={slideShrinked}
           {...(currentSlide === 1 && {ref: currentCardRef})}
           title="How important is vegetation for cities?"
-          text="<p>Vegetation is incredibly important for cities, both from an environmental and a social perspective. Here are some reasons why:</p><p><b>Environmental benefits:</b> Help to purify the air, provide shade, reduce the urban heat island effect, and help to regulate temperature and humidity levels</p><p><b>Economic benefits:</b> Reduce energy costs for cooling and heating, decrease stormwater management costs, and increase tourism revenues</p><p><b>Social benefits:</b> Reduce stress by enhancing the beauty of urban areas
- provide shade and help to regulate the temperature in cities, reducing the urban heat island effect.</p>"
+          text="<p>Vegetation is incredibly important for cities, both from an environmental and a social perspective. Here are some reasons why:</p><p><b>Environmental benefits:</b> Help to purify the air, provide shade, reduce the urban heat island effect, and help to regulate temperature and humidity levels</p><p><b>Economic benefits:</b> Reduce energy costs for cooling and heating, decrease stormwater management costs, and increase tourism revenues</p><p><b>Social benefits:</b> Reduce stress by enhancing the beauty of urban areas.</p>"
           image={slide1Image}
           imageAttribution={`Photo by <a target="_blank" href="https://unsplash.com/@robertbye?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Robert Bye</a> on <a target="_blank" href="https://unsplash.com/?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>`}
         />
@@ -302,8 +301,9 @@ const Sidebar = () => {
           slide={2}
           shrinked={slideShrinked}
           {...(currentSlide === 2 && {ref: currentCardRef})}
-          title="Vegetation helps regulate temperature"
-          text="<p>Vegetation provides shade and help regulate the temperature in cities, reducing the urban heat island effect. This can help mitigate the impact of climate change in built-up areas.</p><p>This map visualizes how vegetation contributes to land surface temperature reduction, in the areas they are planted.</p>"
+          title="Vegetation helps to regulate temperature"
+          subtitle="This map shows how tree-covered areas in Prague have a much lower land surface temperature compared with the surrounding areas."
+          text="<p>Vegetation provides shade and helps to regulate the temperature in cities, reducing the urban heat island effect and mitigating the impact of climate change in built-up areas.</p>"
           image={slide2Image}
           imageAttribution={`Photo by <a target="_blank" href="https://unsplash.com/@cici9265?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Cici Hung</a> on <a target="_blank" href="https://unsplash.com/?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>`}
         />
@@ -311,9 +311,9 @@ const Sidebar = () => {
           slide={3}
           shrinked={slideShrinked}
           {...(currentSlide === 3 && {ref: currentCardRef})}
-          title="Where are the trees in the city?"
-          subtitle="This map highlights areas with many trees."
-          text="<p>Compare how the regions of low temperature coincide with regions where there is a high density of trees. Trees cool their surrounding not just by providing shade, but alsoby retaining more moisture compared to concrete and buildings.<p>"
+          title="Where are areas of dense vegetation located in the city of Prague?"
+          subtitle="This map highlights public parks in the city."
+          text="<p>Compare how areas of lower surface temperature coincide with large green areas. Trees cool their surrounding not just by providing shade, but also by retaining more moisture compared to concrete and buildings.<p>"
           image={slide3Image}
           imageAttribution={`Photo by <a target="_blank" href="https://unsplash.com/@cbarbalis?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Chris Barbalis</a> on <a target="_blank" href="https://unsplash.com/?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>`}
         />
@@ -321,9 +321,9 @@ const Sidebar = () => {
           slide={4}
           shrinked={slideShrinked}
           {...(currentSlide === 4 && {ref: currentCardRef})}
-          title="Which buildings are far from vegetation"
-          subtitle="This map visualizes the buildings of the city which lack vegetation nearby. "
-          text="<p>Vegetation can improve the look and feel of urban areas, making them more pleasant places to live and work. Research has also shown that spending time around trees can have a <a href='https://www.weforum.org/agenda/2021/04/city-trees-reduce-stress-and-anxiety/' target='_blank'>positive impact on mental health and well-being.</a></p>Thanks to 3D capabilities of deck.gl, we can visualize the buildings on top of the Google 3D data to bring better realism.<p>"
+          title="Which buildings are far from areas of dense vegetation?"
+          subtitle="This map visualizes the buildings of the city which lack areas of dense vegetation nearby."
+          text="<p>Vegetation can improve the look and feel of urban areas, making them more pleasant places to live and work. Research has also shown that spending time around trees can have a <a href='https://www.weforum.org/agenda/2021/04/city-trees-reduce-stress-and-anxiety/' target='_blank'>positive impact on mental health and well-being.</a></p>Thanks to the 3D capabilities of deck.gl, we can visualize the buildings on top of Google 3D imagery.<p>"
           image={slide3Image}
           imageAttribution={`Photo by <a target="_blank" href="https://unsplash.com/@cbarbalis?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Chris Barbalis</a> on <a target="_blank" href="https://unsplash.com/?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>`}
         />
@@ -331,9 +331,9 @@ const Sidebar = () => {
           slide={5}
           shrinked={slideShrinked}
           {...(currentSlide === 5 && {ref: currentCardRef})}
-          title="Tree Planting Priority Areas"
-          subtitle="The buildings are colored by the value of the score. Closer to white represents the higher priority."
-          text="<p>As the world continues to warm and become even more urbanized, cities need to prioritize where to plant trees.<p>Tree Planting Priority score has been calculated using multiple datasets to determine which are the best places to plant trees in Prague.</p><p>Each building in the map is associated with a value of the score that represents the priority to plant trees on that area.</p><p>The score has been derived by multiplying the Mitigation Potential (air temperature, NO2 concentration) by the Exposure (urbanity, points of interest) and Vulnerable population (population younger than 15 and older than 65).</p>"
+          title="A composite score to define Tree Planting Priority areas"
+          subtitle="This map shows the building footprints colored by the value of the composite score. Areas with a higher priority are shown in red."
+          text="<p>As the world continues to warm and become even more urbanized, cities need to prioritize where to plant trees.<p>Tree Planting Priority composite score has been calculated using multiple datasets to determine which are the best places to plant trees in Prague.</p><p>The score has been derived by multiplying the Mitigation Potential (air temperature, NO2 concentration) by the Exposure (% of built-up areas, points of interest, distance to areas of dense vegetation) and Vulnerability (total population and population younger than 15 and older than 65).</p>"
           image={slide4Image}
           imageAttribution={`Photo by <a target="_blank" href="https://unsplash.com/@thevantagepoint718?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Lerone Pieters</a> on <a target="_blank" href="https://unsplash.com/?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>`}
         />
