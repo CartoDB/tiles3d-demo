@@ -48,7 +48,7 @@ const CoverAttribution = () => {
 
   return (
     <div className={[classes.root, !currentSlide ? 'startPage' : ''].join(' ')}>
-      <span>Data SIO, NOAA, U.S. Navy, NGA, GEBCO; Landsaat /Copernicus</span>
+      <span>Data SIO, NOAA, U.S. Navy, NGA, GEBCO; Landsat /Copernicus</span>
     </div>
   );
 };
