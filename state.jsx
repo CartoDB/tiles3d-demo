@@ -26,6 +26,7 @@ const localLayers = [Google3DLayer, TemperatureLayer];
 
 export const AppStateStore = ({children}) => {
   const [currentSlide, setCurrentSlide] = useState(initAppState.currentSlide);
+  const [filterValue, setFilterValue] = useState(null);
   const [allLayers, setAllLayers] = useState(localLayers);
   const [layers, setLayers] = useState(localLayers);
   const [viewState, setViewState] = useState(initAppState.viewState);
@@ -97,17 +98,23 @@ export const AppStateStore = ({children}) => {
     },
     [currentSlide]
   );
+  useEffect(
+    () => {
+      setLayers(layers => layers.map(l => {
+        const props = {};
+        if (filterValue && l && l.id !== 'google-3d') {
+          props.opacity = filterValue / 100;
+        }
+
+        return l && l.clone(props);
+      }));
+    },
+    [filterValue]
+  );
 
   return (
     <AppStateContext.Provider
       value={{
-        focusOnLocation: (lat, lng, tilt, heading, zoom) => {
-          lat = lat || 40.72;
-          lng = lng || -74;
-          tilt = tilt || 0;
-          heading = heading || 0;
-          zoom = zoom || 15;
-        },
         next: () => {
           setCurrentSlide(currentSlide => Math.min(currentSlide + 1, slides.length - 1));
         },
@@ -117,6 +124,7 @@ export const AppStateStore = ({children}) => {
         reset: () => {
           setCurrentSlide(0);
         },
+        setFilterValue,
         currentSlide,
         layers,
         viewState,
