@@ -67,7 +67,7 @@ const useStyles = makeStyles((theme) => ({
   ListItemText: {
     opacity: 0.6
   },
-  wrapperTest: {
+  wrapper: {
     display: 'flex',
     height: '100%'
   },
@@ -105,7 +105,7 @@ const CoverLegend = () => {
   if (!legend) return null;
   return (
     <CoverBase slidesToShow={slidesToShow} className={classes.root}>
-      <Box  className={classes.wrapperTest}>
+      <Box  className={classes.wrapper}>
         <Paper classes={{root: classes.paper}} elevation={1}>
           <Typography color="inherit" variant="caption">
             {legend.title}
