@@ -29,7 +29,7 @@ const CustomSlider = withStyles({
 const useStyles = makeStyles((theme) => ({
   root: {
     bottom: theme.spacing(6),
-    left: theme.spacing(3),
+    left: theme.spacing(2.5),
     transform: 'none',
     width: '110px',
     display: 'block',
@@ -38,7 +38,8 @@ const useStyles = makeStyles((theme) => ({
     }
   },
   paper: {
-    padding: theme.spacing(2),
+    textAlign: 'center',
+    padding: theme.spacing(1.5),
     color: theme.palette.common.white,
     backgroundColor: theme.palette.common.black,
   },
@@ -46,7 +47,8 @@ const useStyles = makeStyles((theme) => ({
     padding: theme.spacing(1, 0, 0)
   },
   listItem: {
-    padding: theme.spacing(0.5, 0)
+    padding: theme.spacing(0.5, 0),
+    textAlign: 'center'
   },
   listItemIcon: {
     width: theme.spacing(2),
