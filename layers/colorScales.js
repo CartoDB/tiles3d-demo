@@ -6,12 +6,12 @@ export const TEMPERATURE_COLOR_SCALE = {
 
 export const DISTANCE_COLOR_SCALE = {
   labels: [10, 50, 100, 250, 500].map(n => `${n}m`),
-  values: [10, 50, 100, 250, 500],
+  values: [0, 50, 100, 250, 500],
   colors: ['#feebe2', '#fbb4b9', '#f768a1', '#c51b8a', '#7a0177']
 }
 
 export const PRIORITY_COLOR_SCALE = {
-  labels: ['medium', '', 'high'],
-  values: [0.7, 0.75, 0.8],
-  colors: ['#ffffb2', '#fecc5c', '#fd8d3c']
+  labels: ['low', '', 'med.', '', 'high'],
+  values: [0, 0.2, 0.4, 0.6, 0.8, 1.0],
+  colors: ['#ffffb2', '#fecc5c', '#fd8d3c', '#f03b20', '#bd0026']
 }

@@ -1,5 +1,5 @@
 import {CartoLayer, colorBins, MAP_TYPES} from '@deck.gl/carto';
-import {_TerrainExtension as TerrainExtension} from '@deck.gl/extensions';
+import {DataFilterExtension, _TerrainExtension as TerrainExtension} from '@deck.gl/extensions';
 import {colorToRGBArray} from '../utils';
 import {TEMPERATURE_COLOR_SCALE} from './colorScales';
 import {FADE_IN_COLOR} from './transitions';
@@ -17,7 +17,10 @@ export const TemperatureLayer = new CartoLayer({
     domain: labels,
     colors: colors.map(colorToRGBArray)
   }),
+
   opacity: 0.5,
   transitions: FADE_IN_COLOR,
-  extensions: [new TerrainExtension()],
+  extensions: [new DataFilterExtension({filterSize: 1}), new TerrainExtension()],
+  getFilterValue: f => f.properties.band_1,
+  filterRange: [0, 100]
 });

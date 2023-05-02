@@ -102,8 +102,8 @@ export const AppStateStore = ({children}) => {
     () => {
       setLayers(layers => layers.map(l => {
         const props = {};
-        if (filterValue && l && l.id !== 'google-3d') {
-          props.opacity = filterValue / 100;
+        if (filterValue !== null && l && l.id !== 'google-3d') {
+          props.filterRange = [filterValue - 0.00001, 10000];
         }
 
         return l && l.clone(props);
