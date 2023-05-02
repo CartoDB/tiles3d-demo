@@ -72,8 +72,8 @@ const useStyles = makeStyles((theme) => ({
     height: '100%'
   },
   slider: {
-    paddingTop: theme.spacing(2),
-    paddingBottom: theme.spacing(1),
+    paddingTop: theme.spacing(7),
+    paddingBottom: theme.spacing(4),
     marginLeft: theme.spacing(1)
   }
 }));
@@ -85,21 +85,26 @@ const getColor = (color, alpha = 1) => {
 
 const CoverLegend = () => {
   const classes = useStyles();
-  const {currentSlide} = useAppState();
+  const {currentSlide, setFilterValue} = useAppState();
   const slidesToShow = slides.map((s, i) => s.legend && i).filter(i => i);
   const [slider, setSlider] = useState(false);
-  const [sliderValue, setSliderValue] = useState(100);
+  const [sliderValue, setSliderValue] = useState(0);
 
   // For fade animation, retain legend in state
   const [legend, setLegend] = useState(null);
   useEffect(() => {
     const {legend, slider} = slides[currentSlide];
     if (legend) setLegend(legend);
-    if (slider) setSlider(slider);
+    if (slider) {
+      setSlider(slider);
+      setSliderValue(legend.labels.length - 1);
+    }
   }, [currentSlide]);
 
   const handleSliderChange = (event, newValue) => {
     setSliderValue(newValue);
+    const v = legend.values[legend.values.length - newValue - 1];
+    setFilterValue(v);
   }
 
   if (!legend) return null;
@@ -112,14 +117,17 @@ const CoverLegend = () => {
           </Typography>
           <List classes={{root: classes.list}} dense={true}>
             {legend.labels
-              .map((src, i) => (
+              .map((src, i) => {
+                const visible = i >= (legend.labels.length - sliderValue - 1);
+                const alpha = visible ? 1 : 0.3;
+                return (
                 <ListItem classes={{root: classes.listItem}} key={`source-${i}`}>
                   <ListItemIcon
-                    style={{backgroundColor: getColor(legend.colors[i], 0.4)}}
+                    style={{backgroundColor: getColor(legend.colors[i], 0.4 * alpha)}}
                     classes={{root: classes.listItemIcon}}
                   >
                     <div
-                      style={{backgroundColor: legend.colors[i]}}
+                      style={{backgroundColor: getColor(legend.colors[i], alpha)}}
                       className={classes.dot}
                     ></div>
                   </ListItemIcon>
@@ -129,7 +137,8 @@ const CoverLegend = () => {
                     primary={src}
                   ></ListItemText>
                 </ListItem>
-              ))}
+              )
+            })}
           </List>
         </Paper>
         {slider && (
@@ -139,6 +148,9 @@ const CoverLegend = () => {
               value={sliderValue}
               onChange={handleSliderChange}
               aria-labelledby="legend-slider"
+              min={0}
+              max={legend.labels.length - 1}
+              marks
             />
           </Box>
         )}
