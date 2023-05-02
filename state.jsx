@@ -18,6 +18,7 @@ const initAppState = {
 };
 
 const LIMITED_EXTENT = [14.42, 50.09, 14.44, 50.12];
+const FULL_EXTENT = [14.3, 50, 14.55, 50.15];
 const transitionInterpolator = new LinearInterpolator(['bearing', 'longitude', 'latitude']);
 export const AppStateContext = createContext(initAppState);
 
@@ -82,11 +83,12 @@ export const AppStateStore = ({children}) => {
         setLayers(allLayers.map(l => {
           const visible = visibleLayers.indexOf(l.id) !== -1;
           const props = {visible};
-          if(!isDesktop) {
-            props.minZoom = 15;
-            props.maxZoom = 15;
-            props.extent = LIMITED_EXTENT;
-          }
+
+          // Limit to single zoom level to avoid flashing (due to fade in transition)
+          // and to limit data use on mobile
+          props.minZoom = 15;
+          props.maxZoom = 15;
+          props.extent = isDesktop ? FULL_EXTENT : LIMITED_EXTENT;
 
           return visible ? l.clone(props) : null;
         }));
