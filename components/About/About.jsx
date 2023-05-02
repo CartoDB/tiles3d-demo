@@ -189,9 +189,9 @@ const About = ({}, forwardedRef) => {
                 href="https://developers.google.com/maps/documentation/tile"
                 target="_blank"
               >
-                Tile API
+                Map Tiles API
               </Link>{' '}
-              release, Google Maps provides 3D Tiles world wide. CARTO and deck.gl have been working on integrating 3D tiles into {' '} 
+              release, Google Maps platform provides 3D Tiles world wide. CARTO and deck.gl have been working on integrating Photorealistic 3D Tiles into {' '} 
               <Link underline="always" href="https://deck.gl/" target="_blank">
                 deck.gl
               </Link> to bring more realism and context to your visualizations. 
