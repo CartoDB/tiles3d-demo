@@ -5,7 +5,7 @@ export const TEMPERATURE_COLOR_SCALE = {
 
 export const DISTANCE_COLOR_SCALE = {
   labels: [10, 50, 100, 250, 500].map(n => `${n}m`),
-  colors: ['#f16d7a', '#fa8a76', '#ffa679', '#ffc285', '#ffdd9a']
+  colors: ['#FEEBE2', '#FCC5C0', '#FA9FB5', '#F768A1', '#C51B8A']
 }
 
 export const PRIORITY_COLOR_SCALE = {

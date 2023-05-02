@@ -24,11 +24,13 @@ export default [
     layers: ['google-3d', 'ft3t0pi'], // Top priority Buildings
     view: {latitude: 50.098638970057976, longitude: 14.430949347805848, bearing: -58.668795330078694, pitch: 58.268384344242605, zoom: 17.751310628564266, height: 210},
     legend: {title: 'Distance', ...DISTANCE_COLOR_SCALE},
+    slider: true,
     orbit: true
   },
   /* 5 */ {
     layers: ['google-3d', 'wlixswr'], // Tree Planting Priority
     view: {latitude: 50.09921060795221, longitude: 14.42477053670906, bearing: 41.67155588940855, pitch: 57.83916048618412, zoom: 17.388301111270481, height: 242.7711712},
     legend: {title: 'Priority', ...PRIORITY_COLOR_SCALE},
+    slider: true
   }
 ];
