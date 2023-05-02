@@ -15,6 +15,7 @@ export default [
     layers: ['google-3d', 'temperature'],
     view: {latitude: 50.097923939967586, longitude: 14.449545135073347, bearing: -43.50888344569848, pitch: 47.70381729182906, zoom: 14.066421513772516, height: 221.10726674564285},
     legend: {title: 'Temperature', ...TEMPERATURE_COLOR_SCALE},
+    slider: true
   },
   /* 3 */ {
     layers: ['google-3d', 'iyd8wi'],
