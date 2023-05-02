@@ -64,7 +64,11 @@ const useStyles = makeStyles((theme) => ({
     borderRadius: theme.spacing(0.5),
     position: 'absolute',
     top: theme.spacing(0.5),
-    left: theme.spacing(0.5)
+    left: theme.spacing(0.5),
+    transition: theme.transitions.create(['background-color', 'transform'], {
+      easing: theme.transitions.easing.easeInOut,
+      duration: theme.transitions.duration.short
+    })
   },
   ListItemText: {
     opacity: 0.6
@@ -136,7 +140,7 @@ const CoverLegend = () => {
                     classes={{root: classes.listItemIcon}}
                   >
                     <div
-                      style={{backgroundColor: getColor(legend.colors[i], alpha)}}
+                      style={{backgroundColor: getColor(legend.colors[i], 1), transform: `scale(${visible ? 1 : 0})`}}
                       className={classes.dot}
                     ></div>
                   </ListItemIcon>

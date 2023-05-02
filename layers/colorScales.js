@@ -11,7 +11,7 @@ export const DISTANCE_COLOR_SCALE = {
 }
 
 export const PRIORITY_COLOR_SCALE = {
-  labels: ['low', '', 'med.', '', 'high'],
+  labels: ['low', '-', 'med.', '-', 'high'],
   values: [0, 0.2, 0.4, 0.6, 0.8, 1.0],
   colors: ['#ffffb2', '#fecc5c', '#fd8d3c', '#f03b20', '#bd0026']
 }
