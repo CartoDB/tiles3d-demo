@@ -76,10 +76,9 @@ export const AppStateStore = ({children}) => {
           const visible = visibleLayers.indexOf(l.id) !== -1;
           const props = {visible};
           if(!isDesktop) {
-            // Limit data area on mobile - doesn't seem to work for MVT :(
             props.extent = LIMITED_EXTENT;
-            props.minZoom = 11;
-            props.maxZoom = 11;
+            props.minZoom = 12;
+            props.maxZoom = 12;
           }
 
           return visible ? l.clone(props) : null;
