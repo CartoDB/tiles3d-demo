@@ -103,8 +103,15 @@ const CoverLegend = () => {
 
   const handleSliderChange = (event, newValue) => {
     setSliderValue(newValue);
-    const v = legend.values[legend.values.length - newValue - 1];
-    setFilterValue(v);
+    let n = legend.values.length - newValue - 1;
+    let f = n;
+    n = Math.floor(n);
+    f = f - n;
+
+    const v = legend.values[n];
+    const v2 = legend.values[n + 1] || v;
+    const out = v * (1 - f) + v2 * f;
+    setFilterValue(out);
   }
 
   if (!legend) return null;
@@ -150,7 +157,7 @@ const CoverLegend = () => {
               aria-labelledby="legend-slider"
               min={0}
               max={legend.labels.length - 1}
-              marks
+              step={0.01}
             />
           </Box>
         )}
