@@ -13,7 +13,7 @@ export default [
   },
   /* 2 */ {
     layers: ['google-3d', 'temperature'],
-    view: {latitude: 50.10367638816013, longitude: 14.433798010872685, bearing: -43.50888344569848, pitch: 47.70381729182906, zoom: 14.066421513772516, height: 221.10726674564285},
+    view: {latitude: 50.097923939967586, longitude: 14.449545135073347, bearing: -43.50888344569848, pitch: 47.70381729182906, zoom: 14.066421513772516, height: 221.10726674564285},
     legend: {title: 'Temperature', ...TEMPERATURE_COLOR_SCALE},
   },
   /* 3 */ {
@@ -28,7 +28,7 @@ export default [
   },
   /* 5 */ {
     layers: ['google-3d', 'wlixswr'], // Tree Planting Priority
-    view: {latitude: 50.09921060795221, longitude: 14.42477053670906, bearing: 41.67155588940855, pitch: 57.83916048618412, zoom: 17.388301111270481, height: 242.7711712},
+    view: {latitude: 50.098337089228885, longitude: 14.423039897397192, bearing: 41.67155588940855, pitch: 57.83916048618412, zoom: 17, height: 242.7711712},
     legend: {title: 'Priority', ...PRIORITY_COLOR_SCALE},
   }
 ];
