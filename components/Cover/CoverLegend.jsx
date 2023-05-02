@@ -6,16 +6,29 @@ import {
   List,
   ListItem,
   ListItemIcon,
-  ListItemText
+  ListItemText,
+  Slider,
+  Box,
+  withStyles
 } from '@material-ui/core';
 import CoverBase from './CoverBase';
 import slides from '../../slides';
 import {useAppState} from '../../state';
 import {colorToRGBArray} from '../../utils';
 
+const CustomSlider = withStyles({
+  root: {
+    color: "#fff"
+  },
+  thumb: {
+    backgroundColor: "#fff",
+    color: "#fff",
+  }
+})(Slider);
+
 const useStyles = makeStyles((theme) => ({
   root: {
-    bottom: theme.spacing(3),
+    bottom: theme.spacing(6),
     left: theme.spacing(3),
     transform: 'none',
     width: '110px',
@@ -53,6 +66,15 @@ const useStyles = makeStyles((theme) => ({
   },
   ListItemText: {
     opacity: 0.6
+  },
+  wrapper: {
+    display: 'flex',
+    height: '100%'
+  },
+  slider: {
+    paddingTop: theme.spacing(2),
+    paddingBottom: theme.spacing(1),
+    marginLeft: theme.spacing(1)
   }
 }));
 
@@ -65,43 +87,62 @@ const CoverLegend = () => {
   const classes = useStyles();
   const {currentSlide} = useAppState();
   const slidesToShow = slides.map((s, i) => s.legend && i).filter(i => i);
+  const [slider, setSlider] = useState(false);
+  const [sliderValue, setSliderValue] = useState(100);
 
   // For fade animation, retain legend in state
   const [legend, setLegend] = useState(null);
   useEffect(() => {
-    const {legend} = slides[currentSlide];
+    const {legend, slider} = slides[currentSlide];
     if (legend) setLegend(legend);
+    if (slider) setSlider(slider);
   }, [currentSlide]);
+
+  const handleSliderChange = (event, newValue) => {
+    setSliderValue(newValue);
+  }
 
   if (!legend) return null;
   return (
     <CoverBase slidesToShow={slidesToShow} className={classes.root}>
-      <Paper classes={{root: classes.paper}} elevation={1}>
-        <Typography color="inherit" variant="caption">
-          {legend.title}
-        </Typography>
-        <List classes={{root: classes.list}} dense={true}>
-          {legend.labels
-            .map((src, i) => (
-              <ListItem classes={{root: classes.listItem}} key={`source-${i}`}>
-                <ListItemIcon
-                  style={{backgroundColor: getColor(legend.colors[i], 0.4)}}
-                  classes={{root: classes.listItemIcon}}
-                >
-                  <div
-                    style={{backgroundColor: legend.colors[i]}}
-                    className={classes.dot}
-                  ></div>
-                </ListItemIcon>
-                <ListItemText
-                  classes={{root: classes.ListItemText}}
-                  primaryTypographyProps={{color: 'inherit', variant: 'caption'}}
-                  primary={src}
-                ></ListItemText>
-              </ListItem>
-            ))}
-        </List>
-      </Paper>
+      <Box  className={classes.wrapper}>
+        <Paper classes={{root: classes.paper}} elevation={1}>
+          <Typography color="inherit" variant="caption">
+            {legend.title}
+          </Typography>
+          <List classes={{root: classes.list}} dense={true}>
+            {legend.labels
+              .map((src, i) => (
+                <ListItem classes={{root: classes.listItem}} key={`source-${i}`}>
+                  <ListItemIcon
+                    style={{backgroundColor: getColor(legend.colors[i], 0.4)}}
+                    classes={{root: classes.listItemIcon}}
+                  >
+                    <div
+                      style={{backgroundColor: legend.colors[i]}}
+                      className={classes.dot}
+                    ></div>
+                  </ListItemIcon>
+                  <ListItemText
+                    classes={{root: classes.ListItemText}}
+                    primaryTypographyProps={{color: 'inherit', variant: 'caption'}}
+                    primary={src}
+                  ></ListItemText>
+                </ListItem>
+              ))}
+          </List>
+        </Paper>
+        {slider && (
+          <Box className={classes.slider}>
+            <CustomSlider 
+              orientation="vertical"
+              value={sliderValue}
+              onChange={handleSliderChange}
+              aria-labelledby="legend-slider"
+            />
+          </Box>
+        )}
+      </Box>
     </CoverBase>
   );
 };

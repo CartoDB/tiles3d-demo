@@ -21,6 +21,7 @@ import slide1Image from '../../assets/images/slides/slide1.jpg';
 import slide2Image from '../../assets/images/slides/slide2.jpg';
 import slide3Image from '../../assets/images/slides/slide3.jpg';
 import slide4Image from '../../assets/images/slides/slide4.jpg';
+import slide5Image from '../../assets/images/slides/slide5.jpg';
 
 export const SIDEBAR_WIDTH = {
   xs: '400px',
@@ -315,7 +316,7 @@ const Sidebar = () => {
           subtitle="This map highlights public parks in the city."
           text="<p>Compare how areas of lower surface temperature coincide with large green areas. Trees cool their surrounding not just by providing shade, but also by retaining more moisture compared to concrete and buildings.<p>"
           image={slide3Image}
-          imageAttribution={`Photo by <a target="_blank" href="https://unsplash.com/@cbarbalis?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Chris Barbalis</a> on <a target="_blank" href="https://unsplash.com/?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>`}
+          imageAttribution={`Photo by <a target="_blank" href="https://unsplash.com/@inakristina?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Kristi Simko</a> on <a target="_blank" href="https://unsplash.com/?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>`}
         />
         <SidebarSlide
           slide={4}
@@ -324,8 +325,8 @@ const Sidebar = () => {
           title="Which buildings are far from areas of dense vegetation?"
           subtitle="This map visualizes the buildings of the city which lack areas of dense vegetation nearby."
           text="<p>Vegetation can improve the look and feel of urban areas, making them more pleasant places to live and work. Research has also shown that spending time around trees can have a <a href='https://www.weforum.org/agenda/2021/04/city-trees-reduce-stress-and-anxiety/' target='_blank'>positive impact on mental health and well-being.</a></p>Thanks to the 3D capabilities of deck.gl, we can visualize the buildings on top of Google 3D imagery.<p>"
-          image={slide3Image}
-          imageAttribution={`Photo by <a target="_blank" href="https://unsplash.com/@cbarbalis?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Chris Barbalis</a> on <a target="_blank" href="https://unsplash.com/?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>`}
+          image={slide4Image}
+          imageAttribution={`Photo by <a target="_blank" href="https://unsplash.com/@jerrykavan?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Jaromír Kavan</a> on <a target="_blank" href="https://unsplash.com/?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>`}
         />
         <SidebarSlide
           slide={5}
@@ -334,8 +335,8 @@ const Sidebar = () => {
           title="A composite score to define Tree Planting Priority areas"
           subtitle="This map shows the building footprints colored by the value of the composite score. Areas with a higher priority are shown in red."
           text="<p>As the world continues to warm and become even more urbanized, cities need to prioritize where to plant trees.<p>Tree Planting Priority composite score has been calculated using multiple datasets to determine which are the best places to plant trees in Prague.</p><p>The score has been derived by multiplying the Mitigation Potential (air temperature, NO2 concentration) by the Exposure (% of built-up areas, points of interest, distance to areas of dense vegetation) and Vulnerability (total population and population younger than 15 and older than 65).</p>"
-          image={slide4Image}
-          imageAttribution={`Photo by <a target="_blank" href="https://unsplash.com/@thevantagepoint718?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Lerone Pieters</a> on <a target="_blank" href="https://unsplash.com/?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>`}
+          image={slide5Image}
+          imageAttribution={`Photo by <a target="_blank" href="https://unsplash.com/@chrsndrsn?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Chris Anderson</a> on <a target="_blank" href="https://unsplash.com/?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>`}
         />
       </div>
 
