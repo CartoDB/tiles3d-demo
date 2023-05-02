@@ -34,7 +34,7 @@ const useStyles = makeStyles((theme) => ({
     width: '110px',
     display: 'block',
     [theme.breakpoints.down('sm')]: {
-      bottom: '170px'
+      bottom: theme.spacing(24)
     }
   },
   paper: {
