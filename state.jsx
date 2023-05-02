@@ -17,7 +17,7 @@ const initAppState = {
   viewState: {...view, position: [0, 0, view.height], zoom: view.zoom - 1}
 };
 
-const LIMITED_EXTENT = [14.405979516991408, 50.10852124677322, 14.434648995339757, 50.09474325626903];
+const LIMITED_EXTENT = [14.42, 50.09, 14.44, 50.12];
 const transitionInterpolator = new LinearInterpolator(['bearing', 'longitude', 'latitude']);
 export const AppStateContext = createContext(initAppState);
 
@@ -82,9 +82,9 @@ export const AppStateStore = ({children}) => {
           const visible = visibleLayers.indexOf(l.id) !== -1;
           const props = {visible};
           if(!isDesktop) {
+            props.minZoom = 15;
+            props.maxZoom = 15;
             props.extent = LIMITED_EXTENT;
-            props.minZoom = 12;
-            props.maxZoom = 12;
           }
 
           return visible ? l.clone(props) : null;

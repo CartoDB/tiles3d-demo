@@ -64,6 +64,9 @@ const useStyles = makeStyles((theme) => ({
 const useDevicePixelsOverride = parseFloat((new URL(location.href)).searchParams.get('useDevicePixels'));
 let currentViewState;
 
+const LONGITUDE_RANGE = [14.3, 14.55];
+const LATITUDE_RANGE = [50, 50.15];
+
 const Map = () => {
   const classes = useStyles();
   const {currentSlide, layers, viewState} = useAppState();
@@ -86,6 +89,8 @@ const Map = () => {
             controller={{touchRotate: true, minZoom: 12, maxZoom: 17, inertia: 250}}
             layers={layers}
             onViewStateChange={({viewState}) => {
+              viewState.longitude = Math.min(LONGITUDE_RANGE[1], Math.max(LONGITUDE_RANGE[0], viewState.longitude));
+              viewState.latitude = Math.min(LATITUDE_RANGE[1], Math.max(LATITUDE_RANGE[0], viewState.latitude));
               currentViewState = viewState;
               return viewState;
             }}
