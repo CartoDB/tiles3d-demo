@@ -7,7 +7,6 @@ import {Easing} from '@tweenjs/tween.js';
 import slides from './slides';
 import {Google3DLayer} from './layers/google-3d';
 import {TemperatureLayer} from './layers/temperature';
-import {ParksLayer} from './layers/parks';
 import {fetchRemoteLayers} from './layers/remote';
 
 const hash = window.location.hash;
@@ -23,7 +22,7 @@ const transitionInterpolator = new LinearInterpolator(['bearing', 'longitude', '
 export const AppStateContext = createContext(initAppState);
 
 let map;
-const localLayers = [Google3DLayer, TemperatureLayer, ParksLayer];
+const localLayers = [Google3DLayer, TemperatureLayer];
 
 export const AppStateStore = ({children}) => {
   const [currentSlide, setCurrentSlide] = useState(initAppState.currentSlide);
