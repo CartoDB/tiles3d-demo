@@ -29,16 +29,17 @@ const CustomSlider = withStyles({
 const useStyles = makeStyles((theme) => ({
   root: {
     bottom: theme.spacing(6),
-    left: theme.spacing(3),
+    left: theme.spacing(2.5),
     transform: 'none',
     width: '110px',
     display: 'block',
     [theme.breakpoints.down('sm')]: {
-      bottom: '170px'
+      bottom: theme.spacing(24)
     }
   },
   paper: {
-    padding: theme.spacing(2),
+    textAlign: 'center',
+    padding: theme.spacing(1.5),
     color: theme.palette.common.white,
     backgroundColor: theme.palette.common.black,
   },
@@ -46,7 +47,8 @@ const useStyles = makeStyles((theme) => ({
     padding: theme.spacing(1, 0, 0)
   },
   listItem: {
-    padding: theme.spacing(0.5, 0)
+    padding: theme.spacing(0.5, 0),
+    textAlign: 'center'
   },
   listItemIcon: {
     width: theme.spacing(2),
@@ -62,7 +64,11 @@ const useStyles = makeStyles((theme) => ({
     borderRadius: theme.spacing(0.5),
     position: 'absolute',
     top: theme.spacing(0.5),
-    left: theme.spacing(0.5)
+    left: theme.spacing(0.5),
+    transition: theme.transitions.create(['background-color', 'transform'], {
+      easing: theme.transitions.easing.easeInOut,
+      duration: theme.transitions.duration.short
+    })
   },
   ListItemText: {
     opacity: 0.6
@@ -103,8 +109,15 @@ const CoverLegend = () => {
 
   const handleSliderChange = (event, newValue) => {
     setSliderValue(newValue);
-    const v = legend.values[legend.values.length - newValue - 1];
-    setFilterValue(v);
+    let n = legend.values.length - newValue - 1;
+    let f = n;
+    n = Math.floor(n);
+    f = f - n;
+
+    const v = legend.values[n];
+    const v2 = legend.values[n + 1] || v;
+    const out = v * (1 - f) + v2 * f;
+    setFilterValue(out);
   }
 
   if (!legend) return null;
@@ -127,7 +140,7 @@ const CoverLegend = () => {
                     classes={{root: classes.listItemIcon}}
                   >
                     <div
-                      style={{backgroundColor: getColor(legend.colors[i], alpha)}}
+                      style={{backgroundColor: getColor(legend.colors[i], 1), transform: `scale(${visible ? 1 : 0})`}}
                       className={classes.dot}
                     ></div>
                   </ListItemIcon>
@@ -150,7 +163,7 @@ const CoverLegend = () => {
               aria-labelledby="legend-slider"
               min={0}
               max={legend.labels.length - 1}
-              marks
+              step={0.01}
             />
           </Box>
         )}

@@ -3,7 +3,7 @@ import {DataFilterExtension, _TerrainExtension as TerrainExtension} from '@deck.
 import {colorToRGBArray} from '../utils';
 import {TEMPERATURE_COLOR_SCALE} from './colorScales';
 import {FADE_IN_COLOR} from './transitions';
-const {colors, labels} = TEMPERATURE_COLOR_SCALE;
+const {colors, values} = TEMPERATURE_COLOR_SCALE;
 
 export const TemperatureLayer = new CartoLayer({
   id: 'temperature',
@@ -14,7 +14,7 @@ export const TemperatureLayer = new CartoLayer({
   tileSize: 256,
   getFillColor: colorBins({
     attr: 'band_1',
-    domain: labels,
+    domain: values,
     colors: colors.map(colorToRGBArray)
   }),
 
