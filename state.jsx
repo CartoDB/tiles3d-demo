@@ -29,12 +29,14 @@ export const AppStateStore = ({children}) => {
   const [allLayers, setAllLayers] = useState(localLayers);
   const [layers, setLayers] = useState(localLayers);
   const [viewState, setViewState] = useState(initAppState.viewState);
+  const [loadRemoteLayers, setLoadRemoteLayers] = useState(false);
   const isDesktop = useMediaQuery((theme) => theme.breakpoints.up('md'));
 
   // Adapt the geometry resolution on mobile
   const google3DLayer = layers.find(l => l.id === 'google-3d');
   if(google3DLayer && google3DLayer.state) {
     google3DLayer.state.tileset3d.options.maximumScreenSpaceError = isDesktop ? 16 : 40;
+    google3DLayer.state.tileset3d.maximumMemoryUsage = 4; // Doesn't work
   }
 
   const orbit = useCallback(previousTransition => {
@@ -49,12 +51,14 @@ export const AppStateStore = ({children}) => {
   }, []);
 
   const updateViewState = function (viewState, shouldOrbit) {
+    if(currentSlide) setLoadRemoteLayers(true);
     setViewState({
       transitionDuration: 5000,
       ...viewState,
       transitionEasing: Easing.Quadratic.InOut,
       transitionInterpolator: new FlyToInterpolator({curve: 1.1}),
       onTransitionEnd: () => {
+        setLoadRemoteLayers(true);
         if (shouldOrbit) {
           orbit();
         }
@@ -63,10 +67,12 @@ export const AppStateStore = ({children}) => {
   };
 
   useEffect(() => {
+    // Defer load of remote layers until initial zoom in completes
+    if (!loadRemoteLayers) return;
     const layers = fetchRemoteLayers().then(remoteLayers => { ;
       setAllLayers(localLayers.concat(remoteLayers));
     })
-  }, []);
+  }, [loadRemoteLayers]);
 
   useEffect(
     () => {
