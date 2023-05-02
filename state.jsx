@@ -7,7 +7,6 @@ import {Easing} from '@tweenjs/tween.js';
 import slides from './slides';
 import {Google3DLayer} from './layers/google-3d';
 import {TemperatureLayer} from './layers/temperature';
-import {ParksLayer} from './layers/parks';
 import {fetchRemoteLayers} from './layers/remote';
 
 const hash = window.location.hash;
@@ -18,24 +17,26 @@ const initAppState = {
   viewState: {...view, position: [0, 0, view.height], zoom: view.zoom - 1}
 };
 
-const LIMITED_EXTENT = [14.405979516991408, 50.10852124677322, 14.434648995339757, 50.09474325626903];
+const LIMITED_EXTENT = [14.42, 50.09, 14.44, 50.12];
 const transitionInterpolator = new LinearInterpolator(['bearing', 'longitude', 'latitude']);
 export const AppStateContext = createContext(initAppState);
 
 let map;
-const localLayers = [Google3DLayer, TemperatureLayer, ParksLayer];
+const localLayers = [Google3DLayer, TemperatureLayer];
 
 export const AppStateStore = ({children}) => {
   const [currentSlide, setCurrentSlide] = useState(initAppState.currentSlide);
   const [allLayers, setAllLayers] = useState(localLayers);
   const [layers, setLayers] = useState(localLayers);
   const [viewState, setViewState] = useState(initAppState.viewState);
+  const [loadRemoteLayers, setLoadRemoteLayers] = useState(false);
   const isDesktop = useMediaQuery((theme) => theme.breakpoints.up('md'));
 
   // Adapt the geometry resolution on mobile
   const google3DLayer = layers.find(l => l.id === 'google-3d');
   if(google3DLayer && google3DLayer.state) {
     google3DLayer.state.tileset3d.options.maximumScreenSpaceError = isDesktop ? 16 : 40;
+    google3DLayer.state.tileset3d.maximumMemoryUsage = 4; // Doesn't work
   }
 
   const orbit = useCallback(previousTransition => {
@@ -50,12 +51,14 @@ export const AppStateStore = ({children}) => {
   }, []);
 
   const updateViewState = function (viewState, shouldOrbit) {
+    if(currentSlide) setLoadRemoteLayers(true);
     setViewState({
       transitionDuration: 5000,
       ...viewState,
       transitionEasing: Easing.Quadratic.InOut,
       transitionInterpolator: new FlyToInterpolator({curve: 1.1}),
       onTransitionEnd: () => {
+        setLoadRemoteLayers(true);
         if (shouldOrbit) {
           orbit();
         }
@@ -64,10 +67,12 @@ export const AppStateStore = ({children}) => {
   };
 
   useEffect(() => {
+    // Defer load of remote layers until initial zoom in completes
+    if (!loadRemoteLayers) return;
     const layers = fetchRemoteLayers().then(remoteLayers => { ;
       setAllLayers(localLayers.concat(remoteLayers));
     })
-  }, []);
+  }, [loadRemoteLayers]);
 
   useEffect(
     () => {
@@ -77,10 +82,9 @@ export const AppStateStore = ({children}) => {
           const visible = visibleLayers.indexOf(l.id) !== -1;
           const props = {visible};
           if(!isDesktop) {
-            // Limit data area on mobile - doesn't seem to work for MVT :(
+            props.minZoom = 15;
+            props.maxZoom = 15;
             props.extent = LIMITED_EXTENT;
-            props.minZoom = 11;
-            props.maxZoom = 11;
           }
 
           return visible ? l.clone(props) : null;
