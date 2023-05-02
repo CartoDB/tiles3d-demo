@@ -2,7 +2,7 @@ import {CartoLayer, colorBins, MAP_TYPES} from '@deck.gl/carto';
 import {_TerrainExtension as TerrainExtension} from '@deck.gl/extensions';
 import {colorToRGBArray} from '../utils';
 import {TEMPERATURE_COLOR_SCALE} from './colorScales';
-
+import {FADE_IN_COLOR} from './transitions';
 const {colors, labels} = TEMPERATURE_COLOR_SCALE;
 
 export const TemperatureLayer = new CartoLayer({
@@ -18,6 +18,6 @@ export const TemperatureLayer = new CartoLayer({
     colors: colors.map(colorToRGBArray)
   }),
   opacity: 0.5,
-
+  transitions: FADE_IN_COLOR,
   extensions: [new TerrainExtension()],
 });

@@ -1,5 +1,6 @@
 import {fetchMap} from '@deck.gl/carto';
 import {_TerrainExtension as TerrainExtension} from '@deck.gl/extensions';
+import {FADE_IN_COLOR} from './transitions';
 
 const cartoMapId = '60f339dd-450b-4c54-a402-41eb2d7a06af';
 export async function fetchRemoteLayers() {
@@ -10,7 +11,8 @@ export async function fetchRemoteLayers() {
   return layers.map(l => {
     return l.clone({
       extensions: [new TerrainExtension()],
-      stroked: false
+      stroked: false,
+      transitions: FADE_IN_COLOR
     });
   });
 }
