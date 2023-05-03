@@ -13,6 +13,7 @@ const hash = window.location.hash;
 
 const {view} = slides[0];
 const initAppState = {
+  credits: '',
   currentSlide: hash !== '' ? parseInt(hash.slice(1)) : 0,
   viewState: {...view, position: [0, 0, view.height], zoom: view.zoom - 1}
 };
@@ -26,6 +27,7 @@ let map;
 const localLayers = [Google3DLayer, TemperatureLayer];
 
 export const AppStateStore = ({children}) => {
+  const [credits, setCredits] = useState(initAppState.credits);
   const [currentSlide, setCurrentSlide] = useState(initAppState.currentSlide);
   const [filterValue, setFilterValue] = useState(null);
   const [allLayers, setAllLayers] = useState(localLayers);
@@ -36,9 +38,31 @@ export const AppStateStore = ({children}) => {
 
   // Adapt the geometry resolution on mobile
   const google3DLayer = layers.find(l => l.id === 'google-3d');
+
   if(google3DLayer && google3DLayer.state) {
-    google3DLayer.state.tileset3d.options.maximumScreenSpaceError = isDesktop ? 16 : 40;
-    google3DLayer.state.tileset3d.maximumMemoryUsage = 4; // Doesn't work
+    const {tileset3d} = google3DLayer.state;
+    tileset3d.options.maximumScreenSpaceError = isDesktop ? 16 : 40;
+
+    tileset3d.options.onTraversalComplete = selectedTiles => {
+      // Do not show tiles which are many layers too low in resolution (avoids artifacts)
+      let maxDepth = 0;
+      for (const {depth} of selectedTiles) {
+        if(depth > maxDepth) maxDepth = depth;
+      }
+      const filtered = selectedTiles.filter(t => t.depth > maxDepth - 4);
+
+      // Show data credit
+      const credits = new Set();
+      for (const tile of filtered) {
+        const {gltf} = tile.content;
+        if (gltf) {
+          gltf.asset.copyright.split(';').forEach(credits.add, credits);
+        }
+      }
+      setCredits([...credits].join(';'));
+
+      return filtered;
+    }
   }
 
   const orbit = useCallback(previousTransition => {
@@ -126,6 +150,7 @@ export const AppStateStore = ({children}) => {
         reset: () => {
           setCurrentSlide(0);
         },
+        credits,
         setFilterValue,
         currentSlide,
         layers,
