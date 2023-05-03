@@ -6,12 +6,15 @@
     <style>
       body { margin: 0; padding: 0;}
       #map { position: absolute; top: 0;bottom: 0;width: 100%;}
+      #credits { position: absolute; bottom: 0; right: 0; padding: 2px; font-size: 10px; color: white; }
     </style>
   </head>
 
   <body>
     <div id="map"></div>
+    <div id="credits"></div>
     <script>
+      const creditsElement = document.getElementById('credits');
       const GOOGLE_API_KEY = 'AIzaSyCpvQymc5wjSYIsxy3RV1widM3p3h78CAk';
       const TILESET_URL = `https://www.googleapis.com/tile/v1/tiles3d/rootTileset.json?key=${GOOGLE_API_KEY}`;
       const BUILDINGS_URL = 'https://raw.githubusercontent.com/visgl/deck.gl-data/alasarr/google-3d-tiles/examples/google-3d-tiles/buildings.geojson'
@@ -25,7 +28,7 @@
           pitch: 60,
           height: 200
         },
-        controller: true,
+        controller: {minZoom: 8},
         layers: [
           new deck.Tile3DLayer({
             id: 'google-3d-tiles',
@@ -34,6 +37,16 @@
             onTilesetLoad: tileset3d => {
               // Required until https://github.com/visgl/loaders.gl/pull/2252 resolved
               tileset3d._queryParams = {key: GOOGLE_API_KEY};
+
+              tileset3d.options.onTraversalComplete = selectedTiles => {
+                const credits = new Set();
+                selectedTiles.forEach(tile => {
+                  const {copyright} = tile.content.gltf.asset;
+                  copyright.split(';').forEach(credits.add, credits);
+                  creditsElement.innerHTML = [...credits].join('; ');
+                });
+                return selectedTiles;
+              }
             },
             operation: 'terrain+draw'
           }),
