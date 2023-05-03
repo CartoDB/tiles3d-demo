@@ -12,7 +12,11 @@ const writeBody = (buffer, res) => {
 }
 
 export default {
-  plugins: [svgr()],
+  plugins: [
+    svgr({
+      include: "assets/images/google-3d-tiles-og-image.png"
+    })
+  ],
   server: {
     host: '127.0.0.1',
     port: 8080,
