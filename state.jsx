@@ -11,11 +11,15 @@ import {TemperatureLayer} from './layers/temperature';
 import {fetchRemoteLayers} from './layers/remote';
 
 const hash = window.location.hash;
+let currentSlide = hash !== '' ? parseInt(hash.slice(1)) : 0;
+if (isNaN(currentSlide) || !slides[currentSlide]) {
+  currentSlide = 0;
+}
 
 const {view} = slides[0];
 const initAppState = {
   credits: '',
-  currentSlide: hash !== '' ? parseInt(hash.slice(1)) : 0,
+  currentSlide,
   viewState: {...view, position: [0, 0, view.height], zoom: view.zoom - 1}
 };
 
@@ -74,24 +78,22 @@ export const AppStateStore = ({children}) => {
 
   useEffect(
     () => {
-      if (currentSlide !== null && !isNaN(currentSlide)) {
-        const {layers: visibleLayers, view, orbit: shouldOrbit} = slides[currentSlide];
-        setLayers(allLayers.map(l => {
-          const visible = visibleLayers.indexOf(l.id) !== -1;
-          const props = {visible};
+      const {layers: visibleLayers, view, orbit: shouldOrbit} = slides[currentSlide];
+      setLayers(allLayers.map(l => {
+        const visible = visibleLayers.indexOf(l.id) !== -1;
+        const props = {visible};
 
-          // Limit to single zoom level to avoid flashing (due to fade in transition)
-          // and to limit data use on mobile
-          props.minZoom = 15;
-          props.maxZoom = 15;
-          props.extent = isDesktop ? FULL_EXTENT : LIMITED_EXTENT;
+        // Limit to single zoom level to avoid flashing (due to fade in transition)
+        // and to limit data use on mobile
+        props.minZoom = 15;
+        props.maxZoom = 15;
+        props.extent = isDesktop ? FULL_EXTENT : LIMITED_EXTENT;
 
-          return visible ? l.clone(props) : null;
-        }));
-        if (view && view.longitude !== undefined) {
-          updateViewState({latitude: 0, longitude: 0, zoom: 0, bearing: 0, pitch: 0, position: [0, 0, view.height || 200], ...view}, shouldOrbit);
+        return visible ? l.clone(props) : null;
+      }));
+      if (view && view.longitude !== undefined) {
+        updateViewState({latitude: 0, longitude: 0, zoom: 0, bearing: 0, pitch: 0, position: [0, 0, view.height || 200], ...view}, shouldOrbit);
 
-        }
       }
     },
     [currentSlide]
