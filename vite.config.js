@@ -14,7 +14,7 @@ const writeBody = (buffer, res) => {
 export default {
   plugins: [
     svgr({
-      include: "assets/images/google-3d-tiles-og-image.png"
+      include: ["**/*.svg", "**/*.png", "**/*.jpg"]
     })
   ],
   server: {
