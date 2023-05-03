@@ -10,7 +10,7 @@ const ROOT_TILE = 'CggzMDYwNDE2MxIFZWFydGgYsQciBmdyb3VuZDoFZ2VvaWRABg'; // Pragu
 // For development use local endpoint via vite proxy (see vite.config.js)
 const useLocalCache = location.host.includes('172.20.10.5');
 
-export const TILESET= `${useLocalCache ? '' : TILES3D_SERVER}/tile/v1/tiles3d/tilesets/${ROOT_TILE}.json?key=${API_KEY}`;
+const TILESET= `${useLocalCache ? '' : TILES3D_SERVER}/tile/v1/tiles3d/tilesets/${ROOT_TILE}.json?key=${API_KEY}`;
 
 // Patches which are required to workaround issues in loaders.gl
 function patchTileset(tileset3d) {
@@ -43,6 +43,7 @@ function patchTileset(tileset3d) {
     }
 }
 
+// Use create function as layer needs to report back credits
 export function createGoogle3DLayer(isDesktop, setCredits) {
   return new Tile3DLayer({
     id: 'google-3d',
@@ -63,13 +64,8 @@ export function createGoogle3DLayer(isDesktop, setCredits) {
 
         // Show data credit
         const credits = new Set();
-        for (const tile of filtered) {
-          const {gltf} = tile.content;
-          if (gltf) {
-            gltf.asset.copyright.split(';').forEach(credits.add, credits);
-          }
-        }
-        setCredits([...credits].join(';'));
+        filtered.forEach(tile => tile.content.gltf.asset.copyright.split(';').forEach(credits.add, credits));
+        setCredits([...credits].join('; '));
 
         return filtered;
       }
@@ -77,12 +73,3 @@ export function createGoogle3DLayer(isDesktop, setCredits) {
     operation: 'terrain+draw'
   });
 }
-
-export const Google3DLayer = new Tile3DLayer({
-  id: 'google-3d',
-  data: TILESET,
-  onTilesetLoad: tileset3d => {
-    patchTileset(tileset3d);
-  },
-  operation: 'terrain+draw'
-});
