@@ -44,11 +44,11 @@ const useStyles = makeStyles((theme) => ({
 
 const CoverAttribution = () => {
   const classes = useStyles();
-  const { currentSlide } = useAppState();
+  const {currentSlide, credits} = useAppState();
 
   return (
     <div className={[classes.root, !currentSlide ? 'startPage' : ''].join(' ')}>
-      <span>Data SIO, NOAA, U.S. Navy, NGA, GEBCO; Landsat /Copernicus</span>
+      <span>{credits}</span>
     </div>
   );
 };

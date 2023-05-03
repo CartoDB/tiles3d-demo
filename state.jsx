@@ -1,11 +1,12 @@
 import {useMediaQuery} from '@material-ui/core';
 import React, {useState, createContext, useCallback, useContext, useEffect} from 'react';
 import {LinearInterpolator} from '@deck.gl/core';
+import {Tile3DLayer} from '@deck.gl/geo-layers';
 import FlyToInterpolator from './layers/fly-to-interpolator.js';
 import {Easing} from '@tweenjs/tween.js';
 
 import slides from './slides';
-import {Google3DLayer} from './layers/google-3d';
+import {createGoogle3DLayer} from './layers/google-3d';
 import {TemperatureLayer} from './layers/temperature';
 import {fetchRemoteLayers} from './layers/remote';
 
@@ -13,6 +14,7 @@ const hash = window.location.hash;
 
 const {view} = slides[0];
 const initAppState = {
+  credits: '',
   currentSlide: hash !== '' ? parseInt(hash.slice(1)) : 0,
   viewState: {...view, position: [0, 0, view.height], zoom: view.zoom - 1}
 };
@@ -22,24 +24,18 @@ const FULL_EXTENT = [14.3, 50, 14.55, 50.15];
 const transitionInterpolator = new LinearInterpolator(['bearing', 'longitude', 'latitude']);
 export const AppStateContext = createContext(initAppState);
 
-let map;
-const localLayers = [Google3DLayer, TemperatureLayer];
-
 export const AppStateStore = ({children}) => {
+  const isDesktop = useMediaQuery((theme) => theme.breakpoints.up('md'));
+  const [credits, setCredits] = useState(initAppState.credits);
   const [currentSlide, setCurrentSlide] = useState(initAppState.currentSlide);
   const [filterValue, setFilterValue] = useState(null);
-  const [allLayers, setAllLayers] = useState(localLayers);
-  const [layers, setLayers] = useState(localLayers);
   const [viewState, setViewState] = useState(initAppState.viewState);
   const [loadRemoteLayers, setLoadRemoteLayers] = useState(false);
-  const isDesktop = useMediaQuery((theme) => theme.breakpoints.up('md'));
 
-  // Adapt the geometry resolution on mobile
-  const google3DLayer = layers.find(l => l.id === 'google-3d');
-  if(google3DLayer && google3DLayer.state) {
-    google3DLayer.state.tileset3d.options.maximumScreenSpaceError = isDesktop ? 16 : 40;
-    google3DLayer.state.tileset3d.maximumMemoryUsage = 4; // Doesn't work
-  }
+  const Google3DLayer = createGoogle3DLayer(isDesktop, setCredits);
+  const localLayers = [Google3DLayer, TemperatureLayer];
+  const [allLayers, setAllLayers] = useState(localLayers);
+  const [layers, setLayers] = useState(localLayers);
 
   const orbit = useCallback(previousTransition => {
     setViewState((viewState) => ({
@@ -126,6 +122,7 @@ export const AppStateStore = ({children}) => {
         reset: () => {
           setCurrentSlide(0);
         },
+        credits,
         setFilterValue,
         currentSlide,
         layers,

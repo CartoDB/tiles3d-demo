@@ -11,7 +11,6 @@ export async function fetchRemoteLayers() {
   return layers.map(l => {
     const props = {
       extensions: [new TerrainExtension()],
-      stroked: false,
       transitions: FADE_IN_COLOR
     }
     if (['ft3t0pi', 'wlixswr'].includes(l.id)) {

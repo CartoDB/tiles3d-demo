@@ -12,45 +12,60 @@ const useLocalCache = location.host.includes('127.0.0.1');
 
 const TILESET= `${useLocalCache ? '' : TILES3D_SERVER}/tile/v1/tiles3d/tilesets/${ROOT_TILE}.json?key=${API_KEY}`;
 
-// Preload gltf files
-// import TILELIST from './preload-tiles';
-// for (const t of TILELIST) {
-//   const url = `https://www.googleapis.com/tile/v1/tiles3d/tiles/${t}.gltf?key=${API_KEY}`
-//   fetch(url).then(d => { tileIds.add(t); })
-// }
-// window.tileIds = new Set();
+// Patches which are required to workaround issues in loaders.gl
+function patchTileset(tileset3d) {
+  // Required until https://github.com/visgl/loaders.gl/pull/2252 resolved
+  tileset3d._queryParams = {key: API_KEY};
 
-let maximumScreenSpaceError = parseFloat((new URL(location.href)).searchParams.get('sse'));
-if(isNaN(maximumScreenSpaceError)) {
-  // Lower than default (8) for better performance
-  maximumScreenSpaceError = 40;
+  // PATCH as loaders.gl doesn't correctly calculate tile byte size
+  const _addTileToCache = tileset3d._addTileToCache;
+  tileset3d._addTileToCache = tile => {
+    if (tile.content.gltf) {
+      let {images, bufferViews} = tile.content.gltf;
+      images = images || [];
+      bufferViews = bufferViews || [];
+      const imageBufferViews = images.map(i => i.bufferView);
+      const pre = bufferViews.length;
+      bufferViews = bufferViews.filter(view => !imageBufferViews.includes(view));
+
+      let gpuMemory = bufferViews.reduce((acc, view) => acc + view.byteLength, 0);
+      let textureMemory = images.reduce((acc, image) => {
+        const {width, height} = image.image;
+        return acc + 4 * width * height;
+        }, 0);
+        tile.content.byteLength = gpuMemory + textureMemory;
+      }
+      tileset3d._cache.add(tileset3d, tile, (tileset) => tileset._updateCacheStats(tile));
+    }
 }
 
-export const Google3DLayer = new Tile3DLayer({
-  id: 'google-3d',
-  data: TILESET,
-  // Uncomment to collect ids of tiles to preload
-  // onTileLoad: tile => {
-  //   const tileId = tile.contentUrl.split('/')[7].split('.')[0];
-  //   tileIds.add(tileId);
-  // },
-  onTilesetLoad: tileset3d => {
-    // Required until https://github.com/visgl/loaders.gl/pull/2252 resolved
-    tileset3d._queryParams = {key: API_KEY};
+// Use create function as layer needs to report back credits
+export function createGoogle3DLayer(isDesktop, setCredits) {
+  return new Tile3DLayer({
+    id: 'google-3d',
+    data: TILESET,
+    onTilesetLoad: tileset3d => {
+      patchTileset(tileset3d);
 
-    const traverser = tileset3d._traverser;
-    tileset3d.options.maximumScreenSpaceError = maximumScreenSpaceError;
-    Google3DLayer.options = tileset3d.options;
+      // Adapt the geometry resolution on mobile
+      tileset3d.options.maximumScreenSpaceError = isDesktop ? 16 : 40;
 
-    // Do not show tiles which are many layers too low in resolution (avoids artifacts)
-    tileset3d.options.onTraversalComplete = selectedTiles => {
-      let maxDepth = 0;
-      for (const {depth} of selectedTiles) {
-        if(depth > maxDepth) maxDepth = depth;
+      tileset3d.options.onTraversalComplete = selectedTiles => {
+        // Do not show tiles which are many layers too low in resolution (avoids artifacts)
+        let maxDepth = 0;
+        for (const {depth} of selectedTiles) {
+          if(depth > maxDepth) maxDepth = depth;
+        }
+        const filtered = selectedTiles.filter(t => t.depth > maxDepth - 4);
+
+        // Show data credit
+        const credits = new Set();
+        filtered.forEach(tile => tile.content.gltf.asset.copyright.split(';').forEach(credits.add, credits));
+        setCredits([...credits].join('; '));
+
+        return filtered;
       }
-      const filtered = selectedTiles.filter(t => t.depth > maxDepth - 4);
-      return filtered;
-    }
-  },
-  operation: 'terrain+draw'
-});
+    },
+    operation: 'terrain+draw'
+  });
+}
