@@ -134,14 +134,15 @@ const CoverLegend = () => {
   const theme = useTheme();
   const [showList, setShowList] = useState(true);
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
+  const isLandscape = useMediaQuery("(max-height: 360px)");
 
   useEffect(() => {
-    if (isMobile) {
+    if (isMobile || isLandscape) {
       setShowList(false);
     } else {
       setShowList(true);
     }
-  }, [isMobile]);
+  }, [isMobile, isLandscape]);
 
   const handleShowListChange = () => {
     setShowList((prev) => !prev);
