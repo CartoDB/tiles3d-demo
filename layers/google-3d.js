@@ -12,7 +12,8 @@ const useLocalCache = location.host.includes('172.20.10.5');
 
 export const TILESET= `${useLocalCache ? '' : TILES3D_SERVER}/tile/v1/tiles3d/tilesets/${ROOT_TILE}.json?key=${API_KEY}`;
 
-export function patchTileset(tileset3d) {
+// Patches which are required to workaround issues in loaders.gl
+function patchTileset(tileset3d) {
   // Required until https://github.com/visgl/loaders.gl/pull/2252 resolved
   tileset3d._queryParams = {key: API_KEY};
 
@@ -40,6 +41,41 @@ export function patchTileset(tileset3d) {
       tileset3d._cache.add(tileset3d, tile, (tileset) => tileset._updateCacheStats(tile));
       stats.innerHTML = `Tileset3D: ${Math.round(tileset3d.gpuMemoryUsageInBytes / (1024*1024))}MB`;
     }
+}
+
+export function createGoogle3DLayer(isDesktop, setCredits) {
+  return new Tile3DLayer({
+    id: 'google-3d',
+    data: TILESET,
+    onTilesetLoad: tileset3d => {
+      patchTileset(tileset3d);
+
+      // Adapt the geometry resolution on mobile
+      tileset3d.options.maximumScreenSpaceError = isDesktop ? 16 : 40;
+
+      tileset3d.options.onTraversalComplete = selectedTiles => {
+        // Do not show tiles which are many layers too low in resolution (avoids artifacts)
+        let maxDepth = 0;
+        for (const {depth} of selectedTiles) {
+          if(depth > maxDepth) maxDepth = depth;
+        }
+        const filtered = selectedTiles.filter(t => t.depth > maxDepth - 4);
+
+        // Show data credit
+        const credits = new Set();
+        for (const tile of filtered) {
+          const {gltf} = tile.content;
+          if (gltf) {
+            gltf.asset.copyright.split(';').forEach(credits.add, credits);
+          }
+        }
+        setCredits([...credits].join(';'));
+
+        return filtered;
+      }
+    },
+    operation: 'terrain+draw'
+  });
 }
 
 export const Google3DLayer = new Tile3DLayer({

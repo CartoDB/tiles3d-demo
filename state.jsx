@@ -1,11 +1,12 @@
 import {useMediaQuery} from '@material-ui/core';
 import React, {useState, createContext, useCallback, useContext, useEffect} from 'react';
 import {LinearInterpolator} from '@deck.gl/core';
+import {Tile3DLayer} from '@deck.gl/geo-layers';
 import FlyToInterpolator from './layers/fly-to-interpolator.js';
 import {Easing} from '@tweenjs/tween.js';
 
 import slides from './slides';
-import {Google3DLayer} from './layers/google-3d';
+import {createGoogle3DLayer} from './layers/google-3d';
 import {TemperatureLayer} from './layers/temperature';
 import {fetchRemoteLayers} from './layers/remote';
 
@@ -23,47 +24,18 @@ const FULL_EXTENT = [14.3, 50, 14.55, 50.15];
 const transitionInterpolator = new LinearInterpolator(['bearing', 'longitude', 'latitude']);
 export const AppStateContext = createContext(initAppState);
 
-let map;
-const localLayers = [Google3DLayer, TemperatureLayer];
-
 export const AppStateStore = ({children}) => {
+  const isDesktop = useMediaQuery((theme) => theme.breakpoints.up('md'));
   const [credits, setCredits] = useState(initAppState.credits);
   const [currentSlide, setCurrentSlide] = useState(initAppState.currentSlide);
   const [filterValue, setFilterValue] = useState(null);
-  const [allLayers, setAllLayers] = useState(localLayers);
-  const [layers, setLayers] = useState(localLayers);
   const [viewState, setViewState] = useState(initAppState.viewState);
   const [loadRemoteLayers, setLoadRemoteLayers] = useState(false);
-  const isDesktop = useMediaQuery((theme) => theme.breakpoints.up('md'));
 
-  // Adapt the geometry resolution on mobile
-  const google3DLayer = layers.find(l => l.id === 'google-3d');
-
-  if(google3DLayer && google3DLayer.state) {
-    const {tileset3d} = google3DLayer.state;
-    tileset3d.options.maximumScreenSpaceError = isDesktop ? 16 : 40;
-
-    tileset3d.options.onTraversalComplete = selectedTiles => {
-      // Do not show tiles which are many layers too low in resolution (avoids artifacts)
-      let maxDepth = 0;
-      for (const {depth} of selectedTiles) {
-        if(depth > maxDepth) maxDepth = depth;
-      }
-      const filtered = selectedTiles.filter(t => t.depth > maxDepth - 4);
-
-      // Show data credit
-      const credits = new Set();
-      for (const tile of filtered) {
-        const {gltf} = tile.content;
-        if (gltf) {
-          gltf.asset.copyright.split(';').forEach(credits.add, credits);
-        }
-      }
-      setCredits([...credits].join(';'));
-
-      return filtered;
-    }
-  }
+  const Google3DLayer = createGoogle3DLayer(isDesktop, setCredits);
+  const localLayers = [Google3DLayer, TemperatureLayer];
+  const [allLayers, setAllLayers] = useState(localLayers);
+  const [layers, setLayers] = useState(localLayers);
 
   const orbit = useCallback(previousTransition => {
     setViewState((viewState) => ({
