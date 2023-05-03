@@ -17,11 +17,8 @@ function patchTileset(tileset3d) {
   // Required until https://github.com/visgl/loaders.gl/pull/2252 resolved
   tileset3d._queryParams = {key: API_KEY};
 
-  tileset3d.options.maximumScreenSpaceError = 40;
-
   // PATCH as loaders.gl doesn't correctly calculate tile byte size
   const _addTileToCache = tileset3d._addTileToCache;
-  const stats = document.getElementById('stats2');
   tileset3d._addTileToCache = tile => {
     if (tile.content.gltf) {
       let {images, bufferViews} = tile.content.gltf;
@@ -39,7 +36,6 @@ function patchTileset(tileset3d) {
         tile.content.byteLength = gpuMemory + textureMemory;
       }
       tileset3d._cache.add(tileset3d, tile, (tileset) => tileset._updateCacheStats(tile));
-      stats.innerHTML = `Tileset3D: ${Math.round(tileset3d.gpuMemoryUsageInBytes / (1024*1024))}MB`;
     }
 }
 
