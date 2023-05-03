@@ -14,7 +14,20 @@ const writeBody = (buffer, res) => {
 export default {
   plugins: [
     svgr({
-      include: ["**/*.svg", "**/*.png", "**/*.jpg"]
+      exportAsDefault: true,
+      include: [
+        "**/*.svg",
+        "assets/images/google-maps-platform-logo.png",
+        "assets/images/deckgl-logo.png",
+        "assets/images/google-3d-tiles-og-image.png",
+        "assets/images/google-maps-platform.png",
+        "assets/icons/google_on_white_hdpi.png",
+        "assets/images/slides/slide1.jpg",
+        "assets/images/slides/slide2.jpg",
+        "assets/images/slides/slide3.jpg",
+        "assets/images/slides/slide4.jpg",
+        "assets/images/slides/slide5.jpg"
+      ]
     })
   ],
   server: {
