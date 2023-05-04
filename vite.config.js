@@ -13,7 +13,6 @@ const writeBody = (buffer, res) => {
 }
 
 export default {
-  assetsInclude: ['assets/images/*'],
   plugins: [
     svgr(),
     viteStaticCopy({
