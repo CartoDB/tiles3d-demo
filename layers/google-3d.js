@@ -39,6 +39,8 @@ function patchTileset(tileset3d) {
     }
 }
 
+const sseOverride = parseFloat((new URL(location.href)).searchParams.get('sse'));
+
 // Use create function as layer needs to report back credits
 export function createGoogle3DLayer(isDesktop, setCredits) {
   return new Tile3DLayer({
@@ -49,6 +51,9 @@ export function createGoogle3DLayer(isDesktop, setCredits) {
 
       // Adapt the geometry resolution on mobile
       tileset3d.options.maximumScreenSpaceError = isDesktop ? 16 : 40;
+      if (!isNaN(sseOverride)) {
+        tileset3d.options.maximumScreenSpaceError = sseOverride;
+      }
 
       tileset3d.options.onTraversalComplete = selectedTiles => {
         // Do not show tiles which are many layers too low in resolution (avoids artifacts)
