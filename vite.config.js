@@ -1,4 +1,5 @@
-import svgr from 'vite-plugin-svgr'
+import {viteStaticCopy} from 'vite-plugin-static-copy';
+import svgr from 'vite-plugin-svgr';
 import zlib from 'zlib';
 
 // Rewrite URLs in instantiation & tilejson response to use our endpoint
@@ -12,7 +13,17 @@ const writeBody = (buffer, res) => {
 }
 
 export default {
-  plugins: [svgr()],
+  plugins: [
+    svgr(),
+    viteStaticCopy({
+      targets: [
+        {
+          src: 'assets/images/google-3d-tiles-og-image.png',
+          dest: 'assets/images'
+        }
+      ]
+    })
+  ],
   server: {
     host: '127.0.0.1',
     port: 8080,
