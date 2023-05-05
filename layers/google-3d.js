@@ -6,7 +6,6 @@ const TILES3D_SERVER = 'https://tile.googleapis.com';
 
 // For development use local endpoint via vite proxy (see vite.config.js)
 const useLocalCache = location.host.includes('127.0.0.1');
-// const useLocalCache = false
 
 const TILESET = `${useLocalCache ? '' : TILES3D_SERVER}/v1/3dtiles/root.json`;
 
