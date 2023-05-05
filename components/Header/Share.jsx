@@ -6,7 +6,7 @@ import {ReactComponent as IconLinkedin} from '../../assets/icons/icon-linkedin.s
 
 const SHARING_URL = 'https://3dtiles.carto.com';
 const SHARING_TEXT =
-  'An interactive story map using Google 3D tiles and CARTO to showcase the importance of vegetation for urban areas';
+  'An interactive story map using Google Photorealistic 3D tiles and CARTO to showcase the importance of vegetation for urban areas';
 const SHARING_HASHTAGS = 'googlemaps,tiles3d,deck.gl,carto,3d-visualizations';
 
 const useStyles = makeStyles((theme) => ({

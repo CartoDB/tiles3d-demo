@@ -24,7 +24,7 @@ export default [
   /* 4 */ {
     layers: ['google-3d', 'ft3t0pi'], // Top priority Buildings
     view: {latitude: 50.098638970057976, longitude: 14.430949347805848, bearing: -58.668795330078694, pitch: 58.268384344242605, zoom: 17.751310628564266, height: 210},
-    legend: {title: 'Distance', ...DISTANCE_COLOR_SCALE},
+    legend: {title: 'Distance from trees', ...DISTANCE_COLOR_SCALE},
     slider: true,
     orbit: true
   },

@@ -170,7 +170,7 @@ const About = ({}, forwardedRef) => {
                 ]
               },
               {
-                title: 'Photorealistic 3D Tiles Provided by ',
+                title: 'Photorealistic 3D Tiles provided by ',
                 textClassName: classes.logosText,
                 mobileHorizontal: true,
                 images: [
@@ -186,12 +186,12 @@ const About = ({}, forwardedRef) => {
               With the new{' '}
               <Link
                 underline="always"
-                href="https://developers.google.com/maps/documentation/tile"
+                href="https://developers.google.com/maps/documentation/tile/3d-tiles-overview"
                 target="_blank"
               >
                 Map Tiles API
               </Link>{' '}
-              release, Google Maps platform provides 3D Tiles world wide. CARTO and deck.gl have been working on integrating Photorealistic 3D Tiles into {' '} 
+              release, Google Maps Platform provides Photorealistic 3D Tiles in over 2500 cities across 49 countries. CARTO and deck.gl have been working on integrating Photorealistic 3D Tiles into {' '} 
               <Link underline="always" href="https://deck.gl/" target="_blank">
                 deck.gl
               </Link> to bring more realism and context to your visualizations. 

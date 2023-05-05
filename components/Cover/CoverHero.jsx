@@ -43,7 +43,7 @@ const CoverHero = () => {
         color="inherit"
         variant={isDesktop ? 'h5' : 'subtitle1'}
       >
-        Google 3D Tiles + deck.gl + CARTO
+        Google Photorealistic 3D Tiles + deck.gl + CARTO
       </Typography>
       <Box className={classes.title}>
         <Typography color="inherit" variant={isDesktop ? 'h3' : 'h4'}>

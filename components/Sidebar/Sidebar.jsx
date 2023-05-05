@@ -259,7 +259,7 @@ const Sidebar = () => {
         ].join(' ')}
         style={{height: headerPrimaryHeight}}
       >
-        {mobileExpanded ? (
+        {mobileExpanded && (
           <IconButton
             className={classes.headerPrimaryClose}
             onClick={() => {
@@ -268,14 +268,15 @@ const Sidebar = () => {
           >
             <IconExpandDown />
           </IconButton>
-        ) : (
-          <SidebarClose className={classes.headerPrimaryClose} primary={true} />
         )}
+        
+        {/* <SidebarClose className={classes.headerPrimaryClose} primary={true} /> */}
+        
         <Header primary={true} className={classes.headerPrimaryItem} />
       </div>
 
       <div className={[classes.footerItem, classes.footerClose].join(' ')} data-position="top-left">
-        {mobileExpanded ? (
+        {mobileExpanded && (
           <IconButton
             onClick={() => {
               setMobileExpanded(false);
@@ -283,9 +284,8 @@ const Sidebar = () => {
           >
             <IconExpandDown />
           </IconButton>
-        ) : (
-          <SidebarClose />
-        )}
+        )} 
+        {/* <SidebarClose /> */}
       </div>
 
       <div className={classes.slides}>

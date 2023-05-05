@@ -1,6 +1,6 @@
 import React from 'react';
 import {makeStyles} from '@material-ui/core';
-import googleLogo from '../../assets/icons/google_on_white_hdpi.png';
+import googleLogo from '../../assets/icons/google_on_non_white_hdpi.png';
 import { useAppState } from '../../state';
 
 const useStyles = makeStyles((theme) => ({
