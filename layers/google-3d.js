@@ -2,20 +2,16 @@ import {Tile3DLayer} from '@deck.gl/geo-layers';
 
 const API_KEY = import.meta.env.VITE_GOOGLE_API_KEY;
 
-const TILES3D_SERVER = 'https://www.googleapis.com';
-
-// const ROOT_TILE = 'rootTileset'; // World
-const ROOT_TILE = 'CggzMDYwNDE2MxIFZWFydGgYsQciBmdyb3VuZDoFZ2VvaWRABg'; // Prague
+const TILES3D_SERVER = 'https://tile.googleapis.com';
 
 // For development use local endpoint via vite proxy (see vite.config.js)
 const useLocalCache = location.host.includes('127.0.0.1');
+// const useLocalCache = false
 
-const TILESET= `${useLocalCache ? '' : TILES3D_SERVER}/tile/v1/tiles3d/tilesets/${ROOT_TILE}.json?key=${API_KEY}`;
+const TILESET = `${useLocalCache ? '' : TILES3D_SERVER}/v1/3dtiles/root.json`;
 
 // Patches which are required to workaround issues in loaders.gl
 function patchTileset(tileset3d) {
-  // Required until https://github.com/visgl/loaders.gl/pull/2252 resolved
-  tileset3d._queryParams = {key: API_KEY};
 
   // PATCH as loaders.gl doesn't correctly calculate tile byte size
   const _addTileToCache = tileset3d._addTileToCache;
@@ -46,6 +42,13 @@ export function createGoogle3DLayer(isDesktop, setCredits) {
   return new Tile3DLayer({
     id: 'google-3d',
     data: TILESET,
+    loadOptions: {
+      fetch: {
+        headers: {
+          'X-GOOG-API-KEY': API_KEY
+        }
+      }
+    },
     onTilesetLoad: tileset3d => {
       patchTileset(tileset3d);
 

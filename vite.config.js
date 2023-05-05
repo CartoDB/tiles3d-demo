@@ -71,8 +71,8 @@ export default {
           });
         }
       },
-      '/tile': {
-        target: 'https://www.googleapis.com',
+      '/v1': {
+        target: 'https://tile.googleapis.com',
         changeOrigin: true,
         rewrite: path => path,
         configure: proxy => {
