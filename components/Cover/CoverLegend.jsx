@@ -36,7 +36,7 @@ const useStyles = makeStyles((theme) => ({
     bottom: theme.spacing(6),
     left: theme.spacing(2.5),
     transform: "none",
-    width: "110px",
+    width: "150px",
     display: "block",
     [theme.breakpoints.down("sm")]: {
       bottom: theme.spacing(24),
