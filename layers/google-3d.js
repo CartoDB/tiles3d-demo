@@ -67,7 +67,7 @@ export function createGoogle3DLayer(isDesktop, setCredits) {
 
         // Show data credit
         const credits = new Set();
-        filtered.forEach(tile => tile.content.gltf.asset.copyright.split(';').forEach(credits.add, credits));
+        selectedTiles.forEach(tile => tile.content.gltf.asset.copyright.split(';').forEach(credits.add, credits));
         setCredits([...credits].join('; '));
 
         return filtered;
