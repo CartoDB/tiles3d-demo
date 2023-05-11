@@ -36,7 +36,7 @@ export const AppStateStore = ({children}) => {
   const [viewState, setViewState] = useState(initAppState.viewState);
   const [loadRemoteLayers, setLoadRemoteLayers] = useState(false);
 
-  const Google3DLayer = createGoogle3DLayer(isDesktop, setCredits);
+  const Google3DLayer = createGoogle3DLayer(setCredits);
   const localLayers = [Google3DLayer, TemperatureLayer];
   const [allLayers, setAllLayers] = useState(localLayers);
   const [layers, setLayers] = useState(localLayers);
