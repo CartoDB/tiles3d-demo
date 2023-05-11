@@ -25,7 +25,7 @@ export function createGoogle3DLayer(isDesktop, setCredits) {
     },
     onTilesetLoad: tileset3d => {
       // Adapt the geometry resolution on mobile
-      tileset3d.options.maximumScreenSpaceError = isDesktop ? 16 : 40;
+      tileset3d.options.maximumScreenSpaceError = isDesktop ? 4 : 40;
       if (!isNaN(sseOverride)) {
         tileset3d.options.maximumScreenSpaceError = sseOverride;
       }
