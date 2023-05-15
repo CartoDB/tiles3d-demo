@@ -9,24 +9,32 @@ export async function fetchRemoteLayers() {
   if(location.host.includes('127.0.0.1')) {
     console.log(layers.map(l => `${l.constructor.layerName} ${l.props.cartoLabel}: ${l.props.id}`).join('\n'));
   }
+
+  // Clone the building layer so we can use it for the hover effect
+  const tppLayer = layers.find(l => l.id === 'lvm6ojq');
+  if (tppLayer) {
+    layers.push(tppLayer.clone({id: 'lvm6ojq-hover'}));
+  }
+
   return layers.map(l => {
     const props = {
-      //extensions: [new TerrainExtension()],
-      extensions: [],
+      extensions: [new TerrainExtension()],
       transitions: FADE_IN_COLOR
     }
-    if (['ft3t0pi', 'lvm6ojq'].includes(l.id)) {
+    if (['ft3t0pi', 'lvm6ojq', 'lvm6ojq-hover'].includes(l.id)) {
       props.extensions.push(new DataFilterExtension({filterSize: 1}));
       if (l.id === 'ft3t0pi') {
         props.getFilterValue = f => f.properties.distance_to_nearest_tree;
       } else {
         props.getFilterValue = f => f.properties.tpp;
+        props.uniqueIdProperty = 'id';
       }
       props.filterRange = [0, 10000];
 
       // Add autohighlight for tooltip
-      if (l.id === 'lvm6ojq') {
-        props.autoHighlight = true;
+      if (l.id === 'lvm6ojq-hover') {
+        props.extensions = [new DataFilterExtension({filterSize: 1})]; 
+        // NOTE: this layer is hidden using layerFilter in Map.jsx
         props.pickable = true;
         props.extruded = true;
 

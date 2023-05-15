@@ -79,7 +79,7 @@ const LATITUDE_RANGE = [50, 50.15];
 
 const Map = () => {
   const classes = useStyles();
-  const {currentSlide, layers, viewState} = useAppState();
+  const {currentSlide, layers, viewState, setHoveredFeatureId} = useAppState();
   const isDesktop = useMediaQuery((theme) => theme.breakpoints.up('md'));
   const theme = useTheme();
 
@@ -107,6 +107,7 @@ const Map = () => {
             }}
             useDevicePixels={useDevicePixels}
             getTooltip={({object}) => {
+              setHoveredFeatureId(object && object.properties.id);
               if (!object) return;
               const {tpp} = object.properties;
               const i = Math.floor(tpp * 5);
@@ -114,6 +115,12 @@ const Map = () => {
                 html: `<h3>Tree Planting Priority: ${SCORES[i]}</h3><div>${LABELS[i]}</div>`,
                 style: {borderRadius: '10px', backgroundColor: theme.palette.common.black, fontSize: '0.8em', width: '400px'}
               }
+            }}
+            layerFilter={({layer, renderPass}) => {
+              if (layer.id === 'lvm6ojq-hover' && renderPass === 'screen') {
+                return false;
+              }
+              return true;
             }}
           >
           </DeckGL>

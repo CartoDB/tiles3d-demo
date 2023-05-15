@@ -29,7 +29,7 @@ export default [
     orbit: true
   },
   /* 5 */ {
-    layers: ['google-3d', 'lvm6ojq'], // Tree Planting Priority
+    layers: ['google-3d', 'lvm6ojq', 'lvm6ojq-hover'], // Tree Planting Priority
     view: {latitude: 50.098337089228885, longitude: 14.423039897397192, bearing: 41.67155588940855, pitch: 57.83916048618412, zoom: 17, height: 242.7711712},
     legend: {title: 'Priority', ...PRIORITY_COLOR_SCALE},
     slider: true
