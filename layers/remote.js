@@ -47,7 +47,7 @@ export async function fetchRemoteLayers() {
         props.uniqueIdProperty = 'id';
 
         // Uncomment to see geometry under 3D tiles
-        // props.parameters = {depthTest: false};
+        props.parameters = {depthTest: false};
 
         // Adjust data to have 3D offset. This doesn't work perfectly with picking
         // for some reason.

@@ -86,8 +86,8 @@ export const AppStateStore = ({children}) => {
 
         // Limit to single zoom level to avoid flashing (due to fade in transition)
         // and to limit data use on mobile
-        props.minZoom = 15;
-        props.maxZoom = 15;
+        props.minZoom = 12;
+        props.maxZoom = 12;
         props.extent = isDesktop ? FULL_EXTENT : LIMITED_EXTENT;
 
         return visible ? l.clone(props) : null;
