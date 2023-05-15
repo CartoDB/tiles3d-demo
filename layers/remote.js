@@ -2,6 +2,8 @@ import {fetchMap} from '@deck.gl/carto';
 import {DataFilterExtension, _TerrainExtension as TerrainExtension} from '@deck.gl/extensions';
 import {FADE_IN_COLOR} from './transitions';
 
+const tooltipOverride = (new URL(location.href)).searchParams.has('tooltip');
+
 // const cartoMapId = '60f339dd-450b-4c54-a402-41eb2d7a06af';
 const cartoMapId = '87ded938-6337-45b6-8de1-4c2813e3d9c6';
 export async function fetchRemoteLayers() {
@@ -10,10 +12,12 @@ export async function fetchRemoteLayers() {
     console.log(layers.map(l => `${l.constructor.layerName} ${l.props.cartoLabel}: ${l.props.id}`).join('\n'));
   }
 
-  // Clone the building layer so we can use it for the hover effect
-  const tppLayer = layers.find(l => l.id === 'lvm6ojq');
-  if (tppLayer) {
-    layers.push(tppLayer.clone({id: 'lvm6ojq-hover'}));
+  if(tooltipOverride) {
+    // Clone the building layer so we can use it for the hover effect
+    const tppLayer = layers.find(l => l.id === 'lvm6ojq');
+    if (tppLayer) {
+      layers.push(tppLayer.clone({id: 'lvm6ojq-hover'}));
+    }
   }
 
   return layers.map(l => {
@@ -31,7 +35,8 @@ export async function fetchRemoteLayers() {
       }
       props.filterRange = [0, 10000];
 
-      // Add autohighlight for tooltip
+      // Add autohighlight for tooltip. Rather than draping the polygons using the
+      // TerrainExtension, draw them as extruded 3D objects so picking works
       if (l.id === 'lvm6ojq-hover') {
         props.extensions = [new DataFilterExtension({filterSize: 1})]; 
         // NOTE: this layer is hidden using layerFilter in Map.jsx
@@ -44,7 +49,7 @@ export async function fetchRemoteLayers() {
         // Uncomment to see geometry under 3D tiles
         // props.parameters = {depthTest: false};
 
-        // Adjust data to have 3D offset. This doesn't work with picking
+        // Adjust data to have 3D offset. This doesn't work perfectly with picking
         // for some reason.
         // const zOffset = 200;
         props.getElevation = 40; // Estimate for building height
