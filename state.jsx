@@ -33,6 +33,7 @@ export const AppStateStore = ({children}) => {
   const [credits, setCredits] = useState(initAppState.credits);
   const [currentSlide, setCurrentSlide] = useState(initAppState.currentSlide);
   const [filterValue, setFilterValue] = useState(null);
+  const [hoveredFeatureId, setHoveredFeatureId] = useState(null);
   const [viewState, setViewState] = useState(initAppState.viewState);
   const [loadRemoteLayers, setLoadRemoteLayers] = useState(false);
 
@@ -85,8 +86,8 @@ export const AppStateStore = ({children}) => {
 
         // Limit to single zoom level to avoid flashing (due to fade in transition)
         // and to limit data use on mobile
-        props.minZoom = 15;
-        props.maxZoom = 15;
+        props.minZoom = 12;
+        props.maxZoom = 12;
         props.extent = isDesktop ? FULL_EXTENT : LIMITED_EXTENT;
 
         return visible ? l.clone(props) : null;
@@ -105,11 +106,12 @@ export const AppStateStore = ({children}) => {
         if (filterValue !== null && l && l.id !== 'google-3d') {
           props.filterRange = [filterValue - 0.00001, 10000];
         }
+        props.highlightedFeatureId = hoveredFeatureId;
 
         return l && l.clone(props);
       }));
     },
-    [filterValue]
+    [filterValue, hoveredFeatureId]
   );
 
   return (
@@ -126,6 +128,7 @@ export const AppStateStore = ({children}) => {
         },
         credits,
         setFilterValue,
+        setHoveredFeatureId,
         currentSlide,
         layers,
         viewState,
