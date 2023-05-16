@@ -117,7 +117,7 @@ const Map = () => {
               }
             }}
             layerFilter={({layer, renderPass}) => {
-              if (layer.id === 'lvm6ojq-hover' && renderPass === 'screen') {
+              if (layer.id === '0fh9zbk-hover' && renderPass === 'screen') {
                 return false;
               }
               return true;
