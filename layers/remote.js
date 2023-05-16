@@ -4,8 +4,8 @@ import {FADE_IN_COLOR} from './transitions';
 
 const tooltipOverride = (new URL(location.href)).searchParams.has('tooltip');
 
-// const cartoMapId = '60f339dd-450b-4c54-a402-41eb2d7a06af';
-const cartoMapId = '87ded938-6337-45b6-8de1-4c2813e3d9c6';
+const cartoMapId = '60f339dd-450b-4c54-a402-41eb2d7a06af';
+// const cartoMapId = '87ded938-6337-45b6-8de1-4c2813e3d9c6';
 export async function fetchRemoteLayers() {
   const {layers} = await fetchMap({cartoMapId});
   if(location.host.includes('127.0.0.1')) {
@@ -14,9 +14,9 @@ export async function fetchRemoteLayers() {
 
   if(tooltipOverride) {
     // Clone the building layer so we can use it for the hover effect
-    const tppLayer = layers.find(l => l.id === 'lvm6ojq');
+    const tppLayer = layers.find(l => l.id === '0fh9zbk');
     if (tppLayer) {
-      layers.push(tppLayer.clone({id: 'lvm6ojq-hover'}));
+      layers.push(tppLayer.clone({id: '0fh9zbk-hover'}));
     }
   }
 
@@ -25,7 +25,7 @@ export async function fetchRemoteLayers() {
       extensions: [new TerrainExtension()],
       transitions: FADE_IN_COLOR
     }
-    if (['ft3t0pi', 'lvm6ojq', 'lvm6ojq-hover'].includes(l.id)) {
+    if (['ft3t0pi', '0fh9zbk', '0fh9zbk-hover'].includes(l.id)) {
       props.extensions.push(new DataFilterExtension({filterSize: 1}));
       if (l.id === 'ft3t0pi') {
         props.getFilterValue = f => f.properties.distance_to_nearest_tree;
@@ -37,7 +37,7 @@ export async function fetchRemoteLayers() {
 
       // Add autohighlight for tooltip. Rather than draping the polygons using the
       // TerrainExtension, draw them as extruded 3D objects so picking works
-      if (l.id === 'lvm6ojq-hover') {
+      if (l.id === '0fh9zbk-hover') {
         props.extensions = [new DataFilterExtension({filterSize: 1})]; 
         // NOTE: this layer is hidden using layerFilter in Map.jsx
         props.pickable = true;
