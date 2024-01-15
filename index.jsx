@@ -9,7 +9,7 @@ import {setDefaultCredentials} from '@deck.gl/carto';
 const theme = createTheme();
 
 const credentials = {
-  accessToken: 'eyJhbGciOiJIUzI1NiJ9.eyJhIjoiYWNfN3hoZnd5bWwiLCJqdGkiOiIwNjhlYzgyMCJ9.2SAyHDttt4s-m2i6HgQuMqxdZIr_bdkIzBHM2zbYwOU'
+  accessToken: 'eyJhbGciOiJIUzI1NiJ9.eyJhIjoiYWNfbHFlM3p3Z3UiLCJqdGkiOiJiMTAyZjgzYyJ9.R2P-6K41Sr3O8lRnJ14I4y9UDfR6xaQPWVpL383lXcE'
 }
 
 // For development use local endpoint via vite proxy (see vite.config.js)
