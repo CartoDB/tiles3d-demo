@@ -7,9 +7,9 @@ const {colors, values} = TEMPERATURE_COLOR_SCALE;
 
 export const TemperatureLayer = new CartoLayer({
   id: 'temperature',
-  connection: 'bigquery',
+  connection: '3dtiles-demo',
   type: MAP_TYPES.RASTER,
-  data: 'cartobq.public_account.temperature_raster_int8',
+  data: 'cartobq.public_account.temperature_raster_int8_new',
   formatTiles: 'binary',
   tileSize: 256,
   getFillColor: colorBins({
