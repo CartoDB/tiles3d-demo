@@ -1,17 +1,22 @@
-export const TEMPERATURE_COLOR_SCALE = {
-  labels: [26, 28, 30, 32, 34, 36].map(n => `${n} °C`),
-  values: [20, 28, 30, 32, 34, 36],
-  colors: ['#0d0887', '#6a00a8', '#b12a90', '#e16462', '#fca636', '#f0f921']
+export const TRAFFIC_SPEED_SCALE = {
+  labels: ['0', '5', '10', '15', '20', '25+ mph'],
+  values: [0, 5, 10, 15, 20, 25],
+  colors: ['#8B0000', '#FF4500', '#FFA500', '#FFFF00', '#ADFF2F', '#008000']
 }
 
-export const DISTANCE_COLOR_SCALE = {
-  labels: [10, 50, 100, 250, 500].map(n => `${n}m`),
-  values: [0, 50, 100, 250, 500],
-  colors: ['#feebe2', '#fbb4b9', '#f768a1', '#c51b8a', '#7a0177']
+export const SAFETY_SCALE = {
+  labels: ['0', '10', '25', '50', '100', '200+'],
+  values: [0, 10, 25, 50, 100, 200],
+  colors: ['#008000', '#ADFF2F', '#FFFF00', '#FFA500', '#FF4500', '#8B0000']
 }
 
-export const PRIORITY_COLOR_SCALE = {
-  labels: ['low', '-', 'med.', '-', 'high'],
-  values: [0, 0.2, 0.4, 0.6, 0.8, 1.0],
-  colors: ['#ffffb2', '#fecc5c', '#fd8d3c', '#f03b20', '#bd0026']
+export const FUNDING_SCALE = {
+  labels: ['$0', '$50M', '$100M', '$250M', '$500M', '$1B+'],
+  values: [0, 50, 100, 250, 500, 1000],
+  colors: ['#FFF8DC', '#FFD700', '#FFA500', '#FF8C00', '#FF6347', '#DC143C']
 }
+
+// Legacy exports (used by old temperature layer)
+export const TEMPERATURE_COLOR_SCALE = TRAFFIC_SPEED_SCALE;
+export const DISTANCE_COLOR_SCALE = SAFETY_SCALE;
+export const PRIORITY_COLOR_SCALE = FUNDING_SCALE;

@@ -9,6 +9,15 @@ import slides from './slides';
 import {createGoogle3DLayer} from './layers/google-3d';
 import {TemperatureLayer} from './layers/temperature';
 import {fetchRemoteLayers} from './layers/remote';
+import {
+  CongestionZoneLayer,
+  TrafficBeforeLayer,
+  TrafficAfterLayer,
+  RegionalImprovementLayer,
+  CrashesLayer,
+  TransitProjectsLayer
+} from './layers/nyc-data';
+import { PolygonDrawingLayer } from './layers/polygon-drawing';
 
 const hash = window.location.hash;
 let currentSlide = hash !== '' ? parseInt(hash.slice(1)) : 0;
@@ -23,8 +32,8 @@ const initAppState = {
   viewState: {...view, position: [0, 0, view.height], zoom: view.zoom - 1}
 };
 
-const LIMITED_EXTENT = [14.42, 50.09, 14.44, 50.12];
-const FULL_EXTENT = [14.3, 50, 14.55, 50.15];
+const LIMITED_EXTENT = [-73.99, 40.74, -73.97, 40.77];
+const FULL_EXTENT = [-74.02, 40.70, -73.95, 40.80];
 const transitionInterpolator = new LinearInterpolator(['bearing', 'longitude', 'latitude']);
 export const AppStateContext = createContext(initAppState);
 
@@ -36,9 +45,31 @@ export const AppStateStore = ({children}) => {
   const [hoveredFeatureId, setHoveredFeatureId] = useState(null);
   const [viewState, setViewState] = useState(initAppState.viewState);
   const [loadRemoteLayers, setLoadRemoteLayers] = useState(false);
+  const [drawingLayer, setDrawingLayer] = useState(null);
+  const [polygonDrawingManager, setPolygonDrawingManager] = useState(null);
+  const [isDrawingEnabled, setIsDrawingEnabled] = useState(false);
 
   const Google3DLayer = createGoogle3DLayer(setCredits);
-  const localLayers = [Google3DLayer, TemperatureLayer];
+
+  // Initialize polygon drawing manager
+  useEffect(() => {
+    const manager = new PolygonDrawingLayer((layer) => {
+      setDrawingLayer(layer);
+    });
+    setPolygonDrawingManager(manager);
+    setDrawingLayer(manager.getLayer());
+  }, []);
+
+  const localLayers = [
+    Google3DLayer,
+    CongestionZoneLayer,
+    TrafficBeforeLayer,
+    TrafficAfterLayer,
+    RegionalImprovementLayer,
+    CrashesLayer,
+    TransitProjectsLayer,
+    TemperatureLayer
+  ];
   const [allLayers, setAllLayers] = useState(localLayers);
   const [layers, setLayers] = useState(localLayers);
 
@@ -80,7 +111,16 @@ export const AppStateStore = ({children}) => {
   useEffect(
     () => {
       const {layers: visibleLayers, view, orbit: shouldOrbit} = slides[currentSlide];
-      setLayers(allLayers.map(l => {
+
+      // Enable drawing on the last slide (Transit Funding)
+      const isLastSlide = currentSlide === slides.length - 1;
+      if (polygonDrawingManager) {
+        polygonDrawingManager.setDrawingEnabled(isLastSlide);
+        setIsDrawingEnabled(isLastSlide);
+      }
+
+      // Combine regular layers with drawing layer
+      const baseLayers = allLayers.map(l => {
         const visible = visibleLayers.indexOf(l.id) !== -1;
         const props = {visible};
 
@@ -91,13 +131,21 @@ export const AppStateStore = ({children}) => {
         props.extent = isDesktop ? FULL_EXTENT : LIMITED_EXTENT;
 
         return visible ? l.clone(props) : null;
-      }));
+      }).filter(Boolean);
+
+      // Add drawing layer on the last slide
+      if (isLastSlide && polygonDrawingManager) {
+        const currentDrawingLayer = polygonDrawingManager.getLayer();
+        setLayers([...baseLayers, currentDrawingLayer]);
+      } else {
+        setLayers(baseLayers);
+      }
+
       if (view && view.longitude !== undefined) {
         updateViewState({latitude: 0, longitude: 0, zoom: 0, bearing: 0, pitch: 0, position: [0, 0, view.height || 200], ...view}, shouldOrbit);
-
       }
     },
-    [currentSlide]
+    [currentSlide, polygonDrawingManager, isDesktop, allLayers]
   );
   useEffect(
     () => {
@@ -132,7 +180,9 @@ export const AppStateStore = ({children}) => {
         currentSlide,
         layers,
         viewState,
-        slidesNumber: slides.length
+        slidesNumber: slides.length,
+        polygonDrawingManager,
+        isDrawingEnabled
       }}
     >
       {children}

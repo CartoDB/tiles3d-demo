@@ -1,17 +1,22 @@
-import {CartoLayer, colorBins, MAP_TYPES} from '@deck.gl/carto';
+import {RasterTileLayer, rasterSource, colorBins} from '@deck.gl/carto';
 import {DataFilterExtension, _TerrainExtension as TerrainExtension} from '@deck.gl/extensions';
 import {colorToRGBArray} from '../utils';
 import {TEMPERATURE_COLOR_SCALE} from './colorScales';
 import {FADE_IN_COLOR} from './transitions';
+import {cartoCredentials} from '../credentials';
+
 const {colors, values} = TEMPERATURE_COLOR_SCALE;
 
-export const TemperatureLayer = new CartoLayer({
+const dataSource = rasterSource({
+  accessToken: cartoCredentials.accessToken,
+  apiBaseUrl: cartoCredentials.apiBaseUrl,
+  connectionName: '3dtiles-demo',
+  tableName: 'cartobq.public_account.temperature_raster_int8_new'
+});
+
+export const TemperatureLayer = new RasterTileLayer({
   id: 'temperature',
-  connection: '3dtiles-demo',
-  type: MAP_TYPES.RASTER,
-  data: 'cartobq.public_account.temperature_raster_int8_new',
-  formatTiles: 'binary',
-  tileSize: 256,
+  data: dataSource,
   getFillColor: colorBins({
     attr: 'band_1',
     domain: values,

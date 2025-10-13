@@ -1,13 +1,30 @@
 import {fetchMap} from '@deck.gl/carto';
 import {DataFilterExtension, _TerrainExtension as TerrainExtension} from '@deck.gl/extensions';
 import {FADE_IN_COLOR} from './transitions';
+import {cartoCredentials} from '../credentials';
 
 const tooltipOverride = (new URL(location.href)).searchParams.has('tooltip');
 
-const cartoMapId = '60f339dd-450b-4c54-a402-41eb2d7a06af';
+// Disable remote layers to prevent 404 errors
+const cartoMapId = null; // '60f339dd-450b-4c54-a402-41eb2d7a06af';
 // const cartoMapId = '87ded938-6337-45b6-8de1-4c2813e3d9c6';
 export async function fetchRemoteLayers() {
-  const {layers} = await fetchMap({cartoMapId});
+  // Return empty array if no map ID configured
+  if (!cartoMapId) {
+    return [];
+  }
+
+  const mapConfig = {
+    cartoMapId,
+    accessToken: cartoCredentials.accessToken
+  };
+
+  // Only add apiBaseUrl if it's not the default CARTO URL (for local dev)
+  if (cartoCredentials.apiBaseUrl !== 'https://gcp-us-east1.api.carto.com') {
+    mapConfig.apiBaseUrl = cartoCredentials.apiBaseUrl;
+  }
+
+  const {layers} = await fetchMap(mapConfig);
   if(location.host.includes('127.0.0.1')) {
     console.log(layers.map(l => `${l.constructor.layerName} ${l.props.cartoLabel}: ${l.props.id}`).join('\n'));
   }

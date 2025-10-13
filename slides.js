@@ -1,37 +1,35 @@
-import {TEMPERATURE_COLOR_SCALE, DISTANCE_COLOR_SCALE, PRIORITY_COLOR_SCALE} from './layers/colorScales';
+import {TRAFFIC_SPEED_SCALE, SAFETY_SCALE, FUNDING_SCALE} from './layers/colorScales';
 
 export default [
-  /* 0 */ {
-    layers: ['google-3d'],
-    view: {latitude: 50.081033020810736, longitude: 14.451093643141064, bearing: 0, pitch: 40, zoom: 17, height: 400},
+  /* 0 - COVER */ {
+    layers: ['google-3d', 'congestion-zone'],
+    view: {latitude: 40.758, longitude: -73.980, bearing: 0, pitch: 50, zoom: 13.5, height: 600},
     orbit: true
   },
-  /* 1 */ {
-    layers: ['google-3d'],
-    view: {latitude: 50.10650491896325, longitude: 14.417186789690248, bearing: 80, pitch: 70, zoom: 17.5, height: 200},
+  /* 1 - The Challenge */ {
+    layers: ['google-3d', 'congestion-zone', 'traffic-before'],
+    view: {latitude: 40.750, longitude: -73.985, bearing: -30, pitch: 55, zoom: 14.5, height: 300},
+    legend: {title: 'Traffic Speed (Before)', ...TRAFFIC_SPEED_SCALE}
+  },
+  /* 2 - Traffic Reduction */ {
+    layers: ['google-3d', 'congestion-zone', 'traffic-after'],
+    view: {latitude: 40.727, longitude: -74.012, bearing: 45, pitch: 60, zoom: 15, height: 250},
+    legend: {title: 'Traffic Speed (After)', ...TRAFFIC_SPEED_SCALE}
+  },
+  /* 3 - Regional Impact */ {
+    layers: ['google-3d', 'regional-improvement'],
+    view: {latitude: 40.758, longitude: -73.965, bearing: 0, pitch: 40, zoom: 11.5, height: 800},
+    legend: {title: 'Speed Improvement', ...TRAFFIC_SPEED_SCALE}
+  },
+  /* 4 - Safety */ {
+    layers: ['google-3d', 'congestion-zone', 'crashes'],
+    view: {latitude: 40.755, longitude: -73.988, bearing: 20, pitch: 65, zoom: 15.5, height: 200},
+    legend: {title: 'Crash Locations', ...SAFETY_SCALE}
+  },
+  /* 5 - Transit Funding */ {
+    layers: ['google-3d', 'transit-projects'],
+    view: {latitude: 40.753, longitude: -73.977, bearing: -10, pitch: 50, zoom: 14, height: 400},
+    legend: {title: 'Transit Projects', ...FUNDING_SCALE},
     orbit: true
-  },
-  /* 2 */ {
-    layers: ['google-3d', 'temperature'],
-    view: {latitude: 50.097923939967586, longitude: 14.449545135073347, bearing: -43.50888344569848, pitch: 47.70381729182906, zoom: 14.066421513772516, height: 221.10726674564285},
-    legend: {title: 'Temperature', ...TEMPERATURE_COLOR_SCALE},
-    slider: true
-  },
-  /* 3 */ {
-    layers: ['google-3d', 'iyd8wi'],
-    view: {latitude: 50.106134139314676, longitude: 14.418551788315758, bearing: -1.5982979378544293, pitch: 46.98403655241639, zoom: 16.157034959911423, height: 221.02488150953326}
-  },
-  /* 4 */ {
-    layers: ['google-3d', 'ft3t0pi'], // Top priority Buildings
-    view: {latitude: 50.098638970057976, longitude: 14.430949347805848, bearing: -58.668795330078694, pitch: 58.268384344242605, zoom: 17.751310628564266, height: 210},
-    legend: {title: 'Distance from trees', ...DISTANCE_COLOR_SCALE},
-    slider: true,
-    orbit: true
-  },
-  /* 5 */ {
-    layers: ['google-3d', '0fh9zbk', '0fh9zbk-hover'], // Tree Planting Priority
-    view: {latitude: 50.098337089228885, longitude: 14.423039897397192, bearing: 41.67155588940855, pitch: 57.83916048618412, zoom: 17, height: 242.7711712},
-    legend: {title: 'Priority', ...PRIORITY_COLOR_SCALE},
-    slider: true
   }
 ];
