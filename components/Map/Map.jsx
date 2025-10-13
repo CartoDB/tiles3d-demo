@@ -6,7 +6,6 @@ import {useAppState} from '../../state';
 import {SIDEBAR_WIDTH} from '../Sidebar/Sidebar';
 import CoverLogo from '../Cover/CoverLogo';
 import CoverAttribution from '../Cover/CoverAttribution';
-import DrawingControls from '../DrawingControls/DrawingControls';
 
 const SCORES = ['Very Low', 'Low', 'Medium', 'High', 'Very High'];
 
@@ -75,8 +74,8 @@ const useStyles = makeStyles((theme) => ({
 const useDevicePixelsOverride = parseFloat((new URL(location.href)).searchParams.get('useDevicePixels'));
 let currentViewState;
 
-const LONGITUDE_RANGE = [-74.02, -73.95];
-const LATITUDE_RANGE = [40.70, 40.80];
+const LONGITUDE_RANGE = [14.3, 14.55];
+const LATITUDE_RANGE = [50, 50.15];
 
 const Map = () => {
   const classes = useStyles();
@@ -132,7 +131,6 @@ const Map = () => {
         className={[classes.mapBlock, currentSlide > 0 ? classes.mapBlockHidden : ''].join(' ')}
       />
       <CoverAttribution />
-      <DrawingControls />
     </>
   );
 };

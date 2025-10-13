@@ -293,9 +293,8 @@ const Sidebar = () => {
           slide={1}
           shrinked={slideShrinked}
           {...(currentSlide === 1 && {ref: currentCardRef})}
-          title="America's Most Congested District"
-          subtitle="Before January 2025, Manhattan was drowning in traffic"
-          text="<p>New Yorkers lost <b>117 hours annually</b> sitting in gridlock. 647,200 vehicles entered the zone daily, with average Midtown speeds of just <b>4.7 mph</b>.</p><p>The economic cost: <b>$20 billion per year</b>.</p><p>On <b>January 5, 2025</b>, NYC launched the nation's first urban congestion toll: $9 to enter Manhattan south of 60th Street.</p>"
+          title="How important is vegetation for cities?"
+          text="<p>Vegetation is incredibly important for cities, both from an environmental and a social perspective. Here are some reasons why:</p><p><b>Environmental benefits:</b> Help to purify the air, provide shade, reduce the urban heat island effect, and help to regulate temperature and humidity levels</p><p><b>Economic benefits:</b> Reduce energy costs for cooling and heating, decrease stormwater management costs, and increase tourism revenues</p><p><b>Social benefits:</b> Reduce stress by enhancing the beauty of urban areas.</p>"
           image={slide1Image}
           imageAttribution={`Photo by <a target="_blank" href="https://unsplash.com/@robertbye?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Robert Bye</a> on <a target="_blank" href="https://unsplash.com/?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>`}
         />
@@ -303,9 +302,9 @@ const Sidebar = () => {
           slide={2}
           shrinked={slideShrinked}
           {...(currentSlide === 2 && {ref: currentCardRef})}
-          title="The Results: Traffic Moving Again"
-          subtitle="17.6 million fewer vehicles in 9 months"
-          text="<p>Key crossing improvements:</p><ul><li><b>Holland Tunnel delays: -65%</b></li><li><b>Brooklyn Bridge: -13% faster</b></li><li><b>Lincoln Tunnel: -5% improvement</b></li><li><b>Overall zone delays: -25%</b></li></ul><p>Average commuters gain back <b>7 minutes per hour</b> spent in traffic.</p>"
+          title="Vegetation helps to regulate temperature"
+          subtitle="This map shows how tree-covered areas in Prague have a much lower land surface temperature compared with the surrounding areas."
+          text="<p>Vegetation provides shade and helps to regulate the temperature in cities, reducing the urban heat island effect and mitigating the impact of climate change in built-up areas.</p>"
           image={slide2Image}
           imageAttribution={`Photo by <a target="_blank" href="https://unsplash.com/@cici9265?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Cici Hung</a> on <a target="_blank" href="https://unsplash.com/?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>`}
         />
@@ -313,9 +312,9 @@ const Sidebar = () => {
           slide={3}
           shrinked={slideShrinked}
           {...(currentSlide === 3 && {ref: currentCardRef})}
-          title="Benefits Beyond Manhattan"
-          subtitle="The transformation spread across the entire region"
-          text="<p>Traffic delays down everywhere:</p><ul><li>Manhattan zone: <b>-25%</b></li><li>The Bronx: <b>-10%</b></li><li>Bergen County, NJ: <b>-14%</b></li><li>Metro region: <b>-9%</b></li></ul><p>Even roads outside the zone are moving faster: Long Island Expressway, Flatbush Avenue, and approach highways all show improvements.</p>"
+          title="Where are areas of dense vegetation located in the city of Prague?"
+          subtitle="This map highlights public parks in the city."
+          text="<p>Compare how areas of lower surface temperature coincide with large green areas. Trees cool their surrounding not just by providing shade, but also by retaining more moisture compared to concrete and buildings.<p>"
           image={slide3Image}
           imageAttribution={`Photo by <a target="_blank" href="https://unsplash.com/@inakristina?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Kristi Simko</a> on <a target="_blank" href="https://unsplash.com/?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>`}
         />
@@ -323,9 +322,9 @@ const Sidebar = () => {
           slide={4}
           shrinked={slideShrinked}
           {...(currentSlide === 4 && {ref: currentCardRef})}
-          title="Safer Streets, Cleaner Air, Quieter City"
-          subtitle="The city isn't just moving faster—it's living better"
-          text="<p><b>Safety improvements:</b></p><ul><li>Crashes: <b>-14%</b></li><li>Traffic injuries: <b>-15%</b></li><li>Pedestrian fatalities at historic lows</li></ul><p><b>Environmental gains:</b></p><ul><li>CO₂ emissions: <b>-2-3% per km</b></li><li>Air quality improved at monitoring stations</li><li>Noise complaints: <b>-45%</b></li></ul>"
+          title="Which buildings are far from areas of dense vegetation?"
+          subtitle="This map visualizes the buildings of the city which lack areas of dense vegetation nearby."
+          text="<p>Vegetation can improve the look and feel of urban areas, making them more pleasant places to live and work. Research has also shown that spending time around trees can have a <a href='https://www.weforum.org/agenda/2021/04/city-trees-reduce-stress-and-anxiety/' target='_blank'>positive impact on mental health and well-being.</a></p>Thanks to the 3D capabilities of deck.gl, we can visualize the buildings on top of Google 3D imagery.<p>"
           image={slide4Image}
           imageAttribution={`Photo by <a target="_blank" href="https://unsplash.com/@jerrykavan?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Jaromír Kavan</a> on <a target="_blank" href="https://unsplash.com/?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>`}
         />
@@ -333,9 +332,9 @@ const Sidebar = () => {
           slide={5}
           shrinked={slideShrinked}
           {...(currentSlide === 5 && {ref: currentCardRef})}
-          title="$15 Billion for Better Transit"
-          subtitle="Revenue on track: $500 million in 2025"
-          text="<p><b>Where your toll dollars go:</b></p><ul><li>🚇 Second Avenue Subway Phase 2 extension</li><li>♿ 70+ stations getting elevators & accessibility</li><li>🚂 Penn Access & Metro-North expansion</li><li>🚌 New bus routes connecting outer boroughs</li><li>🔧 Signal upgrades & critical infrastructure repairs</li></ul><p>5.5 million daily riders will benefit from these improvements.</p><p><i>&quot;Nine months in, it's clear: congestion pricing has been a huge success.&quot;</i><br/>— Governor Kathy Hochul, July 2025</p>"
+          title="A composite score to define Tree Planting Priority areas"
+          subtitle="This map shows the building footprints colored by the value of the composite score. Areas with a higher priority are shown in red."
+          text="<p>As the world continues to warm and become even more urbanized, cities need to prioritize where to plant trees.<p>Tree Planting Priority composite score has been calculated using multiple datasets to determine which are the best places to plant trees in Prague.</p><p>The score has been derived by multiplying the Mitigation Potential (air temperature, NO2 concentration) by the Exposure (% of built-up areas, points of interest, distance to areas of dense vegetation) and Vulnerability (total population and population younger than 15 and older than 65).</p>"
           image={slide5Image}
           imageAttribution={`Photo by <a target="_blank" href="https://unsplash.com/@chrsndrsn?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Chris Anderson</a> on <a target="_blank" href="https://unsplash.com/?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>`}
         />

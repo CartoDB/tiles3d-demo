@@ -27,53 +27,30 @@ export function createGoogle3DLayer(setCredits) {
         headers: {
           'X-GOOG-API-KEY': API_KEY
         }
-      },
-      '3d-tiles': {
-        loadGLTF: true
-      },
-      tileset: {
-        throttleRequests: false, // Don't throttle, load as fast as possible
-        maximumMemoryUsage: 512 // 512MB memory budget (reduced for better performance)
       }
     },
     onTilesetLoad: tileset3d => {
-      // Quality settings (can be overridden with ?sse=X URL parameter)
-      const isMobile = checkMobileDevice();
-      const defaultSSE = isMobile ? 16 : 4; // 4 = good balance of quality and performance
-
-      tileset3d.options.maximumScreenSpaceError = !isNaN(sseOverride) ? sseOverride : defaultSSE;
-      tileset3d.options.maximumMemoryUsage = 512; // 512MB memory budget (balanced performance)
-
-      // Removed console.log to clean up console
+      // Adapt the geometry resolution on mobile
+      tileset3d.options.maximumScreenSpaceError = !checkMobileDevice() ? 8 : 40;
+      if (!isNaN(sseOverride)) {
+        tileset3d.options.maximumScreenSpaceError = sseOverride;
+      }
 
       tileset3d.options.onTraversalComplete = selectedTiles => {
-        try {
-          // Do not show tiles which are many layers too low in resolution (avoids artifacts)
-          let maxDepth = 0;
-          for (const {depth} of selectedTiles) {
-            if(depth > maxDepth) maxDepth = depth;
-          }
-          const filtered = selectedTiles.filter(t => t.depth > maxDepth - 4);
-
-          // Show data credit
-          const credits = new Set();
-          selectedTiles.forEach(tile => {
-            if (tile?.content?.gltf?.asset?.copyright) {
-              tile.content.gltf.asset.copyright.split(';').forEach(credits.add, credits);
-            }
-          });
-          setCredits([...credits].join('; '));
-
-          return filtered;
-        } catch (error) {
-          // Silently handle errors
-          return selectedTiles;
+        // Do not show tiles which are many layers too low in resolution (avoids artifacts)
+        let maxDepth = 0;
+        for (const {depth} of selectedTiles) {
+          if(depth > maxDepth) maxDepth = depth;
         }
+        const filtered = selectedTiles.filter(t => t.depth > maxDepth - 4);
+
+        // Show data credit
+        const credits = new Set();
+        selectedTiles.forEach(tile => tile.content.gltf.asset.copyright.split(';').forEach(credits.add, credits));
+        setCredits([...credits].join('; '));
+
+        return filtered;
       }
-    },
-    onTileError: (error) => {
-      // Silently handle tile loading errors (e.g., 403 errors)
-      // This prevents the error from bubbling up and appearing in the console
     },
     operation: 'terrain+draw'
   });

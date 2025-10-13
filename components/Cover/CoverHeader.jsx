@@ -43,7 +43,7 @@ const CoverHeader = () => {
             STORY MAP
           </Typography>
           <Typography variant="subtitle1" className={classes.text} color="inherit">
-            NYC Congestion Pricing: 9 Months of Transformation
+            The Importance of Vegetation for Cities. Prague, Czech Republic.
           </Typography>
         </Box>
       </div>

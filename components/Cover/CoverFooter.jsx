@@ -2,6 +2,7 @@ import React from 'react';
 import {makeStyles} from '@material-ui/core';
 import CoverBase from './CoverBase';
 import cartoLogo from '../../assets/images/carto-components-logo-negative-logo.svg';
+import deckGlLogo from '../../assets/images/deckgl-logo.png';
 import googleMapsPlatformLogo from '../../assets/images/google-maps-platform.png';
 import CoverLogoBlock from './CoverLogoBlock';
 
@@ -53,6 +54,21 @@ const CoverFooter = () => {
               src: cartoLogo,
               href: 'https://carto.com/',
               alt: 'CARTO'
+            }
+          ]}
+        />
+        <CoverLogoBlock
+          title="In collaboration with"
+          textClassName={classes.text}
+          className={classes.googleMapsBlock}
+          images={[
+            {
+              src: googleMapsPlatformLogo,
+              alt: 'Google Maps Platform'
+            },
+            {
+              src: deckGlLogo,
+              alt: 'Deck.gl'
             }
           ]}
         />

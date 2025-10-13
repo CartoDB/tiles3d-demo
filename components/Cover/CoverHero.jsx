@@ -43,16 +43,16 @@ const CoverHero = () => {
         color="inherit"
         variant={isDesktop ? 'h5' : 'subtitle1'}
       >
-        The Future of GIS: AI Agents That Understand Your World
+        Photorealistic 3D Tiles + deck.gl + CARTO
       </Typography>
       <Box className={classes.title}>
         <Typography color="inherit" variant={isDesktop ? 'h3' : 'h4'}>
-          NYC Congestion Pricing: 9 Months of Transformation
+          The Importance of Vegetation for Cities. 
         </Typography>
       </Box>
       <Box mb={4}>
         <Typography color="inherit" variant={isDesktop ? 'body1' : 'body2'}>
-          How a $9 toll changed America's most congested city. This CARTO story map is brought to you in collaboration with Google Maps Platform and deck.gl.
+          This CARTO story map is brought to you in collaboration with Google Maps Platform and deck.gl.
         </Typography>
       </Box>
       <Button

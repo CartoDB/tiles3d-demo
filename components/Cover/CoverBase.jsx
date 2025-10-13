@@ -39,7 +39,7 @@ const CoverBase = ({className, children, slidesToShow}) => {
     setShow(
       slidesToShow?.length ? !!slidesToShow.find((s) => s === currentSlide) : currentSlide === 0
     );
-  }, [currentSlide, slidesToShow]);
+  }, [currentSlide, setShow, slidesToShow]);
 
   return (
     <Fade in={show}>
